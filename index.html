@@ -907,8 +907,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <div class="plain-shot"><img src="assets/images/img-11.webp" alt="Final results page with the purple Search Assistant button under the search bar" loading="lazy"></div>
         <figcaption style="margin-top:0">The final results page, with the purple button under the search bar.</figcaption>
         <p>I added it to Alamy DS 2.0 as a new token family, matched to an "ai" variant of the Button component in code: a pill button, plus 48px (mobile) and 64px (desktop) floating buttons, each with hover and disabled states.</p>
-        <div class="quotes"><blockquote>"A new, separate token family, not a reuse of icon/purple, whose defined usage doesn't cover a button surface used repeatedly for a call-to-action."</blockquote></div>
-        <p class="small">From my design system notes: why the AI button got its own tokens instead of borrowing an existing colour.</p>
+        <p><b>Why new tokens?</b> The existing icon/purple token was only defined for icons, not for a button people click again and again, so AI got its own token family instead of borrowing an existing colour.</p>
         <div class="plain-shot"><img src="assets/images/img-12.webp" alt="AI button component set: pill buttons in three sizes, a hover state, Beta variants and circular floating buttons" loading="lazy"></div>
       </section>
 
@@ -975,6 +974,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <div class="stage-kicker">Results</div>
         <h2>Live on alamy.com, with early signals</h2>
         <p>Five days after launch, the analytics team shared the first usage data. The numbers are small, but they already say something about the design.</p>
+        <p class="small">Usage figures are locked below and shared in interviews. What can be shared openly: the A/B test found no revenue impact from the Smart Search change, and image clicks stayed flat at −0.8%.</p>
         <div class="shifts" style="margin:24px 0">
           <div class="shift"><div class="label">Visitors who went on to search</div><div class="vals"><span class="after"><button type="button" class="locked" data-i="5" aria-label="Protected figure, click to unlock">••••</button></span></div><div class="note">of <button type="button" class="locked" data-i="6" aria-label="Protected figure, click to unlock">••••</button>, averaging <button type="button" class="locked" data-i="7" aria-label="Protected figure, click to unlock">••••</button> searches each</div></div>
           <div class="shift"><div class="label">Image click-through</div><div class="vals"><span class="after"><button type="button" class="locked" data-i="8" aria-label="Protected figure, click to unlock">••••</button></span></div><div class="note"><button type="button" class="locked" data-i="9" aria-label="Protected figure, click to unlock">••••</button> image clicks from <button type="button" class="locked" data-i="10" aria-label="Protected figure, click to unlock">••••</button> searches</div></div>
@@ -1021,7 +1021,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 <div data-page="lightbox" data-title="Rebuilding Alamy's Lightbox">
   <section class="case-head wrap">
     <a class="back" href="#/">← All work</a>
-    <div class="company">Alamy, stock images and video marketplace</div>
+    <div class="company">Discovery case study · Alamy, stock images and video marketplace</div>
     <h1 class="display">Rebuilding Alamy's Lightbox</h1>
     <p class="lede">Turning a 15-year-old, overloaded save feature into two purpose-built products, grounded in stakeholder interviews, usability testing, competitive analysis and a full quarter of live analytics. This is part one: Customer Collections, the customer-facing product.</p>
     <dl class="facts">
@@ -1039,7 +1039,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <div class="shift"><div class="label">Lightbox visits that led to any action</div><div class="vals"><span class="after">&lt;1%</span></div><div class="note">The finding that reframed the project</div></div>
       <div class="shift"><div class="label">Usability sessions on the live product</div><div class="vals"><span class="after">20</span></div><div class="note">2 cohorts, 8 countries, 11 tasks each</div></div>
       <div class="shift"><div class="label">Competitor platforms benchmarked</div><div class="vals"><span class="after">14</span></div><div class="note">Plus 5 internal stakeholder interviews</div></div>
-      <div class="shift"><div class="label">Requirements met in the wireframes</div><div class="vals"><span class="after">25/33</span></div><div class="note">Audited line by line against the PRD</div></div>
+      <div class="shift"><div class="label">Requirement gaps caught before handoff</div><div class="vals"><span class="after">8</span></div><div class="note">Audited line by line against the PRD's 33 requirements</div></div>
     </div>
   </section>
 
@@ -1117,7 +1117,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
 
       <section class="stage" id="lb-5">
-        <div class="stage-kicker">What I built</div>
+        <div class="stage-kicker">Where design is heading</div>
         <h2>Eight screens, one evidenced flow</h2>
         <p>The wireframes follow the journey map directly: no screen exists that isn't a step in the map. Two gaps only appeared once wireframing was underway: a true empty-collection state, and a way to add assets from inside a collection.</p>
         <div class="wires"><figure><div class="plain-shot"><img src="assets/images/img-21.webp" alt="Wireframe: First save" loading="lazy"></div><h4>First save</h4><p>Search results and product page merge into one flow. Saving never silently fails, and a blank name defaults to "My Collections".</p></figure><figure><div class="plain-shot"><img src="assets/images/img-22.webp" alt="Wireframe: Save to an existing collection" loading="lazy"></div><h4>Save to an existing collection</h4><p>One consistent rule replaces the old inconsistent behaviour: the current collection is pre-selected, and the full picker is always available.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-23.webp" alt="Wireframe: My Collections" loading="lazy"></div><h4>My Collections</h4><p>Search by name, and a visible way to see and change the current collection, closing a must-have requirement no journey covered before.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-24.webp" alt="Wireframe: Inside a collection" loading="lazy"></div><h4>Inside a collection</h4><p>Search within the collection, visible captions, and bulk reorder, move, copy and remove, answering the reorder complaint from testing.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-25.webp" alt="Wireframe: Empty collection" loading="lazy"></div><h4>Empty collection</h4><p>An invitation to act, not a blank page, and deliberately different from the "no collection yet" state in first save.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-26.webp" alt="Wireframe: Add assets from inside a collection" loading="lazy"></div><h4>Add assets from inside a collection</h4><p>A gap found in review. It reuses the same picker pattern as saving to an existing collection.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-27.webp" alt="Wireframe: Share a collection" loading="lazy"></div><h4>Share a collection</h4><p>No account needed to view, matching every serious competitor, with restricted assets flagged for the recipient too, not just the owner.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-28.webp" alt="Wireframe: Enterprise download" loading="lazy"></div><h4>Enterprise download</h4><p>Eligible, restricted and unavailable assets are flagged per item. Restricted ones are skipped automatically and every attempt is logged.</p></figure></div>
@@ -1174,7 +1174,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
     <a class="back" href="#/lightbox">← Part one: Customer Collections</a>
     <div class="company">Alamy Lightbox rebuild, part two · built inside the <a class="link" href="#/behind-the-search">curation tool I designed in 2024</a></div>
     <h1 class="display">Curated Collections: designing inside a real system</h1>
-    <p class="lede">The internal tool for picture researchers and curators to build, publish and share handpicked collections. It lives as a new tab inside the curation tool I designed in 2024. Partway through, I realised my new wireframes had drifted from that tool, and had to decide what to do with everything I'd built.</p>
+    <p class="lede">The internal tool for picture researchers and curators to build, publish and share handpicked collections, as a new tab inside the curation tool I designed in 2024. When I found my new wireframes didn't match the live tool, I rebuilt them in the real design system, and surfaced three gaps the requirements had missed.</p>
     <dl class="facts">
       <div><dt>My role</dt><dd>Product Designer: independent analysis, journey mapping, wireframes</dd></div>
       <div><dt>Timeline</dt><dd>2026</dd></div>
@@ -1187,9 +1187,8 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   </section>
   <section class="case-shifts wrap">
     <div class="shifts">
-      <div class="shift"><div class="label">Journeys derived from raw evidence</div><div class="vals"><span class="after">4</span></div><div class="note">Not copied from the PRD's structure</div></div>
       <div class="shift"><div class="label">Evidence themes the PRD missed</div><div class="vals"><span class="after">3</span></div><div class="note">Zero coverage across 40 requirements</div></div>
-      <div class="shift"><div class="label">Wireframes rebuilt</div><div class="vals"><span class="after">7</span></div><div class="note">After finding the real tool mid-project</div></div>
+      <div class="shift"><div class="label">Journeys derived from raw evidence</div><div class="vals"><span class="after">4</span></div><div class="note">Not copied from the PRD's structure</div></div>
       <div class="shift"><div class="label">Screens verified against the real tool</div><div class="vals"><span class="after">6/7</span></div><div class="note">The seventh is labelled as unverified</div></div>
     </div>
   </section>
@@ -1280,7 +1279,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
     <h1 class="display">Contributor Experience Revamp</h1>
     <p class="lede">Simplifying an eight-year-old platform where photographers and agencies upload and tag their images, with AI taking over the repetitive work.</p>
     <dl class="facts">
-      <div><dt>My role</dt><dd>Product Designer: research, interaction design, prototyping, usability testing</dd></div>
+      <div><dt>My role</dt><dd>Sole designer: research, interaction design, prototyping, usability testing</dd></div>
       <div><dt>Timeline</dt><dd>March 2025 to present</dd></div>
       <div><dt>Team</dt><dd>Agile team: 1 product manager, 1 product designer (me), 2–3 developers, QA, 1 solutions architect and 1 SEO specialist, working with content reviewers</dd></div>
       <div><dt>I owned</dt><dd>Research, success metrics, interaction design, prototyping and usability testing</dd></div>
@@ -1421,7 +1420,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
     <h1 class="display">Behind the Search: internal curation tool</h1>
     <p class="lede">A modern tool that lets Alamy's content team edit metadata and boost or suppress images in search, so customers see better results faster.</p>
     <dl class="facts">
-      <div><dt>My role</dt><dd>Product Designer: research, interaction design, prototyping</dd></div>
+      <div><dt>My role</dt><dd>Sole designer: research, interaction design, prototyping</dd></div>
       <div><dt>Timeline</dt><dd>March to November 2024</dd></div>
       <div><dt>Team</dt><dd>Agile team: 1 product manager, 1 product designer (me), 2–3 developers, QA, 1 solutions architect and 1 SEO specialist, working with the content team</dd></div>
       <div><dt>I owned</dt><dd>Research with the content team, interaction design, prototyping and weekly testing</dd></div>
@@ -1564,7 +1563,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
     <h1 class="display">Mapping how Alamy really works</h1>
     <p class="lede">Service blueprints for the Enterprise and Contributor journeys that showed, for the first time, how the whole business ran behind the scenes.</p>
     <dl class="facts">
-      <div><dt>My role</dt><dd>Service Designer, working independently</dd></div>
+      <div><dt>My role</dt><dd>Sole designer, leading the service design work independently</dd></div>
       <div><dt>Timeline</dt><dd>March to July 2023</dd></div>
       <div><dt>Teams involved</dt><dd>Content, Accounts, Marketing, Contracts and Tech</dd></div>
       <div><dt>I owned</dt><dd>All of it: interviews, workshops, both blueprints and presenting them to leadership</dd></div>
