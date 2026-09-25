@@ -1431,6 +1431,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <li><a href="#bs-1">The problem</a></li>
       <li><a href="#bs-2">What I found</a></li>
       <li><a href="#bs-3">How I decided</a></li>
+      <li><a href="#bs-live">The live tool</a></li>
       <li><a href="#bs-4">Results</a></li>
       <li><a href="#bs-5">What I learned</a></li>
     </ol>
@@ -1476,6 +1477,21 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <div class="plain-shot"><img src="assets/images/img-49.webp" alt="Curation tool designs: dark search grid with selected images, a metadata panel and boost and suppress controls, handed off as ready for dev" loading="lazy"></div>
         <figcaption style="margin-top:0">The curation tool: selected images in the grid, the metadata panel on the right, and boost and suppress in the bottom bar. A warning flags images that are already boosted.</figcaption>
         <p>I tested prototypes with the content team every week, and partnered with search engineers to make boosting and suppression work with the search infrastructure.</p>
+      </section>
+      <section class="stage" id="bs-live">
+        <div class="stage-kicker">What I built</div>
+        <h2>The live tool, screen by screen</h2>
+        <p>These are the core workflows the content team uses every day: finding images by collection, moving them, boosting and suppressing in bulk, and editing metadata across many images at once.</p>
+        <div class="wires">
+          <figure><div class="plain-shot"><img src="assets/images/bts-filter-collections.webp" alt="Curation tool with the collections filter open: Creative collections Ultimate, Vital, Uncut and Foundation, and Editorial collection Archive, each shown as a removable chip" loading="lazy" width="1240" height="800"></div><h4>Filter by collection</h4><p>Creative and Editorial collections sit in one dropdown, and every selection becomes a removable chip above the grid.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/bts-move-collection.webp" alt="Curation tool with one cat image selected, a large preview on the right, and the Collection tab showing move buttons with the confirmation 1 image moved into Foundation and an Undo link" loading="lazy" width="930" height="606"></div><h4>Move between collections</h4><p>Pick an image, then move it from the Collection tab. The confirmation appears in place, with Undo.</p></figure>
+        </div>
+        <div class="plain-shot"><img src="assets/images/bts-suppress-warning.webp" alt="Two curation tool screens: eleven images selected with a warning that some are already suppressed and will not be affected, then the Suppress button showing Suppressing" loading="lazy" width="1140" height="372"></div>
+        <figcaption style="margin-top:0">Bulk suppress. Before anything changes, a warning says which selected images are already suppressed and won't be affected. The button then shows progress.</figcaption>
+        <div class="plain-shot"><img src="assets/images/bts-suppress-undo.webp" alt="Two curation tool screens: images being suppressed, then a toast saying 11 images suppressed with an Undo button" loading="lazy" width="1132" height="358"></div>
+        <figcaption style="margin-top:0">When it finishes, a toast confirms how many images changed, with Undo.</figcaption>
+        <div class="plain-shot"><img src="assets/images/bts-bulk-metadata.webp" alt="Two curation tool screens with eleven images selected: a preview grid of all selected images and a metadata panel showing shared keywords, categories, licence type and contributor, with Multiple values where fields differ, and a warning that some images are already boosted" loading="lazy" width="1170" height="364"></div>
+        <figcaption style="margin-top:0">Bulk metadata. With many images selected, the panel shows the values they share and marks fields that differ as "Multiple values". Boosting warns about images that are already boosted.</figcaption>
       </section>
       <section class="stage" id="bs-4">
         <div class="stage-kicker">Results</div>
