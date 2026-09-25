@@ -7,7 +7,7 @@
 <meta name="description" content="Human-centred product designer at Alamy (PA Media Group). Problem-first case studies in AI search, collections and internal tools, with the research and numbers behind each decision.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F7F9; --surface:#ECEEF3; --raise:#FFFFFF; --ink:#0E1116; --muted:#525A67; --faint:#6E7684;
@@ -192,14 +192,23 @@ a.row .stat span{font-size:14px; color:var(--muted)}
 @media (max-width:900px){ .pgrid{grid-template-columns:1fr 1fr} .pgrid > div{padding:24px 24px 28px 0!important; border-left:0!important} .pgrid > div:nth-child(2n){padding-left:24px!important; border-left:1px solid var(--rule)!important} }
 @media (max-width:600px){ .pgrid{grid-template-columns:1fr} .pgrid > div{padding:22px 0 26px!important; border-left:0!important} }
 
-/* Beyond the screen */
+/* Beyond the screen: pinboard */
 .beyond{padding-bottom:128px}
-.beyond figure{margin:0}
-.beyond img{display:block; width:100%; height:auto; border-radius:24px; border:1px solid var(--rule); cursor:zoom-in}
-.beyond figcaption{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; margin-top:16px; font-size:15px; color:var(--muted); max-width:none}
-.beyond figcaption b{color:var(--ink); font-weight:600}
-.beyond figcaption > span:last-child{font-family:var(--mono); font-size:12.5px; letter-spacing:.03em; text-transform:uppercase; align-self:center}
-@media (max-width:640px){ .beyond figcaption{grid-template-columns:1fr; gap:4px} }
+.board{position:relative; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:48px 28px; align-items:start; padding:56px 44px 60px; border-radius:28px; border:1px solid var(--rule);
+  background-color:var(--surface); background-image:radial-gradient(color-mix(in srgb, var(--ink) 13%, transparent) 1px, transparent 1.2px); background-size:18px 18px}
+.pin{--r:0deg; position:relative; margin:0; background:#fdfcf9; padding:12px 12px 14px; border-radius:3px; transform:rotate(var(--r)); box-shadow:0 1px 2px rgba(0,0,0,.08), 0 14px 30px -14px rgba(0,0,0,.35); transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s}
+.pin:hover{transform:rotate(0deg) translateY(-6px) scale(1.02); z-index:2; box-shadow:0 2px 4px rgba(0,0,0,.08), 0 26px 44px -18px rgba(0,0,0,.45)}
+.pin::before{content:""; position:absolute; top:-13px; left:50%; width:96px; height:26px; transform:translateX(-50%) rotate(var(--t,-3deg)); background:rgba(236,226,196,.72); box-shadow:0 1px 2px rgba(0,0,0,.08); backdrop-filter:blur(1px)}
+.pin img{display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:1px; cursor:zoom-in; background:#e9e6df}
+.pin.wide{grid-column:1 / -1; justify-self:center; width:min(100%, 900px)}
+.pin.wide img{aspect-ratio:auto}
+.pin figcaption{margin:12px 4px 0; max-width:none; font-family:"Caveat", "Segoe Print", "Bradley Hand", cursive; font-size:22px; line-height:1.2; color:#2b2a27; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 16px}
+.pin figcaption b{font-weight:700}
+.pin figcaption small{font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:#8a877f}
+.pin.r1{--r:-1deg; --t:2deg} .pin.r2{--r:2.2deg} .pin.r3{--r:-2.4deg; --t:4deg} .pin.r4{--r:1.4deg; --t:-5deg} .pin.r5{--r:-1.6deg; --t:3deg}
+@media (max-width:900px){ .board{grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px 22px; padding:44px 24px 44px} }
+@media (max-width:480px){ .board{gap:32px 14px; padding:36px 14px} .pin{padding:8px 8px 10px} .pin figcaption{font-size:18px} .pin::before{width:64px; height:20px; top:-10px} }
+@media (prefers-reduced-motion:reduce){ .pin:hover{transform:rotate(var(--r))} }
 
 /* About */
 .about{padding-bottom:128px}
@@ -747,10 +756,13 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   <section class="beyond wrap" id="beyond">
     <div class="section-head"><h2>Beyond the screen</h2></div>
     <p class="lede" style="margin-bottom:28px">Good products come from teams that enjoy working together, so I help bring people together too. Outside work, I'm a trained singer and perform at open mics, which is also great practice for presenting design work to a room.</p>
-    <figure>
-      <img src="assets/images/img-02.webp" alt="Muhsina hosting Fun at Dev, a team event, standing beside a projected slide" loading="lazy" width="1600" height="685">
-      <figcaption><span><b>Hosting Fun at Dev</b>, a team event at Alamy.</span><span>Photo by our CTO</span></figcaption>
-    </figure>
+    <div class="board">
+      <figure class="pin wide r1"><img src="assets/images/img-02.webp" alt="Muhsina hosting Fun at Dev, a team event, standing beside a projected slide" loading="lazy" width="1600" height="685"><figcaption><span><b>Hosting Fun at Dev</b>, a team event at Alamy.</span><small>Photo by our CTO</small></figcaption></figure>
+      <figure class="pin r2"><img src="assets/images/life-marathon.webp" alt="Muhsina holding up her finisher's medal after the 5K at the GTech Kerala Marathon" loading="lazy" width="960" height="1201" style="object-position:50% 45%"><figcaption><span><b>Finished the 5K</b> at the GTech Kerala Marathon, Trivandrum.</span></figcaption></figure>
+      <figure class="pin r3"><img src="assets/images/life-open-mic.webp" alt="Muhsina singing into a microphone at an open mic, seated in front of music posters" loading="lazy" width="826" height="1280" style="object-position:50% 55%"><figcaption><span><b>Singing at a recent open mic.</b></span></figcaption></figure>
+      <figure class="pin r4"><img src="assets/images/life-between-us.webp" alt="The between us Edition II standee at the venue, with Muhsina reflected in the background taking a photo" loading="lazy" width="960" height="1280"><figcaption><span><b>At between us, Edition II</b>, the music series I named and branded.</span></figcaption></figure>
+      <figure class="pin r5"><img src="assets/images/life-bir-sunset.webp" alt="An orange sunset over the hills of Bir, Himachal Pradesh, with a person watching from a field" loading="lazy" width="960" height="1280"><figcaption><span><b>A sunset I captured</b> in Bir, Himachal Pradesh.</span></figcaption></figure>
+    </div>
   </section>
 
   <section class="about wrap" id="skills">
