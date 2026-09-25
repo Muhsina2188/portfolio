@@ -186,13 +186,14 @@ a.row .stat span{font-size:14px; color:var(--muted)}
 
 /* Principles */
 .principles{padding-bottom:128px}
-.pgrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border-top:1px solid var(--ink)}
-.pgrid > div{padding:28px 32px 36px 0; border-bottom:1px solid var(--rule)}
-.pgrid > div:not(:nth-child(3n+1)){padding-left:32px; border-left:1px solid var(--rule)}
-.pgrid h3{font-size:21px; margin-bottom:12px}
-.pgrid p{color:var(--muted); font-size:16.5px; margin:0}
-@media (max-width:900px){ .pgrid{grid-template-columns:1fr 1fr} .pgrid > div{padding:24px 24px 28px 0!important; border-left:0!important} .pgrid > div:nth-child(2n){padding-left:24px!important; border-left:1px solid var(--rule)!important} }
-@media (max-width:600px){ .pgrid{grid-template-columns:1fr} .pgrid > div{padding:22px 0 26px!important; border-left:0!important} }
+.pgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0; border-top:1px solid var(--ink)}
+.pgrid > div{display:flex; flex-direction:column; padding:32px 40px 36px 0; border-bottom:1px solid var(--rule)}
+.pgrid > div:nth-child(2n){padding-left:40px; padding-right:0; border-left:1px solid var(--rule)}
+.pgrid h3{font-size:22px; margin-bottom:10px}
+.pgrid p{margin:0; font-size:17px; color:var(--ink)}
+.pgrid .proof{margin-top:16px; padding-top:14px; border-top:1px dashed var(--rule); color:var(--muted); font-size:15.5px}
+.pgrid .proof .link{white-space:nowrap}
+@media (max-width:760px){ .pgrid{grid-template-columns:1fr} .pgrid > div, .pgrid > div:nth-child(2n){padding:24px 0 28px; border-left:0} }
 
 /* Beyond the screen: pinboard */
 .beyond{padding-bottom:128px}
@@ -742,18 +743,16 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   <section class="principles wrap" id="about">
     <div class="section-head"><h2>How I work</h2></div>
     <div class="pgrid">
-      <div><h3>Start with why</h3><p>Before designing, I need to know why we're building it and who it helps. On the Lightbox, asking why turned "Lightbox 2.0" into two products, because one tool was serving two very different audiences.</p></div>
-      <div><h3>Fight for the experience, with evidence</h3><p>I don't just draw what's requested. I test, and when two ideas each win somewhere, I combine them. That's how the Search Assistant's placement was decided by users, not by opinion.</p></div>
-      <div><h3>Simple over busy</h3><p>Fewer, clearer choices. Smart Search became a quiet setting so the AI assistant could stand out, and an A/B test confirmed it cost nothing in sales.</p></div>
-      <div><h3>Words are design</h3><p>Two label changes, "Speak your search" and "Classic search", fixed confusion that visual tweaks couldn't. I test copy as seriously as layout.</p></div>
-      <div><h3>On-brand, even when AI builds it</h3><p>Everything I design lives in our design system, tokenised and linked to code. When I use Claude Code and Figma MCP, it builds from that same system, not look-alikes.</p></div>
-      <div><h3>Make the invisible visible</h3><p>Sometimes the most useful design work is a map. Seeing the whole system first is how I find the problems worth solving.</p></div>
+      <div><h3>Find the real problem first</h3><p>I ask why until the brief changes, not just the design.</p><p class="proof">Asking why turned "Lightbox 2.0" into two products for two very different audiences. <a class="link" href="#/lightbox">Lightbox rebuild →</a></p></div>
+      <div><h3>Let evidence settle debates</h3><p>When ideas compete, I test them and combine what works.</p><p class="proof">Testing two opposite placements and combining them lifted discovery from 50% to 83%. <a class="link" href="#/search-assistant">AI Search Assistant →</a></p></div>
+      <div><h3>Bring the team into the work</h3><p>The people closest to the problem shape the design with me.</p><p class="proof">I tested with the content team every week, and together we took search fixes from days to under 24 hours. <a class="link" href="#/behind-the-search">Behind the Search →</a></p></div>
+      <div><h3>Build with AI, inside the system</h3><p>AI speeds me up, but it builds from our real design system, not look-alikes.</p><p class="proof">An audit I ran with Claude Code checked every screen against the requirements and flagged 8 gaps before handoff. <a class="link" href="#/lightbox">Lightbox rebuild →</a></p></div>
     </div>
   </section>
 
   <section class="beyond wrap" id="beyond">
     <div class="section-head"><h2>Beyond the screen</h2></div>
-    <p class="lede" style="margin-bottom:28px">Good products come from teams that enjoy working together, so I help bring people together too. Outside work, I'm a trained singer and perform at open mics, which is also great practice for presenting design work to a room.</p>
+    <p class="lede" style="margin-bottom:28px">Good products come from teams that enjoy working together, so I help bring people together, like hosting Fun at Dev at Alamy. Outside work, I'm a trained singer who performs at open mics, which is also good practice for presenting to a room. I also run, travel with a camera, and design for the local music scene, including naming and branding <a class="link" href="#/between-us"><em>between us</em></a>.</p>
     <div class="board">
       <figure class="pin wide r1"><img src="assets/images/img-02.webp" alt="Muhsina hosting Fun at Dev, a team event, standing beside a projected slide" loading="lazy" width="1600" height="685"><figcaption><span><b>Hosting Fun at Dev</b>, a team event at Alamy.</span><small>Photo by our CTO</small></figcaption></figure>
       <figure class="pin r2"><img src="assets/images/life-marathon.webp" alt="Muhsina holding up her finisher's medal after the 5K at the GTech Kerala Marathon" loading="lazy" width="960" height="1201" style="object-position:50% 45%"><figcaption><span><b>Finished the 5K</b> at the GTech Kerala Marathon, Trivandrum.</span></figcaption></figure>
