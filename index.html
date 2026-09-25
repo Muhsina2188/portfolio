@@ -1039,7 +1039,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <div class="shift"><div class="label">Lightbox visits that led to any action</div><div class="vals"><span class="after">&lt;1%</span></div><div class="note">The finding that reframed the project</div></div>
       <div class="shift"><div class="label">Usability sessions on the live product</div><div class="vals"><span class="after">20</span></div><div class="note">2 cohorts, 8 countries, 11 tasks each</div></div>
       <div class="shift"><div class="label">Competitor platforms benchmarked</div><div class="vals"><span class="after">14</span></div><div class="note">Plus 5 internal stakeholder interviews</div></div>
-      <div class="shift"><div class="label">Requirement gaps caught before handoff</div><div class="vals"><span class="after">8</span></div><div class="note">Audited line by line against the PRD's 33 requirements</div></div>
+      <div class="shift"><div class="label">Requirement gaps caught before handoff</div><div class="vals"><span class="after">8</span></div><div class="note">Audited line by line against all 33 requirements</div></div>
     </div>
   </section>
 
@@ -1104,7 +1104,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <section class="stage" id="lb-4">
         <div class="stage-kicker">How I planned it</div>
         <h2>Every step traced to a source</h2>
-        <p>Before drawing screens, I mapped the five core Customer Collections journeys. Each step is annotated with the interview, usability finding, PRD requirement or analytics number that justifies it. Nothing is in the flow because it seemed reasonable.</p>
+        <p>Before drawing screens, I mapped the five core Customer Collections journeys. Each step is annotated with the interview, usability finding, requirement or analytics number that justifies it. Nothing is in the flow because it seemed reasonable.</p>
         <ol class="journeys">
           <li><div><b>First save</b><span>Outcome: saving never silently fails</span></div></li>
           <li><div><b>Save to an existing collection</b><span>Outcome: organise by project without losing context</span></div></li>
@@ -1132,17 +1132,17 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 
       <section class="stage" id="lb-6">
         <div class="stage-kicker">How I checked it</div>
-        <h2>Auditing the design against the PRD, line by line</h2>
-        <p>Once the wireframes existed, I checked every one of the PRD's 33 customer-facing requirements against the journey map, rather than assuming they were covered. I ran this audit, and the evidence tracking behind it, with Claude Code, then reviewed every finding myself.</p>
+        <h2>Auditing the design against the requirements, line by line</h2>
+        <p>Once the wireframes existed, I checked every one of the 33 customer-facing requirements against the journey map, rather than assuming they were covered. I ran this audit, and the evidence tracking behind it, with Claude Code, then reviewed every finding myself.</p>
         <div class="meter" role="img" aria-label="25 of 33 requirements satisfied, 76%"><i></i></div>
         <div class="meter-label"><span>25 of 33 requirements met in the design</span><span>76%</span></div>
         <div class="tbl-wrap"><table>
           <thead><tr><th>Requirement</th><th>What the audit caught</th></tr></thead>
           <tbody>
-            <tr><td>CC-001</td><td>Creating a collection only appeared in the save flow, never from My Collections, although the requirement named both. Added as its own step.</td></tr>
-            <tr><td>CC-013</td><td>Search results and product page had been merged into one step, hiding two required entry points. Split into two that visibly join one flow.</td></tr>
-            <tr><td>CC-026</td><td>Restriction-aware downloads only existed on the owner's side, never for a recipient viewing a shared restricted asset. Added to the share journey.</td></tr>
-            <tr><td>CC-018</td><td>Video support was a must in the customer PRD but missing from the internal Curated Collections PRD, an inconsistency between two documents for the same platform.</td></tr>
+            <tr><td>Create a collection</td><td>Creating a collection only appeared in the save flow, never from My Collections, although the requirement named both. Added as its own step.</td></tr>
+            <tr><td>Entry points</td><td>Search results and product page had been merged into one step, hiding two required entry points. Split into two that visibly join one flow.</td></tr>
+            <tr><td>Shared downloads</td><td>Restriction-aware downloads only existed on the owner's side, never for a recipient viewing a shared restricted asset. Added to the share journey.</td></tr>
+            <tr><td>Video support</td><td>Video support was a must in the customer requirements but missing from the internal Curated Collections requirements, an inconsistency between two documents for the same platform.</td></tr>
           </tbody>
         </table></div>
       </section>
@@ -1160,7 +1160,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
           <li>A permanent home for curated content like "See The World In 40 Images"</li>
         </ul>
         <h3>What I'd take from this</h3>
-        <p>The most useful discipline wasn't any single research method. It was refusing to let a design decision stand without a named source behind it. That is what surfaced CC-001 and the video inconsistency: not new research, just a systematic check against what had already been decided.</p>
+        <p>The most useful discipline wasn't any single research method. It was refusing to let a design decision stand without a named source behind it. That is what surfaced the missing "create a collection" step and the video inconsistency: not new research, just a systematic check against what had already been decided.</p>
         <p class="small">Designs are in progress and may change before handoff. All data comes from internal research at Alamy.</p>
       </section>
     </div>
@@ -1187,8 +1187,8 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   </section>
   <section class="case-shifts wrap">
     <div class="shifts">
-      <div class="shift"><div class="label">Evidence themes the PRD missed</div><div class="vals"><span class="after">3</span></div><div class="note">Zero coverage across 40 requirements</div></div>
-      <div class="shift"><div class="label">Journeys derived from raw evidence</div><div class="vals"><span class="after">4</span></div><div class="note">Not copied from the PRD's structure</div></div>
+      <div class="shift"><div class="label">Evidence themes the requirements missed</div><div class="vals"><span class="after">3</span></div><div class="note">Zero coverage across 40 requirements</div></div>
+      <div class="shift"><div class="label">Journeys derived from raw evidence</div><div class="vals"><span class="after">4</span></div><div class="note">Not copied from the requirements document</div></div>
       <div class="shift"><div class="label">Screens verified against the real tool</div><div class="vals"><span class="after">6/7</span></div><div class="note">The seventh is labelled as unverified</div></div>
     </div>
   </section>
@@ -1209,8 +1209,8 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <p>So I started from the evidence:</p>
         <ol class="steps">
           <li>Raw evidence first, from the pain-point map</li>
-          <li>Then the PRD for Curated Collections</li>
-          <li>Then a stress test: do the PRD's four journeys actually cover what the evidence points to?</li>
+          <li>Then the requirements for Curated Collections</li>
+          <li>Then a stress test: do the four journeys in the requirements actually cover what the evidence points to?</li>
         </ol>
         <div class="callout">
           <p class="q">They mostly did. But three themes, export and API access, real-time collaboration, and territory-scoped views, had zero coverage across all 40 requirements.</p>
@@ -1229,13 +1229,13 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
           <li><div><b>Unpublish or delete</b><span>Flagged as requirement-led: no interview asked for it, but a publish lifecycle needs an end state</span></div></li>
         </ol>
         <div class="plain-shot scroll"><img src="assets/images/img-37.webp" alt="Curated Collections journey map with evidence trails and a red gap section" loading="lazy"></div>
-        <figcaption style="margin-top:0">The full journey map, with a red section at the bottom for what research found and the PRD never picked up.</figcaption>
+        <figcaption style="margin-top:0">The full journey map, with a red section at the bottom for what research found and the requirements never picked up.</figcaption>
       </section>
 
       <section class="stage" id="cc-3">
         <div class="stage-kicker">How I decided</div>
         <h2>Going back to the tool I'd already designed</h2>
-        <p>Seven wireframes in, working from the PRD alone, I went back to the Curation Tool file, the tool I designed in 2024 for the content team. Curated collection screens had already been started there in Alamy Design System 2.0, some marked "Ready for dev", and my new wireframes didn't match them.</p>
+        <p>Seven wireframes in, working from the requirements alone, I went back to the Curation Tool file, the tool I designed in 2024 for the content team. Curated collection screens had already been started there in Alamy Design System 2.0, some marked "Ready for dev", and my new wireframes didn't match them.</p>
         <p>I had two honest options: keep my new version, or throw out the guesswork and rebuild to match. I rebuilt, working from the real components in Alamy DS 2.0 through Figma MCP, so the new screens use the same system as the live tool. Three of my assumptions turned out to be wrong in ways that mattered:</p>
         <div class="tbl-wrap"><table>
           <thead><tr><th></th><th>What I assumed</th><th>What the real tool does</th></tr></thead>
@@ -1255,7 +1255,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <div class="stage-kicker">What I built</div>
         <h2>Seven screens, matched to the real system</h2>
         <p>Every screen follows the real Curation Tool's patterns where I could check them. Where I couldn't, the screen says so.</p>
-        <div class="wires"><figure><div class="plain-shot"><img src="assets/images/img-39.webp" alt="Search and multi-select" loading="lazy"></div><h4>Search and multi-select</h4><p>The Collection panel appears as soon as assets are selected, with only two actions: create new, or add to existing.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-40.webp" alt="Curated collections list" loading="lazy"></div><h4>Curated collections list</h4><p>A dense table with name, last updated, creator, items, status and who made changes.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-41.webp" alt="Refine a collection" loading="lazy"></div><h4>Refine a collection</h4><p>Search within, drag to reorder, and the same persistent panel showing the collection’s metadata.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-42.webp" alt="Publish" loading="lazy"></div><h4>Publish</h4><p>The real copy, where the curator agrees to be responsible for the collection’s content. Not something I’d have guessed.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-43.webp" alt="Unpublish" loading="lazy"></div><h4>Unpublish</h4><p>The same modal pattern as Publish, with the panel’s Get URL and Publish buttons switching by state.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-44.webp" alt="Published public page" loading="lazy"></div><h4>Published public page</h4><p>The one screen I couldn’t check against the real file. Built on-brand to the PRD, and labelled as unverified.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-45.webp" alt="Bulk metadata actions" loading="lazy"></div><h4>Bulk metadata actions</h4><p>No real screen existed. Kept as my own proposal from a specific research complaint, and labelled that way on the screen.</p></figure></div>
+        <div class="wires"><figure><div class="plain-shot"><img src="assets/images/img-39.webp" alt="Search and multi-select" loading="lazy"></div><h4>Search and multi-select</h4><p>The Collection panel appears as soon as assets are selected, with only two actions: create new, or add to existing.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-40.webp" alt="Curated collections list" loading="lazy"></div><h4>Curated collections list</h4><p>A dense table with name, last updated, creator, items, status and who made changes.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-41.webp" alt="Refine a collection" loading="lazy"></div><h4>Refine a collection</h4><p>Search within, drag to reorder, and the same persistent panel showing the collection’s metadata.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-42.webp" alt="Publish" loading="lazy"></div><h4>Publish</h4><p>The real copy, where the curator agrees to be responsible for the collection’s content. Not something I’d have guessed.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-43.webp" alt="Unpublish" loading="lazy"></div><h4>Unpublish</h4><p>The same modal pattern as Publish, with the panel’s Get URL and Publish buttons switching by state.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-44.webp" alt="Published public page" loading="lazy"></div><h4>Published public page</h4><p>The one screen I couldn’t check against the real file. Built on-brand to the requirements, and labelled as unverified.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-45.webp" alt="Bulk metadata actions" loading="lazy"></div><h4>Bulk metadata actions</h4><p>No real screen existed. Kept as my own proposal from a specific research complaint, and labelled that way on the screen.</p></figure></div>
       </section>
 
       <section class="stage" id="cc-5">
