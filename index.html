@@ -63,7 +63,11 @@ html[data-route="home"] .progress{display:none}
 .nav{display:flex; gap:4px; font-size:15px; font-weight:500}
 .nav a{text-decoration:none; color:var(--muted); padding:8px 14px; border-radius:999px; transition:background .15s, color .15s}
 .nav a:hover{color:var(--ink); background:var(--surface)}
-@media (max-width:640px){ .nav{gap:0; font-size:15px} .nav a{padding:8px 10px} .nav .hide-sm{display:none} }
+.nav a.nav-cv{color:var(--ink); border:1px solid var(--rule); margin-left:6px}
+.nav a.nav-cv:hover{border-color:var(--accent); color:var(--accent); background:transparent}
+@media (max-width:640px){ .nav{gap:0; font-size:15px} .nav a{padding:8px 10px} .nav .hide-sm{display:none} .top-right{gap:8px} .nav a.nav-cv{margin-left:4px} }
+@media (max-width:420px){ .nav .hide-xs{display:none} }
+@media (max-width:380px){ .brand{font-size:17px; gap:8px} .nav a{padding:8px 7px} .top .wrap{gap:10px} }
 
 /* Type */
 h1,h2,h3,h4{margin:0; font-weight:600; text-wrap:balance}
@@ -635,10 +639,11 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
     <a class="brand" href="#/">Muhsina Karim</a>
     <div class="top-right">
     <nav class="nav" aria-label="Main">
-      <a href="#/work">Work</a>
+      <a href="#/work" class="hide-xs">Work</a>
       <a href="#/journey" class="hide-sm">Journey</a>
       <a href="#/about" class="hide-sm">How I work</a>
       <a href="#/contact">Contact</a>
+      <a href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf" target="_blank" rel="noopener" class="nav-cv">CV</a>
     </nav>
     <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch to dark mode">
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -798,6 +803,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <button type="button" class="btn copy-btn" id="copyEmail" title="Copy email address"><span id="emailText" aria-live="polite">muhsinakarim2188@gmail.com</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
       <a class="btn ghost" href="tel:+971565790985">+971 56 579 0985</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/muhsinakarim/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf" target="_blank" rel="noopener">Download CV</a>
     </div>
   </section>
 </div>
