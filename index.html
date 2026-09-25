@@ -95,6 +95,8 @@ dialog .btn::after{content:none!important}
 /* Hero */
 .hero{padding-block:112px 96px; position:relative}
 .hero .display{margin-bottom:32px}
+.hero-eyebrow{display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:13px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin:0 0 22px; max-width:none}
+.hero-eyebrow::before{content:""; width:8px; height:8px; border-radius:50%; background:#1FA971; box-shadow:0 0 0 4px color-mix(in srgb, #1FA971 22%, transparent)}
 .hero .display .why{font-style:normal; color:var(--accent); position:relative; white-space:nowrap}
 .hero .display .why::after{content:""; position:absolute; left:0; right:0; bottom:.04em; height:.09em; background:currentColor; border-radius:99px; opacity:.35}
 .hero .display::after{content:""; display:inline-block; width:.07em; height:.82em; margin-left:.1em; vertical-align:-.06em; background:var(--accent); border-radius:2px}
@@ -453,7 +455,7 @@ html.dark-on .theme-btn .moon{display:none} html.dark-on .theme-btn .sun{display
 }
 
 @media (prefers-reduced-motion:no-preference){
-  .hero .display, .hero .lede, .hero .small, .hero .meta, .hero-grid .portrait{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+  .hero .hero-eyebrow, .hero .display, .hero .lede, .hero .small, .hero .meta, .hero-grid .portrait{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
   .hero .lede{animation-delay:.08s} .hero .small{animation-delay:.14s} .hero .meta{animation-delay:.2s} .hero-grid .portrait{animation-delay:.1s}
   [data-page].on .case-head > *{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
   @keyframes rise{from{opacity:.001; transform:translateY(14px)} to{opacity:1; transform:none}}
@@ -646,9 +648,10 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   <section class="hero wrap">
     <div class="hero-grid">
       <div>
+    <p class="hero-eyebrow">Product Designer · Alamy (PA Media Group) · UAE</p>
     <h1 class="display">I ask <em class="why">why</em> until the design gets simpler.</h1>
     <p class="lede">I design search and product tools at Alamy, including the AI Search Assistant, now live. I ask why before I design, and I test before I ship.</p>
-    <p class="small" style="margin-top:-6px">3+ years in product design. Computer science graduate and former software developer. Based in the UAE.</p>
+    <p class="small" style="margin-top:-6px">Nearly 4 years in product design, after starting as a software developer. Computer science graduate, based in the UAE.</p>
     <div class="meta">
       <span class="chip">Human-centred design</span>
       <span class="chip">Problem framing</span>
@@ -673,7 +676,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <div class="shifts">
         <div class="shift"><div class="label">Found it without being asked</div><div class="vals"><span class="before">50%</span><span class="line"></span><span class="after">83%</span></div></div>
         <div class="shift"><div class="label">Time to find the feature</div><div class="vals"><span class="before">31.5s</span><span class="line"></span><span class="after">16.5s</span></div></div>
-        <div class="shift"><div class="label">Image click-through, first 5 days live</div><div class="vals"><span class="after"><button type="button" class="locked" data-i="0" aria-label="Protected figure, click to unlock">••••</button></span></div></div>
+        <div class="shift"><div class="label">Ease of use inside the assistant</div><div class="vals"><span class="after">6.6/7</span></div></div>
       </div>
       <a class="btn" href="#/search-assistant">Read the case study</a>
       <figure class="feature-media"><img src="assets/images/img-03.webp" alt="" width="1600" height="863" loading="lazy"></figure>
@@ -684,23 +687,17 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   <section class="work wrap">
     <div class="section-head"><h2>More case studies</h2></div>
     <div class="rows">
-      <a class="row" href="#/lightbox">
-        <div class="thumb"><img src="assets/images/img-29.webp" alt="" width="1200" height="750" loading="lazy"></div>
-        <div class="year">2026</div>
-        <div><h3>Rebuilding Alamy's Lightbox</h3><p>Splitting a 15-year-old, overloaded save feature into two products. Part one: Customer Collections. Discovery complete, design in progress.</p></div>
-        <div class="stat"><b>&lt;1%</b><span>of Lightbox visits led to any action</span></div>
-      </a>
-      <a class="row" href="#/curated-collections">
-        <div class="thumb"><img src="assets/images/img-39.webp" alt="" width="1200" height="750" loading="lazy"></div>
-        <div class="year">2026</div>
-        <div><h3>Curated Collections: designing inside a real system</h3><p>Lightbox rebuild, part two. A new tab inside the curation tool I designed in 2024, connecting the two projects.</p></div>
-        <div class="stat"><b>3 gaps</b><span>the PRD's 40 requirements missed</span></div>
-      </a>
       <a class="row" href="#/behind-the-search">
         <div class="thumb"><img src="assets/images/img-49.webp" alt="" width="1062" height="640" loading="lazy"></div>
         <div class="year">2024</div>
         <div><h3>Behind the Search: internal curation tool</h3><p>Giving the content team direct control over what customers see in search results.</p></div>
         <div class="stat"><b>Days to &lt;24h</b><span>to correct search results</span></div>
+      </a>
+      <a class="row" href="#/contributor-revamp">
+        <div class="thumb"><img src="assets/images/img-47.webp" alt="" width="833" height="660" loading="lazy"></div>
+        <div class="year">2025, ongoing</div>
+        <div><h3>Contributor Experience Revamp</h3><p>Rebuilding an eight-year-old upload and tagging platform around AI metadata and bulk editing.</p></div>
+        <div class="stat"><b>60% fewer</b><span>steps to upload and tag</span></div>
       </a>
       <a class="row" href="#/service-blueprint">
         <div class="thumb thumb-bp" aria-hidden="true"><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="l"></i><i></i><i></i><i class="p"></i><i></i><i></i><i></i><i class="l"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="l"></i><i></i><i class="p"></i><i></i><i></i><i class="p"></i><i></i><i class="l"></i><i></i><i></i><i></i><i class="p"></i><i></i><i></i></div>
@@ -708,16 +705,14 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <div><h3>Mapping how Alamy really works</h3><p>Service blueprints that exposed hidden duplication and set up the 2025 contributor redesign.</p></div>
         <div class="stat"><b>5 teams</b><span>aligned on one shared map</span></div>
       </a>
-    </div>
-    <div class="section-head" style="margin-top:64px"><h3>Side project</h3></div>
-    <div class="rows solo">
-      <a class="row" href="#/contributor-revamp">
-        <div class="thumb"><img src="assets/images/img-47.webp" alt="" width="833" height="660" loading="lazy"></div>
-        <div class="year">2025, ongoing</div>
-        <div><h3>Contributor Experience Revamp</h3><p>Rebuilding an eight-year-old upload and tagging platform around AI metadata and bulk editing.</p></div>
-        <div class="stat"><b>60% fewer</b><span>steps to upload and tag</span></div>
+      <a class="row" href="#/lightbox">
+        <div class="thumb"><img src="assets/images/img-29.webp" alt="" width="1200" height="750" loading="lazy"></div>
+        <div class="year">2026, in progress</div>
+        <div><h3>Rebuilding Alamy's Lightbox, in two parts</h3><p>Splitting a 15-year-old, overloaded save feature into two products: Customer Collections for customers, and Curated Collections for internal curators, built into the curation tool I designed in 2024. Discovery complete, design in progress.</p></div>
+        <div class="stat"><b>&lt;1%</b><span>of Lightbox visits led to any action</span></div>
       </a>
     </div>
+
     <div class="section-head" style="margin-top:64px"><h3>Brand identity</h3></div>
     <div class="rows solo">
       <a class="row" href="#/between-us">
@@ -737,7 +732,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <li><div class="when">Jul – Dec 2022</div><h3>Software Developer, Alamy</h3><p>Built front-end and back-end features for Alamy's public website, and reusable, accessible UI components.</p></li>
       <li><div class="when">2023</div><h3>Product Designer, Alamy</h3><p>Moved into design in December 2022. Led service design discovery, mapping the Enterprise and Contributor journeys end to end.</p></li>
       <li><div class="when">2024</div><h3>Product Designer, Alamy</h3><p>Designed an internal curation tool that gave the content team near real-time control over search.</p></li>
-      <li class="now"><div class="when">Now</div><h3>Product Designer, mid-level</h3><p>Promoted. Took AI Search Assistant from inherited concept to beta, and designed Customer and Curated Collections for the Lightbox rebuild, with Curated Collections built into my 2024 curation tool.</p></li>
+      <li class="now"><div class="when">Now</div><h3>Product Designer (promoted)</h3><p>Promoted. Took AI Search Assistant from inherited concept to beta, and designed Customer and Curated Collections for the Lightbox rebuild, with Curated Collections built into my 2024 curation tool.</p></li>
     </ol>
   </section>
 
@@ -1009,7 +1004,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
     </div>
   </div>
-  <a class="next-case wrap" href="#/lightbox"><div class="small">Next case study</div><h2>Rebuilding Alamy's Lightbox</h2></a>
+  <a class="next-case wrap" href="#/behind-the-search"><div class="small">Next case study</div><h2>Behind the Search: internal curation tool</h2></a>
 </div>
 
 <!-- ============ LIGHTBOX ============ -->
@@ -1264,14 +1259,14 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
     </div>
   </div>
-  <a class="next-case wrap" href="#/behind-the-search"><div class="small">The tool it lives in</div><h2>Behind the Search: internal curation tool</h2></a>
+  <a class="next-case wrap" href="#/between-us"><div class="small">Next case study</div><h2>between us</h2></a>
 </div>
 
 <!-- ============ CONTRIBUTOR REVAMP ============ -->
 <div data-page="contributor-revamp" data-title="Contributor Experience Revamp">
   <section class="case-head wrap">
     <a class="back" href="#/">← All work</a>
-    <div class="company">Side project at Alamy, in progress</div>
+    <div class="company">Alamy (PA Media Group), in progress</div>
     <h1 class="display">Contributor Experience Revamp</h1>
     <p class="lede">Simplifying an eight-year-old platform where photographers and agencies upload and tag their images, with AI taking over the repetitive work.</p>
     <dl class="facts">
@@ -1405,7 +1400,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
     </div>
   </div>
-  <a class="next-case wrap" href="#/search-assistant"><div class="small">Back to the start</div><h2>AI Search Assistant</h2></a>
+  <a class="next-case wrap" href="#/service-blueprint"><div class="small">Next case study</div><h2>Mapping how Alamy really works</h2></a>
 </div>
 
 <!-- ============ BEHIND THE SEARCH ============ -->
@@ -1532,7 +1527,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
     </div>
   </div>
-  <a class="next-case wrap" href="#/service-blueprint"><div class="small">Next case study</div><h2>Mapping how Alamy really works</h2></a>
+  <a class="next-case wrap" href="#/contributor-revamp"><div class="small">Next case study</div><h2>Contributor Experience Revamp</h2></a>
 </div>
 
 <!-- ============ SERVICE BLUEPRINT ============ -->
@@ -1698,7 +1693,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
     </div>
   </div>
-  <a class="next-case wrap" href="#/search-assistant"><div class="small">Back to the start</div><h2>AI Search Assistant</h2></a>
+  <a class="next-case wrap" href="#/lightbox"><div class="small">Next case study</div><h2>Rebuilding Alamy's Lightbox</h2></a>
 </div>
 
 <!-- ============ BETWEEN US ============ -->
