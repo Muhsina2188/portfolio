@@ -237,6 +237,9 @@ a.row .stat span{font-size:14px; color:var(--muted)}
 .contact .btn.ghost{background:transparent; color:var(--band-ink); border-color:var(--band-rule)}
 .contact .btn.ghost:hover{border-color:var(--band-ink); box-shadow:none}
 .contact .small{color:var(--band-muted); font-family:var(--mono); font-size:14px}
+.contact .contact-lines{display:flex; flex-wrap:wrap; column-gap:4px; row-gap:2px}
+.contact .small span{user-select:all; white-space:nowrap}
+.contact .small span[aria-hidden]{user-select:none}
 .btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--rule)}
 .btn.ghost:hover{border-color:var(--ink); box-shadow:none}
 @media (max-width:600px){ .contact-head{flex-direction:column; align-items:flex-start} }
@@ -790,13 +793,14 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 
   <section class="contact wrap" id="contact">
     <div class="contact-head"><img class="portrait" src="assets/images/profile.webp" alt="" width="72" height="72"><h2 style="max-width:22ch; margin:0">Hiring a product designer in the UAE? Let's talk.</h2></div>
-    <p class="lede" style="margin-top:16px">I'm looking for product designer roles in the UAE. Notice period: up to 60 days, negotiable.</p>
+    <p class="lede" style="margin-top:16px">Notice period: up to 60 days, negotiable.</p>
     <div class="links">
       <a class="btn" href="mailto:muhsinakarim2188@gmail.com">Email me</a>
-      <a class="btn ghost" href="tel:+971565790985">+971 56 579 0985</a>
+      <button type="button" class="btn ghost" id="copyEmail">Copy email</button>
+      <a class="btn ghost" href="https://wa.me/971565790985" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/muhsinakarim/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <p class="small" style="margin-top:20px">muhsinakarim2188@gmail.com</p>
+    <p class="small contact-lines" style="margin-top:20px"><span id="emailText">muhsinakarim2188@gmail.com</span><span aria-hidden="true"> · </span><span>+971 56 579 0985</span></p>
   </section>
 </div>
 
@@ -2183,6 +2187,17 @@ sync();b.addEventListener('click',function(){var d=r.getAttribute('data-theme')!
     page.querySelectorAll('.bu-ed').forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false');});
     page.style.setProperty('--p', b.dataset.p); page.style.setProperty('--pbg', b.dataset.bg);
     nm.textContent=b.dataset.n; hx.textContent=b.dataset.p.toUpperCase();
+  });
+})();</script>
+<script>(function(){
+  var b=document.getElementById('copyEmail'), t=document.getElementById('emailText'); if(!b) return;
+  var email='muhsinakarim2188@gmail.com', timer;
+  function done(label){ b.textContent=label; clearTimeout(timer); timer=setTimeout(function(){ b.textContent='Copy email'; },2000); }
+  function selectText(){ var r=document.createRange(); r.selectNodeContents(t); var s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+  b.addEventListener('click',function(){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(email).then(function(){ done('Copied'); },function(){ selectText(); done('Press Ctrl+C to copy'); });
+    } else { selectText(); done('Press Ctrl+C to copy'); }
   });
 })();</script>
 </body>
