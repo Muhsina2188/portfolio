@@ -1205,13 +1205,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <section class="stage" id="cc-1">
         <div class="stage-kicker">Why I started over</div>
         <h2>Not a copy of Customer Collections</h2>
-        <p>After finishing Customer Collections, it was tempting to reuse its journey structure. I didn't. Curators are a different group, doing different work at a much larger scale, and forcing one shape onto both would hide what makes this tool different.</p>
-        <p>So I started from the evidence:</p>
-        <ol class="steps">
-          <li>Raw evidence first, from the pain-point map</li>
-          <li>Then the requirements for Curated Collections</li>
-          <li>Then a stress test: do the four journeys in the requirements actually cover what the evidence points to?</li>
-        </ol>
+        <p>After Customer Collections, it was tempting to reuse its journey structure. I didn't: curators do different work at a much larger scale, so I started from the raw evidence and then stress-tested the requirements against it.</p>
         <div class="callout">
           <p class="q">They mostly did. But three themes, export and API access, real-time collaboration, and territory-scoped views, had zero coverage across all 40 requirements.</p>
           <p class="small">Two different interviewees raised them independently, with a concrete solution already on record.</p>
@@ -1222,12 +1216,6 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <div class="stage-kicker">What I mapped</div>
         <h2>Four flows, evidence first, gaps included</h2>
         <p>I used the same approach as Customer Collections: every step traced to a source. But this map also says openly when a journey rests on requirements rather than a validated complaint.</p>
-        <ol class="journeys">
-          <li><div><b>Build a collection</b><span>Search, select and create</span></div></li>
-          <li><div><b>Refine</b><span>Reorder, edit details and metadata</span></div></li>
-          <li><div><b>Publish and share</b><span>Make a collection public and share its URL</span></div></li>
-          <li><div><b>Unpublish or delete</b><span>Flagged as requirement-led: no interview asked for it, but a publish lifecycle needs an end state</span></div></li>
-        </ol>
         <div class="plain-shot scroll"><img src="assets/images/img-37.webp" alt="Curated Collections journey map with evidence trails and a red gap section" loading="lazy"></div>
         <figcaption style="margin-top:0">The full journey map, with a red section at the bottom for what research found and the requirements never picked up.</figcaption>
       </section>
@@ -1253,9 +1241,9 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 
       <section class="stage" id="cc-4">
         <div class="stage-kicker">What I built</div>
-        <h2>Seven screens, matched to the real system</h2>
-        <p>Every screen follows the real Curation Tool's patterns where I could check them. Where I couldn't, the screen says so.</p>
-        <div class="wires"><figure><div class="plain-shot"><img src="assets/images/img-39.webp" alt="Search and multi-select" loading="lazy"></div><h4>Search and multi-select</h4><p>The Collection panel appears as soon as assets are selected, with only two actions: create new, or add to existing.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-40.webp" alt="Curated collections list" loading="lazy"></div><h4>Curated collections list</h4><p>A dense table with name, last updated, creator, items, status and who made changes.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-41.webp" alt="Refine a collection" loading="lazy"></div><h4>Refine a collection</h4><p>Search within, drag to reorder, and the same persistent panel showing the collection’s metadata.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-42.webp" alt="Publish" loading="lazy"></div><h4>Publish</h4><p>The real copy, where the curator agrees to be responsible for the collection’s content. Not something I’d have guessed.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-43.webp" alt="Unpublish" loading="lazy"></div><h4>Unpublish</h4><p>The same modal pattern as Publish, with the panel’s Get URL and Publish buttons switching by state.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-44.webp" alt="Published public page" loading="lazy"></div><h4>Published public page</h4><p>The one screen I couldn’t check against the real file. Built on-brand to the requirements, and labelled as unverified.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-45.webp" alt="Bulk metadata actions" loading="lazy"></div><h4>Bulk metadata actions</h4><p>No real screen existed. Kept as my own proposal from a specific research complaint, and labelled that way on the screen.</p></figure></div>
+        <h2>Matched to the real system</h2>
+        <p>Four of the seven rebuilt screens. Each follows the real Curation Tool's patterns where I could check them. Where I couldn't, the screen says so.</p>
+        <div class="wires"><figure><div class="plain-shot"><img src="assets/images/img-39.webp" alt="Search and multi-select" loading="lazy"></div><h4>Search and multi-select</h4><p>The Collection panel appears as soon as assets are selected, with only two actions: create new, or add to existing.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-41.webp" alt="Refine a collection" loading="lazy"></div><h4>Refine a collection</h4><p>Search within, drag to reorder, and the same persistent panel showing the collection’s metadata.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-42.webp" alt="Publish" loading="lazy"></div><h4>Publish</h4><p>The real copy, where the curator agrees to be responsible for the collection’s content. Not something I’d have guessed.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-45.webp" alt="Bulk metadata actions" loading="lazy"></div><h4>Bulk metadata actions</h4><p>No real screen existed. Kept as my own proposal from a specific research complaint, and labelled that way on the screen.</p></figure></div>
       </section>
 
       <section class="stage" id="cc-5">
@@ -1264,7 +1252,6 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <p>Six of seven wireframes are confirmed against the real Curation Tool. Three evidenced gaps, export and API access, live collaboration, and a lower-priority "add by reference ID" workflow, are flagged for the PM rather than designed around on my own.</p>
         <h3>What I'd take from this</h3>
         <p>The useful instinct wasn't building fast. It was being willing to throw out seven screens the moment better information appeared, instead of quietly keeping the version I'd already invested in. The rebuilt wireframes are more accurate because the first version was wrong in specific, nameable ways.</p>
-        <p class="small">Screens are wireframe-stage. Six of seven are verified against the real design system; one is not.</p>
       </section>
     </div>
   </div>
