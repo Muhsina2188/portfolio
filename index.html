@@ -247,6 +247,9 @@ a.row .stat span{font-size:14px; color:var(--muted)}
 .btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--rule)}
 .btn.ghost:hover{border-color:var(--ink); box-shadow:none}
 @media (max-width:600px){ .contact-head{flex-direction:column; align-items:flex-start} }
+footer .foot{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:8px 24px}
+footer .foot .link{white-space:nowrap}
+html[data-route="home"] footer .link{color:var(--band-ink)}
 footer{padding:28px 0 40px; border-top:1px solid var(--rule); font-size:14px; color:var(--muted)}
 html[data-route="home"] footer{border-top:0; background:var(--band); color:var(--band-muted); border-top:1px solid var(--band-rule)}
 
@@ -642,8 +645,8 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <a href="#/work" class="hide-xs">Work</a>
       <a href="#/journey" class="hide-sm">Journey</a>
       <a href="#/about" class="hide-sm">How I work</a>
-      <a href="#/contact">Contact</a>
-      <a href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf" target="_blank" rel="noopener" class="nav-cv">CV</a>
+      <a href="#/contact" class="hide-xs">Contact</a>
+      <a href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf" target="_blank" rel="noopener" class="nav-cv">Resume</a>
     </nav>
     <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch to dark mode">
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -803,7 +806,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <button type="button" class="btn copy-btn" id="copyEmail" title="Copy email address"><span id="emailText" aria-live="polite">muhsinakarim2188@gmail.com</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
       <a class="btn ghost" href="tel:+971565790985">+971 56 579 0985</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/muhsinakarim/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn ghost" href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+      <a class="btn ghost" href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf" target="_blank" rel="noopener">Download resume</a>
     </div>
   </section>
 </div>
@@ -2037,7 +2040,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 </main>
 
 <footer>
-  <div class="wrap">Muhsina Karim, Product Designer. Case study numbers come from usability testing and internal data at Alamy.</div>
+  <div class="wrap foot"><span>Muhsina Karim, Product Designer. Case study numbers come from usability testing and internal data at Alamy.</span><a class="link" href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf" target="_blank" rel="noopener">Download resume</a></div>
 </footer>
 
 <script>
