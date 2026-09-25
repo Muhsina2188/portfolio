@@ -7,7 +7,7 @@
 <meta name="description" content="Human-centred product designer at Alamy (PA Media Group). Problem-first case studies in AI search, collections and internal tools, with the research and numbers behind each decision.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F7F9; --surface:#ECEEF3; --raise:#FFFFFF; --ink:#0E1116; --muted:#525A67; --faint:#6E7684;
@@ -450,15 +450,160 @@ html.dark-on .theme-btn .moon{display:none} html.dark-on .theme-btn .sun{display
   @keyframes rise{from{opacity:.001; transform:translateY(14px)} to{opacity:1; transform:none}}
 }
 @media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+
+/* ===== between us: brand showcase (artwork keeps its own fixed palette) ===== */
+.bu{--k:#0a0a09; --k2:#131312; --k3:#1c1c1a; --w:#f8f6f2; --ow:#eeebe5; --m:#7a7870; --sb:#a8a49c; --f:#c0bcb6;
+  --p:#e8c4b8; --pbg:#fdf0ec; --bu-serif:"Cormorant Garamond", Georgia, "Times New Roman", serif; --bu-sans:"Raleway", "Helvetica Neue", Arial, sans-serif}
+.bu-word{font-family:"Cormorant Garamond", Georgia, serif; font-weight:300; letter-spacing:-0.01em}
+.bu-word em{font-style:italic}
+.case-head .display.bu-word{font-weight:300; letter-spacing:-0.02em; font-size:clamp(56px,10vw,120px); line-height:.95}
+.bu-board{background:var(--surface); border:1px solid var(--rule); border-radius:20px; padding:32px; margin:28px 0 12px; overflow-x:auto}
+.bu-board.bu-dark{background:#0f0f0e; border-color:#26262a}
+.bu-row{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start}
+.bu-row.bu-center{justify-content:center}
+.bu-row.bu-nowrap{flex-wrap:nowrap; gap:6px}
+.bu-item{display:flex; flex-direction:column; align-items:center; gap:12px; flex-shrink:0}
+.bu-cap{font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-align:center}
+.bu-dark .bu-cap{color:#8a8880}
+.bu-note{font-family:var(--mono); font-size:12px; color:var(--muted); margin:10px 0 36px}
+.bu *{box-sizing:border-box}
+.bu-board p, .bu-spec p{margin:0; max-width:none}
+
+/* switcher + swatches */
+.bu-switch{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 8px}
+.bu-ed{font:500 13px/1 var(--font); display:inline-flex; align-items:center; gap:9px; padding:10px 14px; border-radius:999px; border:1px solid var(--rule); background:var(--raise); color:var(--muted); cursor:pointer; transition:border-color .15s, color .15s}
+.bu-ed:hover{color:var(--ink); border-color:var(--faint)}
+.bu-ed[aria-pressed="true"]{color:var(--ink); border-color:var(--ink)}
+.bu-ed i{width:12px; height:12px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.bu-sticky{position:sticky; top:calc(env(safe-area-inset-top,0px) + 80px); z-index:5; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); padding:10px 0; margin:0 0 8px; border-bottom:1px solid var(--rule)}
+.bu-sticky .bu-switch{margin:0}
+.bu-sw{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:24px 0 8px}
+.bu-sw div{display:flex; flex-direction:column; gap:6px}
+.bu-sw i{display:block; height:84px; border-radius:12px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.bu-sw b{font-size:14px; font-weight:600}
+.bu-sw span{font-family:var(--mono); font-size:12px; color:var(--muted)}
+@media (max-width:600px){ .bu-sw{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+/* type specimen */
+.bu-spec{display:grid; grid-template-columns:1.3fr 1fr; gap:0; border:1px solid var(--rule); border-radius:20px; overflow:hidden; margin:28px 0}
+.bu-spec > div{padding:32px}
+.bu-spec .a{background:#0a0a09; color:#f8f6f2}
+.bu-spec .b{background:#f8f6f2; color:#0a0a09}
+.bu-spec .big{font-family:"Cormorant Garamond", Georgia, serif; font-weight:300; font-size:clamp(56px,8vw,96px); line-height:.95}
+.bu-spec .big em{font-style:italic}
+.bu-spec .meta{font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:#a8a49c; margin-top:18px}
+.bu-spec .b .meta{color:#7a7870}
+.bu-spec .caps{font-family:"Raleway", Arial, sans-serif; font-weight:300; font-size:13px; letter-spacing:.4em; text-transform:uppercase; line-height:2.2}
+@media (max-width:760px){ .bu-spec{grid-template-columns:1fr} }
+
+/* shared artwork type */
+.bu .sup{font-family:var(--bu-sans); font-weight:300; font-size:8.5px; letter-spacing:.32em; text-transform:uppercase; line-height:1.5}
+.bu .on-k{color:var(--sb)} .bu .on-w{color:var(--m)}
+.bu .nm{font-family:var(--bu-serif); font-weight:300; line-height:.95; white-space:nowrap}
+.bu .nm em{font-style:italic}
+.bu .art{font-family:var(--bu-serif); font-weight:300; font-style:italic}
+.bu .ru-k{height:.5px; background:var(--k3); margin:14px 0}
+.bu .ru-w{height:.5px; background:var(--f); margin:14px 0}
+.bu .bar{position:absolute; top:0; left:0; right:0; height:3px; background:var(--p)}
+.bu .k{background:var(--k); color:var(--w)}
+.bu .w{background:var(--w); color:var(--k); box-shadow:inset 0 0 0 .5px var(--f)}
+.bu .pb{background:var(--pbg); color:var(--k); box-shadow:inset 0 0 0 .5px var(--f)}
+.bu .card{position:relative; overflow:hidden; border-radius:4px; display:flex; flex-direction:column; flex-shrink:0; box-shadow:0 18px 40px -24px rgba(0,0,0,.45)}
+.bu .card.w,.bu .card.pb{box-shadow:inset 0 0 0 .5px var(--f), 0 18px 40px -24px rgba(0,0,0,.3)}
+.bu .pad{padding:28px 26px; display:flex; flex-direction:column; height:100%}
+.bu .end{margin-top:auto}
+.bu .quote{font-family:var(--bu-serif); font-weight:300; font-style:italic; text-align:center; line-height:1.8}
+
+/* posters */
+.bu .pp{width:300px; height:400px}
+.bu .pp .pad{padding:44px 36px 36px}
+.bu .pp .nm{font-size:44px}
+.bu .ps{width:240px; height:240px}
+.bu .ps .nm{font-size:32px}
+.bu .pst{width:150px; height:266px}
+.bu .pst .pad{padding:24px 18px 20px}
+.bu .pst .nm{font-size:24px}
+
+/* ticket */
+.bu-ticket{background:var(--w); color:var(--k); border-radius:6px; overflow:hidden; width:620px; max-width:none; box-shadow:inset 0 0 0 .5px var(--f), 0 18px 40px -24px rgba(0,0,0,.3); position:relative}
+.bu-ticket .th{padding:32px 36px 26px}
+.bu-ticket .top{display:flex; justify-content:space-between; margin-bottom:22px}
+.bu-ticket .nm{font-size:52px}
+.bu-ticket .feat{margin-top:18px; padding-top:14px; border-top:.5px solid var(--f); display:flex; align-items:baseline; gap:16px}
+.bu-ticket .tear{display:flex; align-items:center; padding:0 12px}
+.bu-ticket .tear i{width:16px; height:16px; border-radius:50%; background:var(--surface); box-shadow:inset 0 0 0 .5px var(--f); margin:0 -20px; flex-shrink:0}
+.bu-ticket .tear span{flex:1; border-top:1.5px dashed var(--f); margin:0 12px}
+.bu-ticket .tb{background:var(--ow); padding:22px 36px 24px; display:grid; grid-template-columns:repeat(4,1fr); border-top:.5px solid var(--f)}
+.bu-ticket .tf{padding:0 20px; border-left:.5px solid var(--f)} .bu-ticket .tf:first-child{padding-left:0; border-left:0}
+.bu-ticket .tv{font-family:var(--bu-serif); font-size:17px; margin-top:6px}
+.bu-ticket .ft{background:var(--ow); padding:14px 36px; border-top:.5px solid var(--f); display:flex; justify-content:space-between; align-items:center}
+
+/* seal / goody / standee */
+.bu .goody{width:170px; padding:30px 20px 24px; align-items:center; text-align:center; border-radius:4px}
+.bu .hole{width:10px; height:10px; border-radius:50%; box-shadow:inset 0 0 0 1px var(--k3); position:absolute; top:12px; left:50%; transform:translateX(-50%)}
+.bu .string{width:1px; height:36px; background:var(--f)}
+.bu .standee{width:200px; min-height:390px; padding:0 24px 36px; align-items:center; text-align:center; border-radius:4px 4px 0 0}
+.bu .standee .sbar{width:calc(100% + 48px); height:4px; background:var(--p); margin-bottom:32px}
+.bu .standee .vr{width:1px; height:28px; background:var(--k3); margin:16px auto}
+.bu .foot1{width:232px; height:10px; background:var(--k3); border-radius:0 0 4px 4px}
+.bu .foot2{width:190px; height:14px; background:var(--k2); border-radius:2px; margin-top:2px}
+
+/* bookmarks */
+.bu .bm{width:120px; display:flex; flex-direction:column; align-items:center}
+.bu .bm .body{width:120px; height:390px; clip-path:polygon(0 0,100% 0,100% 92%,50% 100%,0 92%); display:flex; flex-direction:column; position:relative; border-radius:4px 4px 0 0}
+.bu .bm .body.w{box-shadow:inset 0 0 0 1px var(--f)} .bu .bm .body.pb{box-shadow:inset 0 0 0 1px var(--f)}
+.bu .bm .top4{height:4px; background:var(--p); flex-shrink:0}
+.bu .bm .pad{padding:18px 16px 36px}
+.bu .bm .bh{width:10px; height:10px; border-radius:50%; margin:0 auto 14px; background:var(--surface); box-shadow:inset 0 0 0 1px var(--f)}
+.bu .bm .body.k .bh{box-shadow:inset 0 0 0 1px var(--k3)}
+.bu .bm .sup{font-size:7px}
+.bu .bm .vert{writing-mode:vertical-rl; transform:rotate(180deg); font-family:var(--bu-serif); font-weight:300; font-size:30px; line-height:1; flex:1; display:flex; align-items:center; white-space:nowrap}
+.bu .bm .vert em{font-style:italic}
+.bu .bm .dv{height:.5px; margin:10px 0; background:var(--f)} .bu .bm .body.k .dv{background:var(--k3)}
+.bu .bm .tass{width:1px; height:48px; background:var(--f)} .bu .bm .tend{width:6px; height:6px; border-radius:50%; background:var(--f)}
+.bu .bm.pastel .tass,.bu .bm.pastel .tend{background:var(--p)} .bu .bm.dark .tass,.bu .bm.dark .tend{background:var(--sb)}
+
+/* instagram */
+.bu .sq{width:260px; height:260px}
+.bu .sq .nm{font-size:42px}
+.bu .story{width:136px; height:242px; border-radius:8px}
+.bu .story .pad{padding:20px 15px}
+.bu .story .nm{font-size:24px}
+.bu-row.fit5{gap:14px}
+.bu-row.fit3 .sq{width:224px; height:224px}
+.bu-row.fit3 .sq .nm{font-size:36px}
+.bu .slide{width:220px; height:220px; border-radius:3px}
+.bu .slide .pad{padding:22px 20px}
+.bu .slide .nm{font-size:34px}
+.bu .copy{font-family:var(--bu-serif); font-weight:300; font-size:14px; line-height:1.8}
+.bu .ph{background:var(--k3); border-radius:3px; display:flex; align-items:center; justify-content:center}
+.bu .ph .sup{font-size:7.5px}
+.bu .vr2{width:1px; height:22px; margin:12px auto}
+.bu .num{font-family:var(--bu-serif); font-weight:300; line-height:1}
+
+/* home thumbnail */
+.thumb-bu{display:flex; align-items:center; justify-content:center; gap:14px; background:#fdf0ec!important; padding:24px}
+.thumb-bu .mini{width:34%; max-width:170px; aspect-ratio:3/4; background:#0a0a09; border-radius:3px; position:relative; padding:12% 10% 10%; display:flex; flex-direction:column; box-shadow:0 20px 40px -20px rgba(0,0,0,.5); transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.thumb-bu .mini::before{content:""; position:absolute; top:0; left:0; right:0; height:3px; background:#e8c4b8}
+.thumb-bu .mini.l{background:#f8f6f2; box-shadow:inset 0 0 0 .5px #c0bcb6, 0 20px 40px -20px rgba(0,0,0,.35); transform:translateY(10%)}
+.thumb-bu .mini b{font-family:"Cormorant Garamond", Georgia, serif; font-weight:300; color:#f8f6f2; font-size:clamp(13px,1.8vw,23px); line-height:.95; margin-top:auto; white-space:nowrap}
+.thumb-bu .mini{overflow:hidden}
+.thumb-bu .mini.l b{color:#0a0a09}
+.thumb-bu .mini b em{font-style:italic}
+.thumb-bu .mini s{text-decoration:none; font-family:"Raleway", Arial, sans-serif; font-weight:300; font-size:7px; letter-spacing:.3em; text-transform:uppercase; color:#a8a49c}
+.thumb-bu .mini.l s{color:#7a7870}
+a.row:hover .thumb-bu .mini{transform:translateY(-4px) rotate(-1.5deg)}
+a.row:hover .thumb-bu .mini.l{transform:translateY(6%) rotate(1.5deg)}
 </style>
-<script>(function(){var p=['home', 'search-assistant', 'lightbox', 'curated-collections', 'contributor-revamp', 'behind-the-search', 'service-blueprint'];var h=location.hash.replace(/^#\/?/,'');document.documentElement.setAttribute('data-route',p.indexOf(h)>-1?h:'home');})();</script>
+<script>(function(){var p=['home', 'search-assistant', 'lightbox', 'curated-collections', 'contributor-revamp', 'behind-the-search', 'service-blueprint', 'between-us'];var h=location.hash.replace(/^#\/?/,'');document.documentElement.setAttribute('data-route',p.indexOf(h)>-1?h:'home');})();</script>
 <style>html[data-route="home"] [data-page="home"]{display:block}
 html[data-route="search-assistant"] [data-page="search-assistant"]{display:block}
 html[data-route="lightbox"] [data-page="lightbox"]{display:block}
 html[data-route="curated-collections"] [data-page="curated-collections"]{display:block}
 html[data-route="contributor-revamp"] [data-page="contributor-revamp"]{display:block}
 html[data-route="behind-the-search"] [data-page="behind-the-search"]{display:block}
-html[data-route="service-blueprint"] [data-page="service-blueprint"]{display:block}</style>
+html[data-route="service-blueprint"] [data-page="service-blueprint"]{display:block}
+html[data-route="between-us"] [data-page="between-us"]{display:block}</style>
 <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
 var d=t?t==='dark':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
 var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(d)r.classList.add('dark-on');})();</script>
@@ -562,6 +707,15 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <div class="year">2025, ongoing</div>
         <div><h3>Contributor Experience Revamp</h3><p>Rebuilding an eight-year-old upload and tagging platform around AI metadata and bulk editing.</p></div>
         <div class="stat"><b>60% fewer</b><span>steps to upload and tag</span></div>
+      </a>
+    </div>
+    <div class="section-head" style="margin-top:64px"><h3>Brand identity</h3></div>
+    <div class="rows solo">
+      <a class="row" href="#/between-us">
+        <div class="thumb thumb-bu" aria-hidden="true"><div class="mini"><b>between <em>us</em></b></div><div class="mini l"><s>Edition I</s><b>between <em>us</em></b></div></div>
+        <div class="year">Beyond Zeal</div>
+        <div><h3>between us: naming and identity for a live music series</h3><p>Named a monthly gig series and built its identity: a colour system that changes with every edition, posters, a ticket, keepsakes and an Instagram kit.</p></div>
+        <div class="stat"><b>6 editions</b><span>one colour each, one shared system</span></div>
       </a>
     </div>
   </section>
@@ -1535,6 +1689,317 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   <a class="next-case wrap" href="#/search-assistant"><div class="small">Back to the start</div><h2>AI Search Assistant</h2></a>
 </div>
 
+<!-- ============ BETWEEN US ============ -->
+<div data-page="between-us" data-title="between us" class="bu">
+  <section class="case-head wrap">
+    <a class="back" href="#/">← All work</a>
+    <div class="company">Beyond Zeal, monthly live music series, Trivandrum</div>
+    <h1 class="display bu-word">between <em>us</em></h1>
+    <p class="lede">Naming and brand identity for a monthly live music evening: one artist, one room, a new edition every month. I named it, built a colour system that changes with each edition, and designed everything from posters and tickets to a bookmark and a full Instagram kit.</p>
+    <dl class="facts">
+      <div><dt>My role</dt><dd>Naming, brand identity, colour system, print and social design</dd></div>
+      <div><dt>Client</dt><dd>Beyond Zeal</dd></div>
+      <div><dt>Format</dt><dd>Monthly gig series, numbered by edition</dd></div>
+      <div><dt>Deliverables</dt><dd>Posters, ticket, seal, goody tag, standee, bookmark and Instagram kit</dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap" style="padding-bottom:64px">
+    <div class="bu-board bu-dark">
+      <div class="bu-row bu-center" style="gap:28px; align-items:center">
+        <div class="card k pp"><div class="bar"></div><div class="pad">
+          <p class="sup on-k" style="margin-top:10px">curated by Beyond Zeal</p><div class="ru-k" style="width:20px; margin:22px 0"></div>
+          <p class="nm">between <em>us</em></p>
+          <div class="end" style="border-top:.5px solid var(--k3); padding-top:16px"><p class="sup on-k" style="margin-bottom:6px">Featuring</p><p class="art" style="font-size:19px">Artist Name</p><p class="sup" style="color:#4a4944; margin-top:8px; font-size:8px">Edition I</p></div>
+        </div></div>
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div class="card w" style="padding:24px 30px; gap:6px"><p class="nm" style="font-size:30px">between <em>us</em></p><p class="sup on-w">curated by beyond zeal</p></div>
+          <div class="card pb" style="padding:24px 30px; gap:6px"><p class="nm" style="font-size:30px">between <em>us</em></p><p class="sup on-w">curated by beyond zeal</p></div>
+          <div class="card k" style="padding:24px 30px; gap:6px; box-shadow:inset 0 0 0 .5px #2a2a28"><p class="nm" style="font-size:30px">between <em>us</em></p><p class="sup on-k">curated by beyond zeal</p></div>
+        </div>
+      </div>
+    </div>
+    <figcaption style="margin-top:0">The portrait poster and the three logo lockups: dark, light and pastel.</figcaption>
+  </section>
+
+  <div class="case-body wrap">
+    <ol class="stages" aria-label="Case study sections">
+      <li><a href="#bu-1">The brief</a></li>
+      <li><a href="#bu-2">The name</a></li>
+      <li><a href="#bu-3">Colour system</a></li>
+      <li><a href="#bu-4">Typography</a></li>
+      <li><a href="#bu-5">Print</a></li>
+      <li><a href="#bu-6">Instagram kit</a></li>
+    </ol>
+    <div>
+      <section class="stage" id="bu-1">
+        <div class="stage-kicker">The brief</div>
+        <h2>A small evening that happens every month</h2>
+        <p>Beyond Zeal curates an intimate live music evening in Trivandrum. Each month there is one artist and one room, and the audience sits close enough to feel every note.</p>
+        <p>The identity had to feel personal, and it had to come back every month without going stale.</p>
+      </section>
+
+      <section class="stage" id="bu-2">
+        <div class="stage-kicker">The name</div>
+        <h2>between <em style="font-family:'Cormorant Garamond', Georgia, serif; font-weight:400">us</em></h2>
+        <p>The name describes the experience. The music is shared between the artist and a small audience, rather than performed at a crowd. It is always set in lower case, with "us" in italic, so it reads quietly, like something said rather than announced.</p>
+        <div class="callout"><p class="q">"an evening close enough to remember"</p><p class="small">The line on the back of the bookmark and in the closing posts.</p></div>
+      </section>
+
+      <section class="stage" id="bu-3">
+        <div class="stage-kicker">Colour system</div>
+        <h2>One constant palette, one colour per edition</h2>
+        <p>Black, off-white and two greys stay the same every month. Each edition adds a single pastel, used for a thin stripe along the top of every piece and as the background of the pastel versions. Every edition looks like part of the same series, while each month still gets its own colour.</p>
+        <div class="bu-sticky"><div class="bu-switch" role="group" aria-label="Edition colour">
+          <button type="button" class="bu-ed" aria-pressed="true" data-p="#e8c4b8" data-bg="#fdf0ec" data-n="Dusty Rose"><i style="background:#e8c4b8"></i>Dusty Rose · I</button>
+          <button type="button" class="bu-ed" aria-pressed="false" data-p="#f0dfa0" data-bg="#fdf9e4" data-n="Butter"><i style="background:#f0dfa0"></i>Butter · II</button>
+          <button type="button" class="bu-ed" aria-pressed="false" data-p="#b8d8c0" data-bg="#eaf4ee" data-n="Sage"><i style="background:#b8d8c0"></i>Sage · III</button>
+          <button type="button" class="bu-ed" aria-pressed="false" data-p="#b8cce0" data-bg="#e8f0f8" data-n="Powder Blue"><i style="background:#b8cce0"></i>Powder Blue · IV</button>
+          <button type="button" class="bu-ed" aria-pressed="false" data-p="#d8c0d8" data-bg="#f4eaf4" data-n="Lavender"><i style="background:#d8c0d8"></i>Lavender · V</button>
+          <button type="button" class="bu-ed" aria-pressed="false" data-p="#e8d4b8" data-bg="#fdf4e4" data-n="Sand"><i style="background:#e8d4b8"></i>Sand · VI</button>
+        </div></div>
+        <p class="bu-note">Pick an edition to recolour every piece on this page.</p>
+        <div class="bu-sw">
+          <div><i style="background:#0a0a09"></i><b>Black</b><span>#0A0A09</span></div>
+          <div><i style="background:#f8f6f2"></i><b>White</b><span>#F8F6F2</span></div>
+          <div><i style="background:#7a7870"></i><b>Mid Grey</b><span>#7A7870</span></div>
+          <div><i style="background:#c0bcb6"></i><b>Faint</b><span>#C0BCB6</span></div>
+          <div><i id="buSw" style="background:var(--p)"></i><b id="buSwName">Dusty Rose</b><span id="buSwHex">#E8C4B8</span></div>
+        </div>
+      </section>
+
+      <section class="stage" id="bu-4">
+        <div class="stage-kicker">Typography</div>
+        <h2>A light serif and a widely spaced sans</h2>
+        <p>Cormorant Garamond in a light weight carries the name and the artist. Raleway, set small in widely spaced capitals, handles every supporting detail. The contrast between the two does the work that decoration usually would.</p>
+        <div class="bu-spec">
+          <div class="a"><p class="big">between <em>us</em></p><p class="meta">Cormorant Garamond · Light 300 and Light Italic</p></div>
+          <div class="b"><p class="caps">curated by<br>Beyond Zeal<br>Edition I</p><p class="meta">Raleway · Light 300 · wide tracking</p></div>
+        </div>
+      </section>
+
+      <section class="stage" id="bu-5">
+        <div class="stage-kicker">Print</div>
+        <h2>Posters, a ticket and things to take home</h2>
+        <p>Each piece comes in dark, light and pastel versions so they can be mixed at the venue. The ticket, seal, goody tag and bookmark give the audience something to keep after the evening.</p>
+
+        <h3>Poster formats</h3>
+        <div class="bu-board"><div class="bu-row" style="align-items:flex-end">
+          <div class="bu-item"><div class="card k pp"><div class="bar"></div><div class="pad">
+            <p class="sup on-k" style="margin-top:10px">curated by Beyond Zeal</p><div class="ru-k" style="width:20px; margin:22px 0"></div>
+            <p class="nm">between <em>us</em></p>
+            <div class="end" style="border-top:.5px solid var(--k3); padding-top:16px"><p class="sup on-k" style="margin-bottom:6px">Featuring</p><p class="art" style="font-size:19px">Artist Name</p><p class="sup" style="color:#4a4944; margin-top:8px; font-size:8px">Edition I</p></div>
+          </div></div><span class="bu-cap">Portrait</span></div>
+          <div class="bu-item"><div class="card w ps"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:10px">Edition I · Beyond Zeal</p>
+            <p class="nm end">between <em>us</em></p>
+            <p class="sup on-w" style="margin-top:14px; padding-top:12px; border-top:.5px solid var(--f)">curated by beyond zeal</p>
+          </div></div><span class="bu-cap">Square</span></div>
+          <div class="bu-item"><div class="card pb pst"><div class="pad">
+            <p class="sup on-w">Beyond Zeal</p>
+            <p class="nm end">between <em>us</em></p>
+            <div class="ru-w" style="width:100%"></div>
+            <p class="sup on-w">Edition I · Beyond Zeal</p>
+          </div></div><span class="bu-cap">Story</span></div>
+        </div></div>
+
+        <h3>Ticket</h3>
+        <div class="bu-board"><div class="bu-ticket">
+          <div class="bar"></div>
+          <div class="th">
+            <div class="top"><p class="sup on-w">between us · Edition I</p><p class="sup on-w">curated by Beyond Zeal</p></div>
+            <p class="nm">between <em>us</em></p>
+            <div class="feat"><p class="sup on-w">Featuring</p><p class="art" style="font-size:19px">Artist Name</p></div>
+          </div>
+          <div class="tear"><i></i><span></span><i></i></div>
+          <div class="tb">
+            <div class="tf"><p class="sup on-w">Month</p><p class="tv">April</p></div>
+            <div class="tf"><p class="sup on-w">Edition</p><p class="tv">No. 01</p></div>
+            <div class="tf"><p class="sup on-w">Seat</p><p class="tv">General</p></div>
+            <div class="tf"><p class="sup on-w">No.</p><p class="tv">BU·001</p></div>
+          </div>
+          <div class="ft"><p class="sup on-w">BU · 001 · April 2025</p><p class="art" style="font-size:14px; color:var(--m)">Admit One</p></div>
+        </div></div>
+
+        <h3>Seal, goody tag and standee</h3>
+        <div class="bu-board"><div class="bu-row" style="justify-content:space-around; align-items:flex-end; gap:32px">
+          <div class="bu-item"><div class="card k" style="padding:30px; border-radius:6px">
+            <svg width="190" height="190" viewBox="0 0 190 190" role="img" aria-label="between us seal">
+              <circle cx="95" cy="95" r="92" fill="none" stroke="#2a2a28" stroke-width="1"/>
+              <circle cx="95" cy="95" r="84" fill="none" stroke="#1e1e1c" stroke-width="0.5"/>
+              <circle cx="95" cy="95" r="82" fill="#0a0a09"/>
+              <circle cx="95" cy="95" r="62" fill="none" stroke="var(--p)" stroke-width="0.6" opacity=".6"/>
+              <text x="95" y="89" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="19" fill="#f8f6f2" text-anchor="middle" dominant-baseline="central">between</text>
+              <text x="95" y="113" font-family="'Cormorant Garamond', Georgia, serif" font-weight="300" font-size="19" font-style="italic" fill="#f8f6f2" text-anchor="middle" dominant-baseline="central">us</text>
+            </svg></div><span class="bu-cap">Official seal</span></div>
+          <div class="bu-item"><div style="display:flex; flex-direction:column; align-items:center"><div class="string"></div><div class="card k goody"><div class="hole"></div>
+            <p class="nm" style="font-size:22px; margin-top:8px">between <em>us</em></p><div class="ru-k" style="width:32px; margin:14px auto"></div>
+            <p class="sup on-k">Edition I</p><p class="sup" style="color:#4a4944; margin-top:8px; font-size:7.5px">curated by Beyond Zeal</p>
+          </div></div><span class="bu-cap">Goody tag</span></div>
+          <div class="bu-item"><div style="display:flex; flex-direction:column; align-items:center"><div class="card k standee" style="box-shadow:none"><div class="sbar"></div>
+            <p class="sup on-k">curated by Beyond Zeal</p><div class="vr"></div>
+            <p class="nm" style="font-size:28px">between <em>us</em></p>
+            <p class="sup on-k" style="margin-top:10px">Monthly Gig Series</p>
+            <p class="art end" style="font-size:15px; color:var(--p)">Edition I</p>
+          </div><div class="foot1"></div><div class="foot2"></div></div><span class="bu-cap">Standee</span></div>
+        </div></div>
+
+        <h3>Bookmark</h3>
+        <p>A keepsake for the audience. The front carries the name vertically; the back carries the line from the evening.</p>
+        <div class="bu-board"><div class="bu-row bu-center" style="gap:28px">
+          <div class="bu-item"><div class="bm dark"><div class="body k"><div class="top4"></div><div class="pad">
+            <div class="bh"></div><p class="sup on-k">curated by</p><p class="sup on-k">Beyond Zeal</p><div class="ru-k" style="width:20px"></div>
+            <div class="vert" style="color:var(--w)">between&nbsp;<em>us</em></div>
+            <div class="end"><div class="dv"></div><p class="sup on-k">Edition I</p></div>
+          </div></div><div class="tass"></div><div class="tend"></div></div><span class="bu-cap">Dark · front</span></div>
+          <div class="bu-item"><div class="bm light"><div class="body w"><div class="top4"></div><div class="pad">
+            <div class="bh"></div><p class="sup on-w">curated by</p><p class="sup on-w">Beyond Zeal</p><div class="ru-w" style="width:20px"></div>
+            <div class="vert">between&nbsp;<em>us</em></div>
+            <div class="end"><div class="dv"></div><p class="sup on-w">Edition I</p></div>
+          </div></div><div class="tass"></div><div class="tend"></div></div><span class="bu-cap">Light · front</span></div>
+          <div class="bu-item"><div class="bm pastel"><div class="body pb"><div class="top4"></div><div class="pad">
+            <div class="bh"></div><p class="sup on-w">curated by</p><p class="sup on-w">Beyond Zeal</p><div class="ru-w" style="width:20px"></div>
+            <div class="vert">between&nbsp;<em>us</em></div>
+            <div class="end"><div class="dv"></div><p class="sup on-w">Edition I</p></div>
+          </div></div><div class="tass"></div><div class="tend"></div></div><span class="bu-cap">Pastel · front</span></div>
+          <div class="bu-item"><div class="bm dark"><div class="body k"><div class="top4"></div><div class="pad">
+            <div class="bh"></div><p class="quote" style="font-size:12px; color:var(--sb); flex:1; display:flex; align-items:center; justify-content:center">"an evening<br>close enough<br>to remember"</p>
+            <div class="end"><div class="dv"></div><p class="nm" style="font-size:22px">between <em>us</em></p></div>
+          </div></div><div class="tass"></div><div class="tend"></div></div><span class="bu-cap">Dark · back</span></div>
+          <div class="bu-item"><div class="bm pastel"><div class="body pb"><div class="top4"></div><div class="pad">
+            <div class="bh"></div><p class="quote" style="font-size:12px; color:var(--m); flex:1; display:flex; align-items:center; justify-content:center">"an evening<br>close enough<br>to remember"</p>
+            <div class="end"><div class="dv"></div><p class="nm" style="font-size:22px">between <em>us</em></p></div>
+          </div></div><div class="tass"></div><div class="tend"></div></div><span class="bu-cap">Pastel · back</span></div>
+        </div></div>
+      </section>
+
+      <section class="stage" id="bu-6">
+        <div class="stage-kicker">Instagram kit</div>
+        <h2>A template for every moment of the month</h2>
+        <p>The kit follows the monthly cycle: the announcement, the artist reveal, a countdown, behind the scenes and a thank-you recap. Each template has a slot for that month's artist, and every template changes colour with the edition.</p>
+
+        <h3>Feed posts (1:1)</h3>
+        <div class="bu-board"><div class="bu-row">
+          <div class="bu-item"><div class="card k sq"><div class="bar"></div><div class="pad">
+            <p class="sup on-k">curated by Beyond Zeal</p><div class="ru-k"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="sup on-k" style="margin-bottom:5px">Featuring</p><p class="art" style="font-size:18px">Artist Name</p><p class="sup on-k" style="font-size:8px; border-top:.5px solid var(--k3); padding-top:12px; margin-top:6px">Edition I</p></div>
+          </div></div><span class="bu-cap">Announcement · dark</span></div>
+          <div class="bu-item"><div class="card w sq"><div class="bar"></div><div class="pad">
+            <p class="sup on-w">curated by Beyond Zeal</p><div class="ru-w"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="sup on-w" style="margin-bottom:5px">Featuring</p><p class="art" style="font-size:18px">Artist Name</p><p class="sup" style="color:var(--f); font-size:8px; border-top:.5px solid var(--f); padding-top:12px; margin-top:6px">Edition I</p></div>
+          </div></div><span class="bu-cap">Announcement · light</span></div>
+          <div class="bu-item"><div class="card pb sq"><div class="bar"></div><div class="pad">
+            <p class="sup on-w">curated by Beyond Zeal</p><div class="ru-w"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="sup on-w" style="margin-bottom:5px">Featuring</p><p class="art" style="font-size:18px">Artist Name</p><p class="sup on-w" style="font-size:8px; border-top:.5px solid var(--f); padding-top:12px; margin-top:6px">Edition I</p></div>
+          </div></div><span class="bu-cap">Announcement · pastel</span></div>
+          <div class="bu-item"><div class="card k sq"><div class="bar"></div><div class="pad">
+            <p class="sup on-k">between us · Edition I</p><p class="num" style="font-size:84px; margin-top:8px">03</p><p class="sup on-k" style="margin-top:4px">days away</p>
+            <div class="end"><p class="art" style="font-size:18px">Artist Name</p><p class="sup on-k" style="font-size:8px; border-top:.5px solid var(--k3); padding-top:12px; margin-top:6px">curated by Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Countdown</span></div>
+        </div></div>
+
+        <h3>Stories (9:16)</h3>
+        <div class="bu-board"><div class="bu-row fit5">
+          <div class="bu-item"><div class="card k story"><div class="bar"></div><div class="pad">
+            <p class="sup on-k">curated by Beyond Zeal</p><div class="vr2" style="background:var(--k3)"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="sup on-k" style="margin-bottom:5px">Featuring</p><p class="art" style="font-size:17px">Artist Name</p><div class="ru-k" style="margin:10px 0"></div><p class="sup on-k" style="font-size:7.5px">Edition I · Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Announcement</span></div>
+          <div class="bu-item"><div class="card pb story"><div class="bar"></div><div class="pad">
+            <p class="sup on-w">between us · Edition I</p><div class="vr2" style="background:var(--f)"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="sup on-w" style="margin-bottom:5px">This month</p><p class="art" style="font-size:18px">Artist Name</p><div class="ru-w" style="margin:10px 0"></div><p class="sup on-w" style="font-size:7.5px">curated by Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Artist reveal</span></div>
+          <div class="bu-item"><div class="card w story"><div class="bar"></div><div class="pad">
+            <p class="sup on-w">between us</p><p class="num" style="font-size:66px; margin-top:auto">03</p><p class="sup on-w" style="margin-bottom:auto">days away</p>
+            <div><p class="art" style="font-size:15px">Artist Name</p><div class="ru-w" style="margin:10px 0"></div><p class="sup on-w" style="font-size:7.5px">Edition I · Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Countdown</span></div>
+          <div class="bu-item"><div class="card k story"><div class="bar"></div><div class="pad">
+            <p class="sup on-k">behind the scenes</p>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:6px; margin:12px 0"><div class="ph" style="height:60px"><p class="sup on-k">your photo here</p></div><div class="ph" style="height:40px"><p class="sup on-k">your photo here</p></div></div>
+            <p class="nm" style="font-size:22px">between <em>us</em></p>
+            <div style="margin-top:10px"><div class="ru-k" style="margin:10px 0"></div><p class="sup on-k" style="font-size:7.5px">Edition I · Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Behind the scenes</span></div>
+          <div class="bu-item"><div class="card pb story"><div class="bar"></div><div class="pad">
+            <p class="sup on-w">thank you</p>
+            <div style="flex:1; display:flex; align-items:center; justify-content:center"><p class="quote" style="font-size:13px; color:var(--m)">"an evening close<br>enough to remember"</p></div>
+            <p class="nm" style="font-size:22px">between <em>us</em></p>
+            <div style="margin-top:10px"><div class="ru-w" style="margin:10px 0"></div><p class="sup on-w" style="font-size:7.5px">Edition I · Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Post-event mood</span></div>
+        </div></div>
+
+        <h3>Carousel: event announcement</h3>
+        <div class="bu-board"><div class="bu-row bu-nowrap">
+          <div class="card k slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-k" style="margin-top:6px">it's back</p><div class="ru-k"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="art" style="font-size:15px; font-style:italic">Edition I →</p></div>
+          </div></div>
+          <div class="card w slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:6px">what is it</p><div class="ru-w"></div>
+            <p class="copy">A monthly intimate music evening. One artist. One room. Close enough to feel every note.</p>
+            <div class="end"><p class="sup on-w" style="font-size:7.5px">curated by Beyond Zeal</p></div>
+          </div></div>
+          <div class="card pb slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:6px">this edition</p><div class="ru-w"></div>
+            <p class="art" style="font-size:28px; line-height:1.1">Artist<br>Name</p>
+            <div class="end"><p class="sup on-w" style="font-size:7.5px">between us · Edition I</p></div>
+          </div></div>
+          <div class="card k slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-k" style="margin-top:6px">Edition I</p>
+            <div style="flex:1; display:flex; align-items:center; justify-content:center"><p class="quote" style="font-size:15px">"an evening close<br>enough to remember"</p></div>
+            <p class="nm" style="font-size:22px">between <em>us</em></p>
+            <p class="sup on-k" style="font-size:7.5px; margin-top:8px">curated by beyond zeal</p>
+          </div></div>
+        </div></div>
+
+        <h3>Carousel: artist reveal</h3>
+        <div class="bu-board"><div class="bu-row bu-nowrap">
+          <div class="card k slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-k" style="margin-top:6px">between us · Edition I</p><div class="ru-k"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="sup on-k">This month</p><p class="art" style="font-size:15px; margin-top:4px">swipe →</p></div>
+          </div></div>
+          <div class="card pb slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:6px">Featuring</p><div class="ru-w"></div>
+            <p class="art" style="font-size:30px; line-height:1.1">Artist<br>Name</p>
+            <div class="end"><p class="sup on-w" style="font-size:7.5px">between us · Edition I</p></div>
+          </div></div>
+          <div class="card w slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:6px">About</p><div class="ru-w"></div>
+            <p class="copy">A few lines about the artist: their sound, their story, what makes this evening theirs.</p>
+            <div class="end"><p class="sup on-w" style="font-size:7.5px">between us · Beyond Zeal</p></div>
+          </div></div>
+          <div class="card k slide">
+            <div class="ph" style="flex:1; margin:3px 3px 0; background:var(--k2)"><p class="sup on-k">artist photo</p></div>
+            <div style="padding:12px 16px"><p class="art" style="font-size:15px">Artist Name</p><p class="sup on-k" style="font-size:7.5px; margin-top:4px">between us · Edition I</p></div>
+          </div>
+          <div class="card pb slide"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:6px">curated by Beyond Zeal</p>
+            <div style="flex:1; display:flex; align-items:center; justify-content:center"><p class="quote" style="font-size:16px">"an evening close<br>enough to remember"</p></div>
+            <p class="nm" style="font-size:22px">between <em>us</em></p>
+          </div></div>
+        </div></div>
+
+        <h3>Recap</h3>
+        <div class="bu-board"><div class="bu-row fit3">
+          <div class="bu-item"><div class="card k sq"><div class="bar"></div><div class="pad">
+            <p class="sup on-k" style="margin-top:8px">Edition I · done</p><div class="ru-k" style="width:18px; margin:16px 0"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="art" style="font-size:15px; border-top:.5px solid var(--k3); padding-top:12px">Thank you, Artist Name.</p><p class="sup on-k" style="font-size:7.5px; margin-top:6px">See you next month · Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Recap · dark</span></div>
+          <div class="bu-item"><div class="card w sq"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:8px">Edition I · done</p><div class="ru-w" style="width:18px; margin:16px 0"></div><p class="nm">between <em>us</em></p>
+            <div class="end"><p class="art" style="font-size:15px; border-top:.5px solid var(--f); padding-top:12px">Thank you, Artist Name.</p><p class="sup on-w" style="font-size:7.5px; margin-top:6px">See you next month · Beyond Zeal</p></div>
+          </div></div><span class="bu-cap">Recap · light</span></div>
+          <div class="bu-item"><div class="card pb sq"><div class="bar"></div><div class="pad">
+            <p class="sup on-w" style="margin-top:8px">until next time</p>
+            <div style="flex:1; display:flex; align-items:center; justify-content:center"><p class="quote" style="font-size:15px; color:var(--m)">"an evening close<br>enough to remember"</p></div>
+            <p class="nm" style="font-size:32px">between <em>us</em></p>
+            <p class="sup on-w" style="font-size:7.5px; margin-top:8px">curated by beyond zeal</p>
+          </div></div><span class="bu-cap">Recap · pastel</span></div>
+        </div></div>
+      </section>
+    </div>
+  </div>
+  <a class="next-case wrap" href="#/search-assistant"><div class="small">Back to the start</div><h2>AI Search Assistant</h2></a>
+</div>
+
 </main>
 
 <footer>
@@ -1669,6 +2134,16 @@ sync();b.addEventListener('click',function(){var d=r.getAttribute('data-theme')!
   document.getElementById('viewerWrap').addEventListener('click',close);
   document.getElementById('viewerClose').addEventListener('click',close);
   v.addEventListener('close',function(){ vi.removeAttribute('src'); });
+})();</script>
+<script>(function(){
+  var page=document.querySelector('[data-page="between-us"]'); if(!page) return;
+  var sw=document.getElementById('buSw'), nm=document.getElementById('buSwName'), hx=document.getElementById('buSwHex');
+  page.addEventListener('click',function(e){
+    var b=e.target.closest('.bu-ed'); if(!b) return;
+    page.querySelectorAll('.bu-ed').forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false');});
+    page.style.setProperty('--p', b.dataset.p); page.style.setProperty('--pbg', b.dataset.bg);
+    nm.textContent=b.dataset.n; hx.textContent=b.dataset.p.toUpperCase();
+  });
 })();</script>
 </body>
 </html>
