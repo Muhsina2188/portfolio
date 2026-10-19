@@ -1,6 +1,6 @@
 # Muhsina Karim — Product Designer
 
-Portfolio site: problem-first case studies in AI search, collections and internal tools.
+Portfolio site: case studies in AI-powered search, customer journeys and internal tools, each built around the problem, the evidence, the decision and what changed.
 
 A single static page (`index.html`) with hash-based routes for each case study, a light/dark theme toggle, and images in `assets/images/`. No build step.
 
