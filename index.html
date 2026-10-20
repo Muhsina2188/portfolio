@@ -10,10 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F6F7F9; --surface:#ECEEF3; --raise:#FFFFFF; --ink:#0E1116; --muted:#525A67; --faint:#6E7684;
-  --rule:#DCE0E7; --accent:#3339D1; --accent-ink:#FFFFFF; --accent-soft:#E5E6FB;
-  --band:#0E1116; --band-ink:#F2F3F7; --band-muted:#A3AAB8; --band-rule:#2A303C;
-  --shadow:0 1px 2px rgba(14,17,22,.05), 0 8px 24px -12px rgba(14,17,22,.18);
+  --bg:#F7F6F2; --surface:#EFEDE7; --raise:#FFFFFF; --ink:#202124; --muted:#666760; --faint:#6E6F68;
+  --rule:#E3E0D8; --accent:#5146A8; --accent-ink:#FFFFFF; --accent-soft:#ECEAF6;
+  --band:#202124; --band-ink:#F4F3EF; --band-muted:#B3B2AA; --band-rule:#34352F;
+  --shadow:0 1px 2px rgba(32,33,36,.05), 0 8px 24px -12px rgba(32,33,36,.16);
   --font:"Onest", "Helvetica Neue", Arial, system-ui, sans-serif;
   --display:"Bricolage Grotesque", "Onest", "Helvetica Neue", Arial, sans-serif;
   --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -24,17 +24,17 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --bg:#0B0D12; --surface:#151922; --raise:#191E28; --ink:#ECEEF3; --muted:#A1A9B7; --faint:#8790A0;
-    --rule:#262C38; --accent:#9EA3FF; --accent-ink:#0B0D12; --accent-soft:#1D2042;
-    --band:#151922; --band-ink:#ECEEF3; --band-muted:#A1A9B7; --band-rule:#2B3240;
+    --bg:#131312; --surface:#1C1B19; --raise:#22211F; --ink:#EEEDE8; --muted:#ADABA2; --faint:#96948B;
+    --rule:#2E2D2A; --accent:#ABA4F2; --accent-ink:#131312; --accent-soft:#29253F;
+    --band:#1C1B19; --band-ink:#EEEDE8; --band-muted:#ADABA2; --band-rule:#34332F;
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.6);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0B0D12; --surface:#151922; --raise:#191E28; --ink:#ECEEF3; --muted:#A1A9B7; --faint:#8790A0;
-  --rule:#262C38; --accent:#9EA3FF; --accent-ink:#0B0D12; --accent-soft:#1D2042;
-  --band:#151922; --band-ink:#ECEEF3; --band-muted:#A1A9B7; --band-rule:#2B3240;
+  --bg:#131312; --surface:#1C1B19; --raise:#22211F; --ink:#EEEDE8; --muted:#ADABA2; --faint:#96948B;
+  --rule:#2E2D2A; --accent:#ABA4F2; --accent-ink:#131312; --accent-soft:#29253F;
+  --band:#1C1B19; --band-ink:#EEEDE8; --band-muted:#ADABA2; --band-rule:#34332F;
   --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.6);
 }
 *,*::before,*::after{box-sizing:inherit}
@@ -107,6 +107,7 @@ dialog .btn::after{content:none!important}
 @media (prefers-reduced-motion:no-preference){ .hero .display::after{animation:caret 1.1s steps(1) infinite} }
 @keyframes caret{50%{opacity:0}}
 .hero .lede{color:var(--ink); opacity:.82}
+.hero .lede.hero-at{opacity:1; font-weight:500; margin-bottom:10px}
 .hero .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:40px; max-width:780px}
 .chip{font-size:14px; padding:7px 14px; border:1px solid var(--rule); border-radius:999px; color:var(--muted); background:var(--raise); line-height:1.3}
 .hero-grid{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:64px; align-items:center}
@@ -127,7 +128,7 @@ dialog .btn::after{content:none!important}
 
 /* Featured */
 .featured{padding-bottom:128px}
-.feature-card{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); grid-template-areas:"tag media" "title media" "lede media" "cta media" "shifts shifts"; column-gap:56px; align-items:start; border:1px solid var(--rule); border-radius:28px; padding:clamp(24px,4vw,56px); background:var(--raise); box-shadow:var(--shadow)}
+.feature-card{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); grid-template-areas:"tag media" "title media" "sub media" "lede media" "cta media" "shifts shifts"; column-gap:56px; align-items:start; border:1px solid var(--rule); border-radius:28px; padding:clamp(24px,4vw,56px); background:var(--raise); box-shadow:var(--shadow)}
 .feature-card > .tag{grid-area:tag; justify-self:start}
 .feature-card > h3{grid-area:title}
 .feature-card > .lede{grid-area:lede}
@@ -135,13 +136,15 @@ dialog .btn::after{content:none!important}
 .feature-card > .btn{grid-area:cta; justify-self:start; margin-top:8px}
 .feature-media{grid-area:media; margin:0; border-radius:16px; overflow:hidden; border:1px solid var(--rule); background:var(--surface); align-self:center; box-shadow:var(--shadow)}
 .feature-media img{display:block; width:100%; height:auto}
+.feature-card a.tag-link{text-decoration:none; transition:background .15s}
+.feature-card a.tag-link:hover{background:color-mix(in srgb, var(--accent) 18%, var(--accent-soft)); text-decoration:underline; text-underline-offset:3px}
 .feature-card .tag{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12.5px; letter-spacing:.03em; font-weight:500; color:var(--accent); background:var(--accent-soft); padding:6px 12px; border-radius:999px; margin-bottom:22px}
 .feature-card .tag::before{content:""; width:7px; height:7px; border-radius:50%; background:currentColor; box-shadow:0 0 0 0 currentColor}
 @media (prefers-reduced-motion:no-preference){ .feature-card .tag::before{animation:pulse 2s infinite} }
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent)} 70%{box-shadow:0 0 0 7px transparent} 100%{box-shadow:0 0 0 0 transparent}}
 .feature-card h3{font-size:clamp(32px,4vw,52px); font-weight:700; letter-spacing:-0.035em; margin-bottom:18px}
 .feature-card .lede{font-size:clamp(18px,1.7vw,20px)}
-@media (max-width:900px){ .feature-card{grid-template-columns:1fr; grid-template-areas:"tag" "title" "lede" "media" "shifts" "cta"} .feature-media{margin:12px 0 0} .feature-card > .shifts{margin:28px 0 28px} }
+@media (max-width:900px){ .feature-card{grid-template-columns:1fr; grid-template-areas:"tag" "title" "sub" "lede" "media" "shifts" "cta"} .feature-media{margin:12px 0 0} .feature-card > .shifts{margin:28px 0 28px} }
 
 /* Work cards */
 .work{padding-bottom:128px}
@@ -239,6 +242,9 @@ a.row .stat span{font-size:14px; color:var(--muted)}
 .contact .links{display:flex; flex-wrap:wrap; gap:12px; margin-top:36px}
 .contact .btn{background:var(--accent); color:var(--accent-ink)}
 .contact .btn.ghost{background:transparent; color:var(--band-ink); border-color:var(--band-rule)}
+.contact .btn.phone{gap:8px}
+.contact .btn .flag{width:20px; height:auto; border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.3); flex:none}
+.contact .btn .cc{font-family:var(--mono); font-size:12px; letter-spacing:.04em; opacity:.75}
 .contact .btn.ghost:hover{border-color:var(--band-ink); box-shadow:none}
 .contact .small{color:var(--band-muted); font-family:var(--mono); font-size:14px}
 .btn.copy-btn::after{content:none}
@@ -408,6 +414,9 @@ figcaption{font-size:14.5px; color:var(--muted); margin:-20px 0 40px; max-width:
 .bp .pain{background:var(--warn-soft); color:var(--ink)}
 .bp .pain::before{content:"!"; display:inline-flex; width:18px; height:18px; border-radius:50%; background:var(--warn); color:#fff; font-size:12px; font-weight:700; align-items:center; justify-content:center; margin-right:6px; vertical-align:1px}
 .bp .none{color:var(--faint)}
+.bp .opp{background:var(--accent-soft); color:var(--ink)}
+.bp .opp::before{content:"+"; display:inline-flex; width:18px; height:18px; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-size:13px; font-weight:700; align-items:center; justify-content:center; margin-right:6px; vertical-align:1px}
+.bp-legend span.opp-key::before{background:var(--accent-soft); border-color:var(--accent)}
 .bp-legend{display:flex; flex-wrap:wrap; gap:18px; font-size:14px; color:var(--muted); margin:0 0 6px}
 .bp-legend span::before{content:""; display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px; background:var(--warn-soft); border:1px solid var(--warn)}
 .bp-legend span.line::before{background:none; border:0; border-top:2px dashed var(--faint); height:0; width:18px; vertical-align:3px}
@@ -434,6 +443,127 @@ figcaption{font-size:14.5px; color:var(--muted); margin:-20px 0 40px; max-width:
 .ai-card .pillars b{display:block; margin-bottom:4px; color:var(--band-ink)}
 .ai-card .pillars span{font-size:15px; color:var(--band-muted)}
 
+/* Home: card subtitle, process strip, AI split */
+.feature-card > .card-sub{grid-area:sub; margin:-8px 0 14px; font-family:var(--mono); font-size:14px; letter-spacing:.02em; color:var(--accent)}
+.process{padding-bottom:128px}
+.all-work{margin:28px 0 0; max-width:none; text-align:center}
+.featured .all-work .btn.ghost{background:var(--raise)}
+.connect{max-width:70ch; margin:32px 0 20px; color:var(--muted)}
+.connect b{color:var(--ink); font-weight:600}
+.process-flow{list-style:none; padding:0}
+.process-flow li{position:relative; padding:18px; border:1px solid var(--rule); background:var(--raise); counter-increment:f}
+.process-flow li + li{border-left:0}
+.process-flow li:first-child{border-radius:16px 0 0 16px}
+.process-flow li:last-child{border-radius:0 16px 16px 0}
+.process-flow li::before{content:counter(f); display:inline-flex; width:26px; height:26px; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-family:var(--mono); font-weight:500; font-size:13px; align-items:center; justify-content:center; margin-bottom:10px}
+.process-flow h4{margin:0 0 6px; font-size:17px}
+.process-flow p{margin:0; font-size:14.5px; color:var(--muted)}
+.process-flow a.tool{display:block; margin-top:12px; font-family:var(--mono); font-size:12px; line-height:1.5; color:var(--accent); text-decoration:none}
+.process-flow a.tool:hover{text-decoration:underline; text-underline-offset:3px}
+@media (max-width:860px){ .process-flow li + li{border-left:1px solid var(--rule); border-top:0} .process-flow li:first-child{border-radius:16px 16px 0 0} .process-flow li:last-child{border-radius:0 0 16px 16px} }
+.ai-head{margin:56px 0 18px; font-size:clamp(22px,2.4vw,28px)}
+.ai-split{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:12px; align-items:stretch}
+.ai-split > div:not(.arrow){border-radius:16px; padding:18px 20px; border:1px solid var(--rule); background:var(--raise)}
+.ai-split > .assist{background:var(--accent-soft); border-color:color-mix(in srgb, var(--accent) 35%, var(--rule))}
+.ai-split .who{display:block; font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:6px}
+.ai-split p{margin:0; font-size:15.5px}
+.ai-split .arrow{align-self:center; color:var(--faint); font-size:20px}
+.ai-tools{margin-top:16px; color:var(--muted)}
+@media (max-width:860px){ .ai-split{grid-template-columns:1fr} .ai-split .arrow{transform:rotate(90deg); justify-self:center} }
+@media (max-width:640px){ .process{padding-bottom:88px} }
+/* Case study diagrams: summary, experience map, annotation, concepts, decision chain, evidence panel */
+.summary{margin:44px 0 0; border:1px solid var(--rule); border-radius:22px; background:var(--raise); overflow:hidden}
+.summary > div{display:grid; grid-template-columns:150px minmax(0,1fr); gap:16px; padding:14px 24px; border-top:1px solid var(--rule)}
+.summary > div:first-child{border-top:0}
+.summary dt{font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding-top:4px}
+.summary dd{margin:0; font-size:16.5px}
+@media (max-width:640px){ .summary > div{grid-template-columns:1fr; gap:4px; padding:14px 18px} }
+.xmap{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:12px; align-items:stretch; margin:28px 0 8px}
+.xmap > div:not(.arr){border:1px solid var(--rule); border-radius:16px; background:var(--raise); padding:18px 20px}
+.xmap .n{display:inline-flex; width:26px; height:26px; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-family:var(--mono); font-size:13px; align-items:center; justify-content:center; margin-bottom:8px}
+.xmap h4{margin:0 0 4px; font-size:17px}
+.xmap p{margin:0; font-size:15px; color:var(--muted)}
+.xmap .arr{align-self:center; color:var(--faint); font-size:20px}
+.xmap-note{margin:0 0 8px}
+@media (max-width:760px){ .xmap{grid-template-columns:1fr} .xmap .arr{transform:rotate(90deg); justify-self:center} }
+.evo3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin:20px 0}
+.evo3 figure{margin:0}
+.evo3 .plain-shot{margin:0}
+.evo3 h4{margin:12px 0 4px; font-size:16px}
+.evo3 p{margin:0; font-size:14.5px; color:var(--muted)}
+@media (max-width:760px){ .evo3{grid-template-columns:1fr} }
+.annot{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:32px; align-items:center; margin:24px 0 32px}
+.annot-shot{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--rule); background:#000}
+.annot-shot img{display:block; width:100%; height:auto}
+.annot .apin{position:absolute; transform:translate(-50%,-50%); width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; font-family:var(--mono); font-size:12px; font-weight:600; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.4)}
+.annot-list{margin:0; padding:0; list-style:none; counter-reset:a}
+.annot-list li{counter-increment:a; position:relative; padding:0 0 16px 42px; font-size:16px}
+.annot-list li::before{content:counter(a); position:absolute; left:0; top:0; width:28px; height:28px; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-family:var(--mono); font-size:13px; font-weight:600; display:flex; align-items:center; justify-content:center}
+@media (max-width:760px){ .annot{grid-template-columns:1fr} .annot-shot{max-width:340px} }
+.chip-inline{display:inline-block; vertical-align:middle; margin-left:10px; font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.03em; color:var(--accent); background:var(--accent-soft); padding:4px 10px; border-radius:999px}
+.concepts{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin:20px 0 8px}
+.concepts figure{margin:0; border:1px solid var(--rule); border-radius:16px; background:var(--raise); padding:14px}
+.concepts .plain-shot{margin:0}
+.concepts .plain-shot img{aspect-ratio:16/9; object-fit:cover; object-position:left top}
+.concepts h4{margin:12px 0 6px; font-size:16px}
+.concepts p{margin:0 0 6px; font-size:14.5px; color:var(--muted)}
+.concepts p b{color:var(--ink); font-weight:600}
+@media (max-width:860px){ .concepts{grid-template-columns:1fr} }
+.chain{list-style:none; padding:0; margin:20px 0 28px; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:0; counter-reset:c}
+.chain li{position:relative; padding:16px 16px 16px 18px; border:1px solid var(--rule); background:var(--raise); counter-increment:c}
+.chain li + li{border-left:0}
+.chain li:first-child{border-radius:16px 0 0 16px}
+.chain li:last-child{border-radius:0 16px 16px 0}
+.chain li.end{background:var(--accent-soft); border-color:color-mix(in srgb, var(--accent) 35%, var(--rule))}
+.chain .k{display:block; font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:6px}
+.chain .k::before{content:counter(c) ". "}
+.chain p{margin:0; font-size:14.5px}
+.chain.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:860px){ .chain, .chain.three{grid-template-columns:1fr} .chain li + li{border-left:1px solid var(--rule); border-top:0} .chain li:first-child{border-radius:16px 16px 0 0} .chain li:last-child{border-radius:0 0 16px 16px} }
+.evpanel{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:20px 0 24px}
+.evpanel > div{border:1px solid var(--rule); border-radius:16px; background:var(--raise); padding:18px 20px}
+.evpanel h4{margin:12px 0 10px; font-size:16.5px}
+.evpanel p{margin:0 0 10px; font-size:14.5px}
+.evpanel .lim{color:var(--muted); border-top:1px dashed var(--rule); padding-top:10px; margin-bottom:0}
+.evpanel .nums{list-style:none; padding:0; margin:0 0 10px}
+.evpanel .nums li{font-size:14.5px; padding:3px 0}
+.evpanel .nums b{font-family:var(--display); font-size:20px; color:var(--accent); margin-right:4px}
+@media (max-width:900px){ .evpanel{grid-template-columns:1fr} }
+.ev.open{--dot:#C2410C}
+/* Human journey map */
+.jm-persona{display:flex; gap:16px; align-items:center; border:1px solid var(--rule); border-radius:16px; background:var(--raise); padding:16px 20px; margin:20px 0 24px; font-size:16px}
+.jm-avatar{flex:none; width:56px; height:56px}
+.jm-avatar circle:first-child{fill:var(--accent-soft)}
+.jm-avatar .h{fill:var(--accent)}
+.jm-curve{position:relative; height:120px; margin:8px 0 34px; color:var(--warn)}
+.jm-curve svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.jm-curve path{fill:none; stroke:currentColor; stroke-width:2; stroke-dasharray:5 5; vector-effect:non-scaling-stroke}
+.jm-curve-t{position:absolute; right:0; top:-14px; font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
+.jm-mark{position:absolute; width:0; height:0}
+.jm-mark .face{position:absolute; left:-19px; top:-19px; width:38px; height:38px; background:var(--bg); border-radius:50%}
+.jm-mark b{position:absolute; top:22px; left:0; transform:translateX(-50%); white-space:nowrap; font-size:12.5px; font-weight:600; color:var(--ink); background:var(--bg); padding:0 4px; border-radius:4px}
+.jm{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 14px}
+.jm-col{display:grid; grid-row:span 6; grid-template-rows:subgrid; border:1px solid var(--rule); border-radius:16px; background:var(--raise); overflow:hidden}
+.jm-col > *{padding:12px 16px}
+.jm-stage{font-weight:600; font-size:16px; background:var(--surface); display:flex; align-items:center; gap:10px}
+.jm-n{display:inline-flex; width:24px; height:24px; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-family:var(--mono); font-size:12px; align-items:center; justify-content:center}
+.jm-feel{display:flex; gap:12px; align-items:flex-start}
+.face{flex:none; width:44px; height:44px}
+.face circle:first-child{fill:var(--warn-soft); stroke:var(--warn); stroke-width:1.5}
+.face .eye{fill:var(--ink)}
+.face .mouth path{fill:none; stroke:var(--ink); stroke-width:2.2; stroke-linecap:round}
+.face.cautious circle:first-child, .face.unsure circle:first-child{fill:var(--surface); stroke:var(--faint)}
+.jm-mood{font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--warn)}
+.face.cautious + div .jm-mood, .face.unsure + div .jm-mood{color:var(--muted)}
+.jm-quote{margin:4px 0 0; font-size:15.5px; font-style:italic; line-height:1.45}
+.jm-row{border-top:1px solid var(--rule)}
+.jm-k{display:block; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:4px}
+.jm-row p{margin:0; font-size:14.5px; line-height:1.5}
+.jm-pain{background:color-mix(in srgb, var(--warn-soft) 45%, transparent)}
+.jm-pain .ev{margin-top:8px}
+.jm-out{border-top:1px solid color-mix(in srgb, var(--accent) 30%, var(--rule)); background:var(--accent-soft); color:var(--accent); font-weight:600; font-size:14.5px}
+.jm-out::before{content:"\2192  "; }
+@media (max-width:620px){ .jm{grid-template-columns:1fr} .jm-col{grid-row:auto; grid-template-rows:none} }
 /* Evidence labels: what kind of evidence a figure or claim rests on */
 .ev{display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.04em; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--rule); color:var(--muted); background:var(--raise); vertical-align:.12em; white-space:nowrap; line-height:1.4}
 .ev::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--dot,var(--faint)); border:1px solid var(--dot,var(--faint))}
@@ -656,12 +786,12 @@ html.dark-on .theme-btn .moon{display:none} html.dark-on .theme-btn .sun{display
 a.row:hover .thumb-bu .mini{transform:translateY(-4px) rotate(-1.5deg)}
 a.row:hover .thumb-bu .mini.l{transform:translateY(6%) rotate(1.5deg)}
 </style>
-<script>(function(){var p=['home', 'search-assistant', 'lightbox', 'curated-collections', 'contributor-revamp', 'behind-the-search', 'service-blueprint', 'between-us'];var h=location.hash.replace(/^#\/?/,'');document.documentElement.setAttribute('data-route',p.indexOf(h)>-1?h:'home');})();</script>
+<script>(function(){var p=['home', 'work', 'search-assistant', 'lightbox', 'curated-collections', 'behind-the-search', 'service-blueprint', 'between-us'];var h=location.hash.replace(/^#\/?/,'');document.documentElement.setAttribute('data-route',p.indexOf(h)>-1?h:'home');})();</script>
 <style>html[data-route="home"] [data-page="home"]{display:block}
+html[data-route="work"] [data-page="work"]{display:block}
 html[data-route="search-assistant"] [data-page="search-assistant"]{display:block}
 html[data-route="lightbox"] [data-page="lightbox"]{display:block}
 html[data-route="curated-collections"] [data-page="curated-collections"]{display:block}
-html[data-route="contributor-revamp"] [data-page="contributor-revamp"]{display:block}
 html[data-route="behind-the-search"] [data-page="behind-the-search"]{display:block}
 html[data-route="service-blueprint"] [data-page="service-blueprint"]{display:block}
 html[data-route="between-us"] [data-page="between-us"]{display:block}</style>
@@ -699,83 +829,68 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
   <section class="hero wrap">
     <div class="hero-grid">
       <div>
-    <p class="hero-eyebrow">Product Designer at Alamy (PA Media Group)</p>
-    <h1 class="display">I turn complex product problems into <em class="why">clear</em>, usable experiences.</h1>
-    <p class="lede">I work across AI-powered search, customer journeys and internal tools, using research, systems thinking and rapid prototyping to make better product decisions.</p>
-    <p class="small hero-loc">Based in Trivandrum, India · Exploring Product Designer roles in the UAE</p>
+    <h1 class="display">Product Designer shaping <em class="why">AI-powered</em> experiences and complex workflows.</h1>
+    <p class="lede hero-at">Currently at Alamy Images, building product experiences behind 450M+ images and videos.</p>
+    <p class="small hero-loc">4+ years building digital products · Trivandrum, India · Open to UAE relocation · Notice period up to 60 days, negotiable</p>
     <div class="meta">
-      <a class="btn" href="#/work">Explore selected work</a>
+      <a class="btn" href="#/work">Explore my work</a>
       <a class="btn ghost" href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf?v=20261005b" target="_blank" rel="noopener">View résumé</a>
     </div>
       </div>
-      <img class="portrait" src="assets/images/profile.webp" alt="Muhsina Karim" width="220" height="220">
+      <img class="portrait" src="assets/images/profile.webp?v=2" alt="Muhsina Karim" width="220" height="220">
     </div>
   </section>
 
   <section class="featured wrap" id="work">
-    <div class="section-head"><h2>Selected work</h2></div>
+    <div class="section-head"><h2>Featured case studies</h2></div>
     <article class="feature-card">
-      <span class="tag">Live in beta on alamy.com</span>
-      <h3>Alamy Search Assistant: conversational image search</h3>
-      <p class="lede">A conversational way to discover images and videos through natural-language prompts and voice. I took it from concept to a live beta in under four months, then integrated it into Alamy's established search journey.</p>
+      <a class="tag tag-link" href="https://www.alamy.com/search-assistant/" target="_blank" rel="noopener" aria-label="Live on alamy.com (opens in a new tab)">Live on alamy.com <span aria-hidden="true">↗</span></a>
+      <h3>Designing an AI-powered image search experience</h3>
+      <p class="card-sub">Concept to live beta in under four months.</p>
+      <p class="lede">Alamy's Search Assistant lets customers find images and videos by describing them in their own words or by voice. I designed it, then fitted it into an established search journey without confusing it with Smart Search.</p>
       <a class="btn" href="#/search-assistant">Read the case study</a>
-      <figure class="feature-media"><img src="assets/images/img-03.webp" alt="The live Search Assistant on alamy.com: a chat panel on the left and image results on the right" width="1600" height="863" loading="lazy"></figure>
+      <figure class="feature-media"><img src="assets/images/thumb-search-assistant.webp" alt="The live Search Assistant on alamy.com, with its purple AI button" width="1600" height="900" loading="lazy"></figure>
       <dl class="card-facts">
-        <div><dt>The problem</dt><dd>Keyword search had no way to describe an image in your own words, and a new AI experience had to fit an established search journey without being confused with Smart Search.</dd></div>
-        <div><dt>Who it's for</dt><dd>Stock image and video buyers searching alamy.com</dd></div>
+        <div><dt>The problem</dt><dd>Keyword search couldn't take a description in people's own words, and a new AI feature had to stand out without disrupting familiar search.</dd></div>
         <div><dt>I owned</dt><dd>The experience on desktop and mobile, its integration into Alamy.com, prototyping and user testing</dd></div>
-        <div><dt>Status</dt><dd>Beta launched September 2026, iteration ongoing</dd></div>
       </dl>
     </article>
 
-    <div class="rows" style="margin-top:24px">
-      <a class="row" href="#/lightbox">
-        <div class="thumb"><img src="assets/images/img-20.webp" alt="" width="1400" height="1152" loading="lazy" style="object-position:left top"></div>
-        <div class="year">2026 · For Alamy customers</div>
-        <div><h3>Lightbox rebuild: Customer Collections</h3><p>A 15-year-old save feature had quietly taken on jobs for very different audiences, and served none of them well. I reframed the brief into experiences built around each audience's needs.</p><p class="own"><b>I owned:</b> discovery, research synthesis, journey mapping, the requirements audit and the designs.</p></div>
-        <div class="stat st"><span class="ev">Design in progress</span></div>
+    <div class="rows">
+      <a class="row" href="#/curated-collections">
+        <div class="thumb"><img src="assets/images/thumb-curated.webp" alt="" width="1600" height="900" loading="lazy"></div>
+        <div class="year">2026 · Curated Collections · Internal feature inside the Curation Tool</div>
+        <div><h3>Collection-building for curators managing 1,000+ images</h3><p>Designing a new internal collection-creation workflow within Alamy's Curation Tool. The project builds on discovery and journey mapping, with initial designs currently in progress.</p></div>
+        <div class="stat st"><span class="ev">In progress</span></div>
       </a>
-      <a class="row" href="#/behind-the-search">
-        <div class="thumb"><img src="assets/images/img-49.webp" alt="" width="1062" height="640" loading="lazy"></div>
-        <div class="year">2024 · For Alamy's content team</div>
-        <div><h3>Behind the Search: internal curation tool</h3><p>The team curating search results worked in a slow, outdated CRM with no quick way to change what customers saw. I designed a tool for them, on top of the search they already knew.</p><p class="own"><b>I owned:</b> research with the content team, interaction design, prototyping and weekly testing.</p></div>
-        <div class="stat st"><span class="ev live">Live, used daily</span></div>
+      <a class="row" href="#/lightbox">
+        <div class="thumb"><img src="assets/images/thumb-my-collection.webp" alt="" width="1600" height="900" loading="lazy"></div>
+        <div class="year">2026 · My Collection · External customer experience</div>
+        <div><h3>Rebuilding a 15-year-old save feature</h3><p>Exploring a redesigned customer-facing experience for organising and managing collections. Current work covers discovery, journey mapping and early design concepts.</p></div>
+        <div class="stat st"><span class="ev">Discovery / early design</span></div>
       </a>
     </div>
+    <p class="all-work"><a class="btn ghost" href="#/work">View all case studies</a></p>
   </section>
 
-  <section class="work wrap">
-    <div class="section-head"><div><h2>More case studies</h2><p class="sub">Supporting work that shows workflow design, internal tools and service design.</p></div></div>
-    <div class="rows three">
-      <a class="row" href="#/contributor-revamp">
-        <div class="thumb"><img src="assets/images/img-47.webp" alt="" width="833" height="660" loading="lazy"></div>
-        <div class="year">2025 · For photographers and agencies</div>
-        <div><h3>Contributor Experience Revamp</h3><p>Uploading and tagging images took too many steps on an eight-year-old platform. I redesigned it around reviewable AI metadata and bulk editing.</p><p class="own"><b>I owned:</b> research, success metrics, interaction design and usability testing.</p></div>
-        <div class="stat st"><span class="ev">Tested, not launched</span></div>
-      </a>
-      <a class="row" href="#/curated-collections">
-        <div class="thumb"><img src="assets/images/img-39.webp" alt="" loading="lazy"></div>
-        <div class="year">2026 · For internal curators</div>
-        <div><h3>Curated Collections</h3><p>A related internal workflow: designing collection-building for picture researchers inside the existing curation tool.</p><p class="own"><b>I owned:</b> analysis, journey mapping and wireframes.</p></div>
-        <div class="stat st"><span class="ev">Wireframes, testing planned</span></div>
-      </a>
-      <a class="row" href="#/service-blueprint">
-        <div class="thumb thumb-bp" aria-hidden="true"><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="l"></i><i></i><i></i><i class="p"></i><i></i><i></i><i></i><i class="l"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="l"></i><i></i><i class="p"></i><i></i><i></i><i class="p"></i><i></i><i class="l"></i><i></i><i></i><i></i><i class="p"></i><i></i><i></i></div>
-        <div class="year">2023 · For Alamy's leadership and teams</div>
-        <div><h3>Mapping how Alamy really works</h3><p>No one could see how the business ran end to end. I mapped the Enterprise and Contributor journeys as service blueprints.</p><p class="own"><b>I owned:</b> interviews, workshops, both blueprints and the leadership presentation.</p></div>
-        <div class="stat st"><span class="ev live">Complete</span></div>
-      </a>
+  <section class="process wrap" id="about">
+    <div class="section-head"><div><h2>How I work</h2><p class="sub">Five habits, each shown in a different project.</p></div></div>
+    <ol class="flow process-flow" aria-label="My design process">
+      <li><h4>Frame</h4><p>Question the brief until the real problem shows.</p><a class="tool" href="#/lightbox">Lightbox: one feature became two experiences →</a></li>
+      <li><h4>Investigate</h4><p>Combine sources, and say what each can't tell me.</p><a class="tool" href="#/service-blueprint">Service blueprints: five departments, one shared map →</a></li>
+      <li><h4>Prototype</h4><p>Coded, production-ready prototypes, not click-throughs.</p><a class="tool" href="#/search-assistant">Search Assistant: tested on live links →</a></li>
+      <li><h4>Validate</h4><p>Test with the people who'll actually use it.</p><a class="tool" href="#/behind-the-search">Behind the Search: weekly testing with the content team →</a></li>
+      <li><h4>Iterate</h4><p>Change course when the evidence says so.</p><a class="tool" href="#/curated-collections">Curated Collections: rebuilt to match the real tool →</a></li>
+    </ol>
+    <h3 class="ai-head">AI-assisted execution. Human-led product thinking.</h3>
+    <div class="ai-split">
+      <div class="lead"><span class="who">I lead</span><p>Research, interpreting the evidence, design direction and every final decision.</p></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="assist"><span class="who">AI accelerates</span><p>Documentation, interface exploration in the real design system, and coded prototypes.</p></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="lead"><span class="who">I check</span><p>Every output against the research, the design system, accessibility and feasibility.</p></div>
     </div>
-
-    <div class="section-head" style="margin-top:64px"><div><h3>Other work: beyond product design</h3></div></div>
-    <div class="rows solo">
-      <a class="row" href="#/between-us">
-        <div class="thumb thumb-bu" aria-hidden="true"><div class="mini"><b>between <em>us</em></b></div><div class="mini l"><s>Edition I</s><b>between <em>us</em></b></div></div>
-        <div class="year">Brand identity · Beyond Zeal</div>
-        <div><h3>between us: naming and identity for a live music series</h3><p>Named a monthly gig series and built its identity: a colour system that changes with every edition, posters, a ticket, keepsakes and an Instagram kit.</p></div>
-        <div class="stat st"><span class="ev live">In use since Edition I</span></div>
-      </a>
-    </div>
+    <p class="small ai-tools">Tools: Claude Code, Figma with Figma MCP and Code Connect, UserTesting.com, Vercel.</p>
   </section>
 
   <section class="journey wrap" id="journey">
@@ -788,47 +903,6 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       <li><div class="when">2019 – 2021</div><h3>UI/UX Design Intern, multiple projects including Larkcs Life Link</h3><p>Designed user journeys, wireframes and prototypes for mobile and web, informed by interviews and usability testing, including the UI for a medical consultation app.</p></li>
       <li><div class="when">2018 – 2022</div><h3>BTech, Computer Science and Engineering</h3><p>College of Engineering Trivandrum, with a GPA of 8.9.</p></li>
     </ol>
-  </section>
-
-  <section class="principles wrap" id="about">
-    <div class="section-head"><h2>How I work</h2></div>
-    <div class="pgrid">
-      <div><h3>Find the real problem first</h3><p>I ask why until the brief changes, not just the design.</p><p class="proof">Asking why turned "Lightbox 2.0" into separate experiences for two very different audiences. <a class="link" href="#/lightbox">Lightbox rebuild →</a></p></div>
-      <div><h3>Let evidence settle debates</h3><p>When ideas compete, I test them, and I listen when testing says the question itself is wrong.</p><p class="proof">Testing more than six placements showed placement alone wasn't the problem, so I gave the AI its own row and identity instead. <a class="link" href="#/search-assistant">Alamy Search Assistant →</a></p></div>
-      <div><h3>Bring the team into the work</h3><p>The people closest to the problem shape the design with me.</p><p class="proof">I tested with the content team every week. They now correct search results in under 24 hours instead of days. <a class="link" href="#/behind-the-search">Behind the Search →</a></p></div>
-      <div><h3>Say what is and isn't known</h3><p>I label what's validated, what's assumed and what's still open.</p><p class="proof">I marked the one screen I couldn't verify against the real tool, and handed three uncovered gaps to the PM instead of designing around them. <a class="link" href="#/curated-collections">Curated Collections →</a></p></div>
-    </div>
-  </section>
-
-  <section class="aiwork wrap" id="ai">
-    <div class="ai-card">
-      <span class="tag">How I work with AI</span>
-      <h3>AI-assisted execution. Human-led product thinking.</h3>
-      <p>I use AI to reduce the time between understanding a problem and testing a solution. I lead the research, interpret the evidence, define the design direction and make the final decisions. Tools such as Claude Code help me explore interfaces within an existing design system, create interactive prototypes and accelerate documentation. That gives me more room to question assumptions, collaborate with the team and iterate on the experience.</p>
-    </div>
-    <div class="flow" aria-label="My AI-assisted workflow">
-      <div><h4>Understand the problem</h4><p>Interviews, product context, user needs and constraints.</p><span class="tool">Human-led</span></div>
-      <div><h4>Accelerate artefacts</h4><p>Documentation, journey maps, reports and early interface exploration.</p><span class="tool">AI-assisted</span></div>
-      <div><h4>Evaluate and challenge</h4><p>Check outputs against research, the design system, requirements, accessibility and feasibility. Correct or discard what doesn't fit.</p><span class="tool">Human-led</span></div>
-      <div><h4>Make it tangible</h4><p>A coded, production-ready prototype stakeholders can use, not a click-through mock-up.</p><span class="tool">AI-assisted</span></div>
-      <div><h4>Learn and iterate</h4><p>Evidence and judgment decide what changes next.</p><span class="tool">Human-led</span></div>
-    </div>
-    <div class="pair">
-      <div><h4>Search Assistant: production-ready prototypes</h4><p>Instead of step-by-step Figma prototypes, I shared coded, production-ready prototypes with stakeholders, built with Claude Code and Alamy's code-connected design system. Figma stays the place for ideation and the single source of truth for final designs.</p><p class="verdict"><b>My judgment:</b> I decided AI needed its own button and colour tokens instead of borrowing an icon colour, built it in code, and checked each state against the system and the test findings. <a class="link" href="#/search-assistant">Read more →</a></p></div>
-      <div><h4>Curated Collections: checking my own assumptions</h4><p>I used Claude Code to stress-test 40 requirements against the research, and Figma MCP to work from the live curation tool's real components.</p><p class="verdict"><b>My judgment:</b> when the real tool contradicted my wireframes, I chose to rebuild them, and flagged three uncovered gaps to the PM. <a class="link" href="#/curated-collections">Read more →</a></p></div>
-    </div>
-  </section>
-
-  <section class="beyond wrap" id="beyond">
-    <div class="section-head"><h2>Beyond the screen</h2></div>
-    <p class="lede" style="margin-bottom:28px">Off screen, you'll usually find me on a stage, on a run, or chasing a sunset. I host team events at Alamy, sing at open mics, and recently named and branded <a class="link" href="#/between-us">a live music series</a>.</p>
-    <div class="board">
-      <figure class="pin wide r1"><img src="assets/images/img-02.webp" alt="Muhsina hosting Fun at Dev, a team event, standing beside a projected slide" loading="lazy" width="1600" height="685"><figcaption><span><b>Hosting Fun at Dev</b>, a team event at Alamy.</span><small>Photo by our CTO</small></figcaption></figure>
-      <figure class="pin r2"><img src="assets/images/life-marathon.webp" alt="Muhsina holding up her finisher's medal after the 5K at the GTech Kerala Marathon" loading="lazy" width="960" height="1201" style="object-position:50% 45%"><figcaption><span><b>Finished the 5K</b> at the GTech Kerala Marathon, Trivandrum.</span></figcaption></figure>
-      <figure class="pin r3"><img src="assets/images/life-open-mic.webp" alt="Muhsina singing into a microphone at an open mic, seated in front of music posters" loading="lazy" width="826" height="1280" style="object-position:50% 55%"><figcaption><span><b>Singing at a recent open mic.</b></span></figcaption></figure>
-      <figure class="pin r4"><img src="assets/images/life-between-us.webp" alt="The between us Edition II standee at the venue, with Muhsina reflected in the background taking a photo" loading="lazy" width="960" height="1280"><figcaption><span><b>At between us, Edition II</b>, the music series I named and branded.</span></figcaption></figure>
-      <figure class="pin r5"><img src="assets/images/life-bir-sunset.webp" alt="An orange sunset over the hills of Bir, Himachal Pradesh, with a person watching from a field" loading="lazy" width="960" height="1280"><figcaption><span><b>A sunset I captured</b> in Bir, Himachal Pradesh.</span></figcaption></figure>
-    </div>
   </section>
 
   <section class="about wrap" id="skills">
@@ -863,14 +937,79 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
     </div>
   </section>
 
+  <section class="beyond wrap" id="beyond">
+    <div class="section-head"><h2>Beyond the screen</h2></div>
+    <p class="lede" style="margin-bottom:28px">Off screen, you'll usually find me on a stage, on a run, or chasing a sunset. I host team events at Alamy, sing at open mics, and recently named and branded <a class="link" href="#/between-us">a live music series</a>.</p>
+    <div class="board">
+      <figure class="pin wide r1"><img src="assets/images/img-02.webp" alt="Muhsina hosting Fun at Dev, a team event, standing beside a projected slide" loading="lazy" width="1600" height="685"><figcaption><span><b>Hosting Fun at Dev</b>, a team event at Alamy.</span><small>Photo by our CTO</small></figcaption></figure>
+      <figure class="pin r2"><img src="assets/images/life-marathon.webp" alt="Muhsina holding up her finisher's medal after the 5K at the GTech Kerala Marathon" loading="lazy" width="960" height="1201" style="object-position:50% 45%"><figcaption><span><b>Finished the 5K</b> at the GTech Kerala Marathon, Trivandrum.</span></figcaption></figure>
+      <figure class="pin r3"><img src="assets/images/life-open-mic.webp" alt="Muhsina singing into a microphone at an open mic, seated in front of music posters" loading="lazy" width="826" height="1280" style="object-position:50% 55%"><figcaption><span><b>Singing at a recent open mic.</b></span></figcaption></figure>
+      <figure class="pin r4"><img src="assets/images/life-between-us.webp" alt="The between us Edition II standee at the venue, with Muhsina reflected in the background taking a photo" loading="lazy" width="960" height="1280"><figcaption><span><b>At between us, Edition II</b>, the music series I named and branded.</span></figcaption></figure>
+      <figure class="pin r5"><img src="assets/images/life-bir-sunset.webp" alt="An orange sunset over the hills of Bir, Himachal Pradesh, with a person watching from a field" loading="lazy" width="960" height="1280"><figcaption><span><b>A sunset I captured</b> in Bir, Himachal Pradesh.</span></figcaption></figure>
+    </div>
+  </section>
+
   <section class="contact wrap" id="contact">
-    <div class="contact-head"><img class="portrait" src="assets/images/profile.webp" alt="" width="72" height="72"><h2 style="max-width:22ch; margin:0">Hiring a product designer in the UAE? Let's talk.</h2></div>
+    <div class="contact-head"><img class="portrait" src="assets/images/profile.webp?v=2" alt="" width="72" height="72"><h2 style="max-width:22ch; margin:0">Hiring a product designer? Let's talk.</h2></div>
     <p class="lede" style="margin-top:16px">Product Designer at Alamy, based in Trivandrum, India, and relocating to the UAE. Notice period: up to 60 days, negotiable.</p>
     <div class="links">
       <button type="button" class="btn copy-btn" id="copyEmail" title="Copy email address"><span id="emailText" aria-live="polite">muhsinakarim2188@gmail.com</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
-      <a class="btn ghost" href="tel:+971565790985">+971 56 579 0985</a>
+      <a class="btn ghost phone" href="tel:+971565790985" aria-label="UAE phone: +971 56 579 0985"><svg class="flag" viewBox="0 0 12 6" aria-hidden="true"><rect width="12" height="2" fill="#00732F"/><rect y="2" width="12" height="2" fill="#fff"/><rect y="4" width="12" height="2" fill="#000"/><rect width="3" height="6" fill="#FF0000"/></svg><span class="cc">UAE</span>+971 56 579 0985</a>
+      <a class="btn ghost phone" href="tel:+918129486972" aria-label="India phone: +91 81294 86972"><svg class="flag" viewBox="0 0 12 8" aria-hidden="true"><rect width="12" height="8" fill="#fff"/><rect width="12" height="2.67" fill="#FF9933"/><rect y="5.33" width="12" height="2.67" fill="#138808"/><circle cx="6" cy="4" r="1.05" fill="none" stroke="#000080" stroke-width=".3"/></svg><span class="cc">IN</span>+91 81294 86972</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/muhsinakarim/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn ghost" href="assets/docs/Muhsina_Karim_Product_Designer_CV.pdf?v=20261005b" target="_blank" rel="noopener">Download resume</a>
+    </div>
+  </section>
+</div>
+
+<!-- ============ WORK ============ -->
+<div data-page="work" data-title="Work">
+  <section class="case-head wrap">
+    <a class="back" href="#/">← Home</a>
+    <h1 class="display">All case studies</h1>
+    <p class="lede">Case studies from Alamy: AI-powered search, collections for customers and curators, internal tools and service design.</p>
+  </section>
+  <section class="featured wrap" style="padding-top:8px">
+    <div class="rows">
+      <a class="row" href="#/search-assistant">
+        <div class="thumb"><img src="assets/images/thumb-search-assistant.webp" alt="" width="1600" height="900" loading="lazy"></div>
+        <div class="year">2026 · For Alamy customers</div>
+        <div><h3>Designing an AI-powered image search experience</h3><p>Alamy's Search Assistant lets customers find images and videos by describing them in their own words or by voice. Concept to live beta in under four months.</p></div>
+        <div class="stat st"><span class="ev live">Live beta</span></div>
+      </a>
+      <a class="row" href="#/curated-collections">
+        <div class="thumb"><img src="assets/images/thumb-curated.webp" alt="" width="1600" height="900" loading="lazy"></div>
+        <div class="year">2026 · Curated Collections · Internal feature inside the Curation Tool</div>
+        <div><h3>Collection-building for curators managing 1,000+ images</h3><p>Designing a new internal collection-creation workflow within Alamy's Curation Tool. The project builds on discovery and journey mapping, with initial designs currently in progress.</p></div>
+        <div class="stat st"><span class="ev">In progress</span></div>
+      </a>
+      <a class="row" href="#/lightbox">
+        <div class="thumb"><img src="assets/images/thumb-my-collection.webp" alt="" width="1600" height="900" loading="lazy"></div>
+        <div class="year">2026 · My Collection · External customer experience</div>
+        <div><h3>Rebuilding a 15-year-old save feature</h3><p>Exploring a redesigned customer-facing experience for organising and managing collections. Current work covers discovery, journey mapping and early design concepts.</p></div>
+        <div class="stat st"><span class="ev">Discovery / early design</span></div>
+      </a>
+      <a class="row" href="#/behind-the-search">
+        <div class="thumb"><img src="assets/images/thumb-behind-the-search.webp" alt="" width="1600" height="900" loading="lazy"></div>
+        <div class="year">2024 · Internal product</div>
+        <div><h3>Behind the Search: Curation Tool</h3><p>The internal tool the content team uses to improve search results and collections for customers, and now the home of Curated Collections.</p></div>
+        <div class="stat st"><span class="ev live">Live internal tool</span></div>
+      </a>
+      <a class="row" href="#/service-blueprint">
+        <div class="thumb"><img src="assets/images/thumb-service-blueprints.webp" alt="" width="1600" height="900" loading="lazy"></div>
+        <div class="year">2023 · For Alamy's leadership and teams</div>
+        <div><h3>Service blueprints: Enterprise purchase and contributor journeys</h3><p>No one could see how the business ran end to end. I mapped three enterprise purchase routes and the contributor journey as service blueprints, across five departments.</p></div>
+        <div class="stat st"><span class="ev live">Complete</span></div>
+      </a>
+    </div>
+    <div class="section-head" style="margin-top:64px"><div><h3>Other work: beyond product design</h3></div></div>
+    <div class="rows solo">
+      <a class="row" href="#/between-us">
+        <div class="thumb thumb-bu" aria-hidden="true"><div class="mini"><b>between <em>us</em></b></div><div class="mini l"><s>Edition I</s><b>between <em>us</em></b></div></div>
+        <div class="year">Brand identity · Beyond Zeal</div>
+        <div><h3>between us: naming and identity for a live music series</h3><p>Named a monthly gig series and built its identity: a colour system that changes with every edition, posters, a ticket, keepsakes and an Instagram kit.</p></div>
+        <div class="stat st"><span class="ev live">In use</span></div>
+      </a>
     </div>
   </section>
 </div>
@@ -878,26 +1017,23 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 <!-- ============ SEARCH ASSISTANT ============ -->
 <div data-page="search-assistant" data-title="Alamy Search Assistant">
   <section class="case-head wrap">
-    <a class="back" href="#/">← All work</a>
+    <a class="back" href="#/work">← All work</a>
     <div class="company">Alamy Search Assistant · conversational image and video discovery</div>
     <h1 class="display">Designing a conversational way to discover images and videos</h1>
-    <p class="lede">I designed Alamy's Search Assistant, which lets customers find images and videos by describing them in natural language or by voice, and took it from concept to a live beta in under four months. Then I worked out how to fit it into an established search journey without confusing it with Smart Search or disrupting keyword search.</p>
-    <dl class="facts">
-      <div><dt>Audience</dt><dd>Stock image and video buyers searching alamy.com</dd></div>
-      <div><dt>My role</dt><dd>Product Designer responsible for the Search Assistant experience</dd></div>
-      <div><dt>Platform</dt><dd>Alamy.com, desktop and mobile</dd></div>
-      <div><dt>Timeline</dt><dd>Concept to live beta in under four months. Beta launched September 2026</dd></div>
-      <div><dt>Team</dt><dd>Search Assistant pod: product, engineering, SEO and analytics</dd></div>
-      <div><dt>I owned</dt><dd>The experience, its integration into Alamy.com, interaction and visual design, prototyping, user testing and design-system considerations</dd></div>
-      <div><dt>Status</dt><dd class="status">Beta live on <a class="link" href="https://www.alamy.com/search-assistant/">alamy.com</a> · improving with customer feedback</dd></div>
+    <p class="lede">I designed Alamy's Search Assistant, which lets customers find images and videos by describing them in their own words or by voice. Then I fitted it into an established search journey without confusing it with Smart Search or disrupting keyword search.</p>
+    <dl class="summary">
+      <div><dt>Problem</dt><dd>Keyword search couldn't take a description in people's own words, and a new AI feature had to stand out without disrupting a search journey customers already relied on.</dd></div>
+      <div><dt>Role</dt><dd>Product Designer responsible for the experience on desktop and mobile, working in a pod with product, engineering, SEO and analytics.</dd></div>
+      <div><dt>Key decision</dt><dd>Give the Assistant its own row and AI identity, and simplify Smart Search into a compact toggle, after testing showed people overlooked it or confused the two.</dd></div>
+      <div><dt>Evidence</dt><dd>Usability testing, an A/B test of the Smart Search change, and an early beta survey, each answering a different question.</dd></div>
+      <div><dt>Status</dt><dd class="status">Live beta on <a class="link" href="https://www.alamy.com/search-assistant/">alamy.com</a> since September 2026, iterating from feedback</dd></div>
     </dl>
   </section>
   <section class="case-shifts wrap">
     <div class="shifts">
-      <div class="shift"><div class="label">Concept to live beta</div><div class="vals"><span class="after" style="font-size:28px">Under 4 months</span></div><div class="note"><span class="ev live">Beta</span>Live since September 2026</div></div>
-      <div class="shift"><div class="label">Designed for</div><div class="vals"><span class="after" style="font-size:28px">Desktop and mobile</span></div><div class="note">Side by side on desktop, a vertical slide-down on mobile</div></div>
+      <div class="shift"><div class="label">Concept to live beta</div><div class="vals"><span class="after" style="font-size:28px">Under 4 months</span></div></div>
+      <div class="shift"><div class="label">Entry-point concepts explored</div><div class="vals"><span class="after" style="font-size:28px">6+</span></div><div class="note"><span class="ev test">Usability test</span>To make it discoverable and distinct</div></div>
       <div class="shift"><div class="label">Early ease-of-use score</div><div class="vals"><span class="after" style="font-size:28px">6.7/10</span></div><div class="note"><span class="ev live">Beta survey</span>23 responses, directional</div></div>
-      <div class="shift"><div class="label">Entry points explored</div><div class="vals"><span class="after" style="font-size:28px">6+</span></div><div class="note"><span class="ev test">User testing</span>To make it discoverable and distinct from Smart Search</div></div>
     </div>
   </section>
   <section class="wrap" style="padding-bottom:64px">
@@ -907,236 +1043,168 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 
   <div class="case-body wrap">
     <ol class="stages" aria-label="Case study sections">
-      <li><a href="#sa-1">The opportunity</a></li>
-      <li><a href="#sa-2">The challenge</a></li>
+      <li><a href="#sa-1">The problem</a></li>
       <li><a href="#sa-r">Research</a></li>
       <li><a href="#sa-3">The core experience</a></li>
       <li><a href="#sa-m">Mobile</a></li>
-      <li><a href="#sa-4">Integration</a></li>
-      <li><a href="#sa-5">Smart Search</a></li>
-      <li><a href="#sa-6">Released entry point</a></li>
-      <li><a href="#sa-team">Team</a></li>
+      <li><a href="#sa-4">Fitting it into search</a></li>
+      <li><a href="#sa-team">Team and process</a></li>
       <li><a href="#sa-7">Beta and next</a></li>
-      <li><a href="#sa-8">Outcomes</a></li>
+      <li><a href="#sa-8">Evidence</a></li>
+      <li><a href="#sa-9">What I learned</a></li>
     </ol>
     <div>
       <section class="stage" id="sa-1">
-        <div class="stage-kicker">The opportunity</div>
-        <h2>Search beyond keywords</h2>
-        <p>Alamy's customers found visual assets through keyword search. Smart Search helped improve keyword queries, but there was no conversational way to describe the image you wanted, and no way to search by voice. "A candid woman laughing outdoors in warm golden light" is a sentence, not a list of keywords.</p>
-        <figure style="margin:28px 0 0"><div class="plain-shot" style="margin-top:0"><img src="assets/images/img-13.webp" alt="The original search bar: Smart Search as a bright green block with an on/off toggle, attached to the left of the keyword search field" loading="lazy" width="976" height="84"></div><figcaption style="margin-top:0">The existing search: a keyword field, with Smart Search attached as a green block to improve keyword queries.</figcaption></figure>
-        <p>As conversational AI became more familiar, a Search Assistant could make discovery more natural: describe what you need in your own words, refine it through conversation, and explore relevant images in the same place. Better discovery could support the path to choosing and buying an image, though the Assistant's commercial impact still has to be shown by its own metrics.</p>
-      </section>
-
-      <section class="stage" id="sa-2">
-        <div class="stage-kicker">The product-design challenge</div>
-        <h2>Not just adding a chatbot</h2>
-        <p>The job was to design a genuinely useful conversational image search, and fit it into an established website with existing search behaviours, controls and commercial priorities.</p>
-        <div class="callout"><p class="q">How do we give Search Assistant a distinct role, a conversational route for describing and refining what you want, alongside keyword search and Smart Search, without forcing anyone away from a familiar workflow?</p></div>
+        <div class="stage-kicker">The problem</div>
+        <h2>Search beyond keywords, without breaking search</h2>
+        <p>Alamy's customers found images through keyword search, with Smart Search to improve their queries. There was no way to describe the image you wanted in your own words, or by voice. "A candid woman laughing outdoors in warm golden light" is a sentence, not a list of keywords.</p>
+        <p>The job wasn't just to add a chatbot. It was to design a genuinely useful conversational search, and fit it into a website with established search behaviours, controls and commercial priorities.</p>
+        <div class="callout"><p class="q">How do we give Search Assistant a distinct role alongside keyword search and Smart Search, without forcing anyone away from a familiar workflow?</p></div>
       </section>
 
       <section class="stage" id="sa-r">
         <div class="stage-kicker">Research</div>
         <h2>Starting with the problem, not the chatbot</h2>
-        <p>Before designing anything, I framed what we were solving and what would have to be true for a conversational assistant to be worth building.</p>
         <div class="pair">
-          <div><h4>Problem</h4><p>Semantic search improved result quality, but people still had to squeeze their project needs into a search box. With no conversational interface, there was no way to explore, refine and discuss a brief.</p></div>
-          <div><h4>Hypothesis</h4><p>A conversational search experience would let people discuss briefs, refine ideas and see results inline, turning search into a collaborative assistant rather than a static tool.</p></div>
-          <div><h4>User goal</h4><p>Find the right images or videos quickly and confidently through natural conversation, without having to search, filter or contact support.</p></div>
-          <div><h4>Business goal</h4><p>Help customers discover and buy through conversation, understand that this kind of search exists, and reduce friction and reliance on support.</p></div>
+          <div><h4>Problem</h4><p>Semantic search improved result quality, but people still had to squeeze project needs into a search box, with no way to explore, refine and discuss a brief.</p></div>
+          <div><h4>Hypothesis</h4><p>Conversational search would let people discuss briefs, refine ideas and see results inline, turning search into a collaborative assistant.</p></div>
+          <div><h4>User goal</h4><p>Find the right images or videos quickly and confidently through conversation, without having to search, filter or contact support.</p></div>
+          <div><h4>Business goal</h4><p>Help customers discover and buy through conversation, know this kind of search exists, and rely less on support.</p></div>
         </div>
-        <h3>Questions I set out to answer</h3>
-        <ul class="clean">
-          <li>Is there a real desire for a conversational search experience?</li>
-          <li>What language do our customers naturally use when they describe an image?</li>
-          <li>How will people know the Assistant exists, and that they can search with a full brief?</li>
-          <li>Should it sit alongside classic search so people can use either?</li>
-          <li>How should the results change as the conversation refines them?</li>
-        </ul>
-        <h3>Competitor analysis: one brief, five search engines</h3>
+        <h3>One brief, five competitors</h3>
         <p>I gave the same long, natural-language brief to five competitors: two people in their 50s walking hand in hand along a riverside in spring, in the 1940s, with period clothing, dilapidated buildings and horses in the field.</p>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/sa-research-shutterstock.webp" alt="Shutterstock showing an error page for the long natural-language request" loading="lazy" width="1600" height="815"></div><h4>Shutterstock</h4><p>Couldn't handle the request at all.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-research-getty.webp" alt="Getty results showing modern couples in their fifties, ignoring the 1940s setting" loading="lazy" width="1600" height="817"></div><h4>Getty</h4><p>Returned couples in their 50s, but ignored the 1940s setting.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-research-istock.webp" alt="iStock results showing modern couples walking outdoors" loading="lazy" width="1600" height="814"></div><h4>iStock</h4><p>The same pattern as Getty: age matched, period lost.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-research-unsplash.webp" alt="Unsplash results showing unrelated images alongside sponsored iStock images" loading="lazy" width="1600" height="818"></div><h4>Unsplash</h4><p>Unrelated images, plus sponsored results from iStock.</p></figure>
-        </div>
-        <div class="plain-shot" style="max-width:720px"><img src="assets/images/sa-research-envato.webp" alt="Envato search box truncating the request because of a word limit" loading="lazy" width="1600" height="817"></div>
-        <figcaption style="margin-top:0">Envato: a word limit cut the brief short.</figcaption>
-        <div class="callout"><p class="q">Even where competitors accepted a conversational request, nothing told people they could search that way. That became a design requirement: the Assistant had to announce what it could do.</p></div>
-        <h3>Best practices I designed against</h3>
-        <ul class="clean">
-          <li><b>Set expectations at the start.</b> Introduce what the AI can and can't do, and help people write good prompts. This became the first-use guidance.</li>
-          <li><b>Fit the product, but stand apart.</b> The chat should match the product's design while being clearly distinct as a conversation. This became the AI visual pattern.</li>
-          <li><b>Build trust through transparency.</b> Show where answers come from and handle errors honestly. This became the image references in every answer.</li>
-        </ul>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th><span class="ev research">Research finding</span></th><th>Handled the long brief?</th><th>Matched the details?</th><th>Said this kind of search was possible?</th></tr></thead>
+          <tbody>
+            <tr><td>Shutterstock</td><td>No, an error page</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td>Getty</td><td>Yes</td><td>Partly: the age, not the 1940s</td><td>No</td></tr>
+            <tr><td>iStock</td><td>Yes</td><td>Partly: the age, not the 1940s</td><td>No</td></tr>
+            <tr><td>Unsplash</td><td>Yes</td><td>No: unrelated images</td><td>No</td></tr>
+            <tr><td>Envato</td><td>No, a word limit cut it short</td><td>&mdash;</td><td>&mdash;</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout"><p class="q">Even where competitors accepted a conversational request, nothing told people they could search that way. So the Assistant had to announce what it could do.</p></div>
       </section>
 
       <section class="stage" id="sa-3">
-        <div class="stage-kicker">Designing the Search Assistant experience</div>
+        <div class="stage-kicker">The core experience</div>
         <h2>Conversation and images, side by side</h2>
-        <p>The core experience had to combine the flexibility of conversation with the practical goal of finding visual assets. People should be able to describe what they need, refine it, and still see the images being discussed.</p>
+        <div class="xmap" role="img" aria-label="Experience map: describe what you need by typing or voice, then converse and refine, then see image results with the images the answer refers to. On desktop the conversation and results sit side by side; on mobile they stack in a slide-down sheet.">
+          <div><span class="n">1</span><h4>Describe</h4><p>In your own words, typed or spoken.</p></div>
+          <div class="arr" aria-hidden="true">→</div>
+          <div><span class="n">2</span><h4>Converse and refine</h4><p>The Assistant asks follow-ups and narrows the search.</p></div>
+          <div class="arr" aria-hidden="true">→</div>
+          <div><span class="n">3</span><h4>See and choose</h4><p>Results update beside the chat, with the images the answer refers to.</p></div>
+        </div>
+        <p class="small xmap-note">Desktop: conversation and results side by side. Mobile: stacked in a slide-down sheet.</p>
+
         <h3>How the experience evolved</h3>
-        <p>The layout went through several directions before conversation and results settled side by side.</p>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/sa-evo-1-wireframe.webp" alt="Lo-fi wireframe: a search sidebar with a smart semantic search toggle and a back to classic search link beside a grid of image placeholders" loading="lazy" width="1600" height="800"></div><h4>1. Lo-fi sidebar</h4><p>A first wireframe: a search panel beside the results, with a way back to classic search from day one.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-evo-2-welcome.webp" alt="Welcome to the new Alamy search assistant modal with suggestion cards and quick actions such as I want images and Teach me about licencing" loading="lazy" width="1600" height="814"></div><h4>2. A welcome modal</h4><p>An overlay introducing the Assistant, with quick starts like "I want images" and "Teach me about licencing".</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-evo-3-green-chat.webp" alt="Dark results page with a chat column in bright green bubbles beside the image grid" loading="lazy" width="1600" height="1228"></div><h4>3. Chat beside results</h4><p>The conversation in a column next to the images, the idea that stuck, though every element shared one green.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-evo-4-ai-mode.webp" alt="A full-page AI Mode landing reading Hi Jane, What is on your mind? with an Ask me anything box and suggested prompts" loading="lazy" width="1600" height="1108"></div><h4>4. A full-page "AI Mode"</h4><p>A dedicated landing page with a personal greeting, exploring the Assistant as its own destination.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-evo-5-agent.webp" alt="Dark split view with the conversation on the left and a Results by agent grid on the right" loading="lazy" width="1600" height="1108"></div><h4>5. Results by agent</h4><p>A split view labelling which results came from the conversation.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-evo-6-assisted.webp" alt="An Assisted tab with a quieter chat, suggested prompts and an Ask me anything box beside the image results" loading="lazy" width="1600" height="1108"></div><h4>6. An "Assisted" mode</h4><p>A calmer chat with suggested prompts and voice, closer to what shipped.</p></figure>
+        <div class="evo3">
+          <figure><div class="plain-shot"><img src="assets/images/sa-evo-1-wireframe.webp" alt="Lo-fi wireframe: a search sidebar with a smart semantic search toggle and a back to classic search link beside image placeholders" loading="lazy" width="1600" height="800"></div><h4>1. Lo-fi sidebar</h4><p>A search panel beside the results, with a way back to classic search from day one.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sa-evo-4-ai-mode.webp" alt="A full-page AI Mode landing reading Hi Jane, What is on your mind? with an Ask me anything box" loading="lazy" width="1600" height="1108"></div><h4>2. A full-page "AI Mode"</h4><p>The Assistant as its own destination, away from the results.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sa-evo-6-assisted.webp" alt="An Assisted mode with a calm chat, suggested prompts and voice beside the image results" loading="lazy" width="1600" height="1108"></div><h4>3. An "Assisted" mode</h4><p>Back beside the results, calmer, with prompts and voice: close to what shipped.</p></figure>
         </div>
-        <p>I designed a split layout with the conversation on the left and image results on the right, so people can keep talking without losing sight of what they're exploring. I also designed how images referenced in the conversation are highlighted.</p>
-        <h3>Different ways to start and continue</h3>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>What I designed</th><th>Why</th></tr></thead>
-          <tbody>
-            <tr><td>Voice input: "Speak your search"</td><td>To let people describe what they need aloud, with a clear listening state</td></tr>
-            <tr><td>Recommended searches</td><td>To help people get started when they're unsure what to ask</td></tr>
-            <tr><td>New chat</td><td>To begin a different search task cleanly</td></tr>
-            <tr><td>Chat history</td><td>To return to earlier conversations</td></tr>
-            <tr><td>First-use guidance</td><td>To explain how to use the Assistant and set expectations</td></tr>
-            <tr><td>Image references in the conversation</td><td>To keep answers tied to real images, linked by reference number</td></tr>
-            <tr><td>"Back to classic search"</td><td>So keyword search is always one click away</td></tr>
-          </tbody>
-        </table></div>
-        <p>Throughout, the conversation is meant to keep the focus on image discovery, not on long, interruptive blocks of text.</p>
-        <div class="plain-shot video"><video controls muted playsinline loop preload="none" poster="assets/images/sa-in-use-poster.webp" width="1440" height="828" aria-label="Screen recording on alamy.com: starting a new chat, choosing the suggested prompt Find me a mysterious misty forest with copy space, the results loading beside the conversation, then opening chat history and returning to the conversation"><source src="assets/video/sa-in-use.mp4" type="video/mp4"></video></div>
-        <figcaption style="margin-top:0">Live on alamy.com: a new chat, a recommended search ("Find me a mysterious misty forest with copy space"), results loading beside the conversation with image references, then chat history and back.</figcaption>
-        <div class="plain-shot"><img src="assets/images/sa-intro.webp" alt="First-use guidance: an Introducing Alamy Search Assistant panel over the results, with Getting started example prompts, How it works, Pro tips and a Start searching button" loading="lazy" width="1600" height="1000"></div>
-        <figcaption style="margin-top:0">First-use guidance: what the Assistant does, example prompts to start from, how it works, and tips such as "Refine anytime: make it warmer".</figcaption>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/sa-new-chat.webp" alt="New chat: the Assistant greets the customer and offers Try asking prompts, with image results on the right" loading="lazy" width="1600" height="1000"></div><h4>New chat</h4><p>A greeting and "Try asking…" recommended searches, so nobody starts from a blank box.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-chat-history.webp" alt="Chat history: an older conversation loading, with suggested prompts above the input" loading="lazy" width="1600" height="983"></div><h4>Chat history</h4><p>Reopening an earlier conversation, with suggested prompts to refine from where it left off.</p></figure>
-        </div>
-        <div class="plain-shot"><img src="assets/images/sa-voice-listening.webp" alt="Voice search: the conversation collapsed to a slim rail with a green microphone showing Listening, and results filling the page" loading="lazy" width="1600" height="1000"></div>
-        <figcaption style="margin-top:0">Voice search while listening: the conversation collapses to a rail with a clear listening state, so the results stay in view.</figcaption>
-        <div class="plain-shot video"><video controls playsinline preload="none" poster="assets/images/sa-voice-poster.webp" width="1440" height="828" aria-label="Screen recording with sound on alamy.com: results for ginger cats with green eyes, then Speak your search, the Stop listening state while the request I need black labrador pictures with happy faces is transcribed, and black Labrador results"><source src="assets/video/sa-voice.mp4" type="video/mp4"></video></div>
-        <figcaption style="margin-top:0">Live on alamy.com, with sound: results for a spoken request ("ginger cats with green eyes"), then "Speak your search" again. The button switches to "Stop listening" while the words appear as they're spoken ("I need black labrador pictures with happy faces"), and the results update.</figcaption>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/img-15.webp" alt="Search Assistant conversation panel: Back to classic search, a response with highlighted image references, a count of images found, new chat and history buttons, Speak your search, and a text input" loading="lazy" width="404" height="900"></div><h4>The conversation panel</h4><p>Highlighted image references, new chat, history, voice and the way back to classic search, in one column.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/img-16.webp" alt="Collapsed conversation: a slim rail with the voice button, and results filling the page with a hover card showing an image reference and cart button" loading="lazy" width="1200" height="645"></div><h4>Collapsed view</h4><p>The conversation folds into a rail, with voice still one click away and results filling the page.</p></figure>
-        </div>
+
+        <h3>The interface, in one view</h3>
+        <figure class="annot">
+          <div class="annot-shot">
+            <img src="assets/images/img-15.webp" alt="The live Search Assistant conversation panel, with numbered callouts" loading="lazy" width="404" height="900">
+            <span class="apin" style="left:51%;top:3.8%">1</span>
+            <span class="apin" style="left:93%;top:16.8%">2</span>
+            <span class="apin" style="left:8%;top:72.6%">3</span>
+            <span class="apin" style="left:19%;top:72.6%">4</span>
+            <span class="apin" style="left:62%;top:72.6%">5</span>
+          </div>
+          <ol class="annot-list">
+            <li><b>Back to classic search.</b> Always visible, so nobody feels trapped in the AI.</li>
+            <li><b>Image references.</b> Every suggestion links to a real image, with a count of matches, so answers stay grounded.</li>
+            <li><b>New chat.</b> Start a different task cleanly, with recommended searches for anyone unsure what to ask.</li>
+            <li><b>Chat history.</b> Return to an earlier conversation and refine from there.</li>
+            <li><b>Speak your search.</b> Describe it aloud, with a clear listening state.</li>
+          </ol>
+        </figure>
+        <div class="plain-shot"><img src="assets/images/sa-intro.webp" alt="First-use guidance: an Introducing Alamy Search Assistant panel with example prompts, how it works and pro tips" loading="lazy" width="1600" height="1000"></div>
+        <figcaption style="margin-top:0">First-use guidance sets expectations: it finds real Alamy images, how to ask, and how to refine. This answers the research finding that nobody tells people this kind of search exists.</figcaption>
+        <div class="plain-shot video"><video controls muted playsinline loop preload="none" poster="assets/images/sa-in-use-poster.webp" width="1440" height="828" aria-label="Screen recording on alamy.com: starting a new chat, choosing a recommended search, results loading beside the conversation, then chat history"><source src="assets/video/sa-in-use.mp4" type="video/mp4"></video></div>
+        <figcaption style="margin-top:0">Live: a new chat, a recommended search, results with references, then chat history.</figcaption>
+        <div class="plain-shot video"><video controls playsinline preload="none" poster="assets/images/sa-voice-poster.webp" width="1440" height="828" aria-label="Screen recording with sound on alamy.com: Speak your search, the Stop listening state while the request is transcribed, and updated results"><source src="assets/video/sa-voice.mp4" type="video/mp4"></video></div>
+        <figcaption style="margin-top:0">Live, with sound: speaking a request, the "Stop listening" state while it's transcribed, and the results updating.</figcaption>
       </section>
 
       <section class="stage" id="sa-m">
-        <div class="stage-kicker">Designing for mobile</div>
+        <div class="stage-kicker">Mobile</div>
         <h2>The same behaviours, top to bottom</h2>
-        <p>The desktop side-by-side layout wouldn't translate to a narrow screen. On mobile, I designed a vertically arranged, slide-down experience with the conversation and results organised top to bottom, keeping the essential conversation and image-discovery behaviours on a smaller screen.</p>
+        <p>Side by side doesn't fit a phone, so on mobile the conversation and results stack in a slide-down sheet.</p>
         <div class="phones">
-          <figure><div class="plain-shot"><img src="assets/images/sa-m-new-chat.webp" alt="Mobile: the Search Assistant sheet slid up over the results with a greeting, Speak your search and a text input" loading="lazy" width="600" height="1446"></div><figcaption>New chat: the sheet slides up over the results.</figcaption></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-m-in-use.webp" alt="Mobile: the Search Assistant sheet in use, with suggested prompts, a conversation and a typed request" loading="lazy" width="600" height="1446"></div><figcaption>In use: suggested prompts, the conversation and input.</figcaption></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-m-collapsed.webp" alt="Mobile: the sheet collapsed to a Search Assistant Active bar at the bottom, with the results above" loading="lazy" width="600" height="1446"></div><figcaption>Collapsed: results take the screen, the Assistant stays docked at the bottom.</figcaption></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-m-voice.webp" alt="Mobile: the collapsed bar reading Search Assistant Active - Voice search, with a green microphone and Listening" loading="lazy" width="600" height="1446"></div><figcaption>Voice: listening, from the collapsed bar.</figcaption></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sa-m-new-chat.webp" alt="Mobile: the Search Assistant sheet slid up over the results with a greeting" loading="lazy" width="600" height="1446"></div><figcaption>New chat: the sheet slides up.</figcaption></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sa-m-in-use.webp" alt="Mobile: the Search Assistant sheet in use with suggested prompts and a conversation" loading="lazy" width="600" height="1446"></div><figcaption>In use: prompts and conversation.</figcaption></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sa-m-collapsed.webp" alt="Mobile: the sheet collapsed to a Search Assistant Active bar with results above" loading="lazy" width="600" height="1446"></div><figcaption>Collapsed: results take the screen.</figcaption></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sa-m-voice.webp" alt="Mobile: the collapsed bar listening for voice search" loading="lazy" width="600" height="1446"></div><figcaption>Voice, from the collapsed bar.</figcaption></figure>
         </div>
-        <p class="small">Design files: placeholder results are shown as grey blocks.</p>
+        <p class="small">Design files: grey blocks are placeholder results.</p>
       </section>
 
       <section class="stage" id="sa-4">
-        <div class="stage-kicker">Integrating the experience</div>
-        <h2>Testing exposed a placement problem</h2>
-        <p>With the experience designed, I worked out how to bring it into Alamy's existing search journey. In UserTesting.com sessions, using working prototypes deployed to Vercel rather than clickable mock-ups, I asked participants to find Search Assistant, describe their experience, rate its ease of use and suggest improvements.</p>
-        <p><span class="ev test">User testing</span> Participants initially struggled to notice the Assistant, and had difficulty telling it apart from Smart Search.</p>
-        <p>I explored more than six entry points, including placing it within filters, a toggle between conventional and AI search, and a dedicated Search Assistant page linked from search results. Three of them:</p>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/img-05.webp" alt="Entry point: the Assistant as a tab inside the filters panel, beside AI Smart Search" loading="lazy" width="534" height="317"></div><h4>Within filters</h4><p>"AI Assistant" and "AI Smart Search" on the same screen, both sounding like "the AI thing".</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/img-06.webp" alt="Entry point: Classic search and Search assistant tabs above the search bar" loading="lazy" width="1200" height="363"></div><h4>A toggle between modes</h4><p>Conventional and AI search as two tabs above the search bar.</p></figure>
+        <div class="stage-kicker">Fitting it into search</div>
+        <h2>From "people can't find it" to a distinct entry point</h2>
+        <p>I tested the entry point in UserTesting.com sessions, asking participants to find the Assistant, describe the experience and rate its ease of use.</p>
+        <p><span class="ev test">Usability test</span> People initially struggled to notice the Assistant, and to tell it apart from Smart Search.</p>
+        <h3>Placement concepts <span class="chip-inline">6+ concepts explored</span></h3>
+        <div class="concepts">
+          <figure><div class="plain-shot"><img src="assets/images/img-05.webp" alt="Concept: the Assistant as a tab inside the filters panel, beside AI Smart Search" loading="lazy" width="534" height="317"></div><h4>Inside filters</h4><p><b>Finding:</b> hidden among filters, and "AI Assistant" beside "AI Smart Search" read as the same thing.</p><p><b>Decision:</b> keep it out of filters.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/img-06.webp" alt="Concept: Classic search and Search assistant tabs above the search bar" loading="lazy" width="1200" height="363"></div><h4>Mode tabs</h4><p><b>Finding:</b> a clear model of two modes, but it blended into the navigation.</p><p><b>Decision:</b> keep the idea of a named way back.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/img-10.webp" alt="Concept: a separate row with a green Search Assistant button at the far right" loading="lazy" width="824" height="268"></div><h4>Separate row</h4><p><b>Finding:</b> distance from Smart Search, but people overlooked the button.</p><p><b>Decision:</b> a row works, but it needs its own identity.</p></figure>
         </div>
-        <div class="plain-shot"><img src="assets/images/img-10.webp" alt="Entry point: a separate row reading Need help? Describe the image you need using search assistant, with a green Search Assistant button at the far right" loading="lazy" width="824" height="268"></div>
-        <figcaption style="margin-top:0">The Assistant at the far right of a separate row, to create distance from Smart Search. It separated the features visually, but participants tended to overlook the entry point.</figcaption>
-        <div class="plain-shot"><img src="assets/images/sa-placement-tab-iterations.webp" alt="Four iterations of a Classic search and Search assistant tab bar above the search field, varying which tab is highlighted, with Smart Search as a small toggle" loading="lazy" width="1680" height="636"></div>
-        <figcaption style="margin-top:0">Refining the mode toggle: four versions of the Classic search / Search assistant tabs, testing how strongly to highlight the new mode while Smart Search shrinks to a toggle.</figcaption>
-        <dl class="decision">
-          <div><dt>Evidence</dt><dd>Moving the Assistant around didn't solve it. Even when it was visually separated, people overlooked it or confused it with Smart Search.</dd></div>
-          <div><dt>Interpretation</dt><dd>Separation alone wasn't enough. The Assistant needed a clear identity and a discoverable place in the existing workflow, and Smart Search needed to stop competing with it.</dd></div>
-          <div class="d"><dt>Decision</dt><dd>Simplify Smart Search into a compact toggle, validated by an A/B test, and give the Assistant its own row and visual identity.</dd></div>
-          <div><dt>Trade-off</dt><dd>Changing a control that already contributed to conversions, which is why it was tested before it was confirmed.</dd></div>
-          <div><dt>Next check</dt><dd><span class="ev target">Pending data</span>Whether the released entry point improves discovery in live use.</dd></div>
-        </dl>
-      </section>
 
-      <section class="stage" id="sa-5">
-        <div class="stage-kicker">Simplifying Smart Search</div>
-        <h2>A compact toggle, A/B tested before it was confirmed</h2>
-        <p>Smart Search was working well and contributing to conversions, so I didn't want to leave the interface confusing, or make a risky change without validation. I simplified it into a compact toggle with clear on and off states, replacing the green block shown above.</p>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/sa-smart-on.webp" alt="Redesigned search bar with the compact Smart Search toggle switched on" loading="lazy" width="824" height="36"></div><h4>On</h4><p>A compact toggle inside the search bar.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/sa-smart-off.webp" alt="Redesigned search bar with the compact Smart Search toggle switched off" loading="lazy" width="964" height="46"></div><h4>Off</h4><p>The same control, with a clear off state.</p></figure>
-        </div>
-        <p><span class="ev live">A/B test</span> I used an A/B test, the existing prominent Smart Search button against the smaller toggle, to check whether simplifying the control was commercially safe before introducing Search Assistant.</p>
-        <div class="shifts" style="margin:24px 0">
-          <div class="shift"><div class="label">Smart Search switch-on interactions</div><div class="vals"><span class="after">&minus;18.4%</span></div><div class="note"><span class="ev live">A/B test</span>Smaller toggle vs original</div></div>
-          <div class="shift"><div class="label">Search-result image clicks</div><div class="vals"><span class="after">&minus;0.8%</span></div><div class="note"><span class="ev live">A/B test</span>Broadly stable</div></div>
-          <div class="shift"><div class="label">Commercial impact</div><div class="vals"><span class="after" style="font-size:24px">No clear negative</span></div><div class="note"><span class="ev live">A/B test</span>Revenue sensitive to a few high-value orders</div></div>
-        </div>
-        <dl class="decision">
-          <div><dt>Evidence</dt><dd>Fewer people switched Smart Search on, while image clicks held steady and there was no clear evidence of negative commercial impact.</dd></div>
-          <div><dt>Interpretation</dt><dd>The smaller toggle is less discoverable, but it doesn't change how people search and buy.</dd></div>
-          <div class="d"><dt>Decision</dt><dd>Finalise the simpler Smart Search toggle, making room for the Assistant's entry point.</dd></div>
-          <div><dt>Trade-off</dt><dd>Smart Search is harder to find than before.</dd></div>
-          <div><dt>Next check</dt><dd><span class="ev target">Next</span>Improve the toggle's discoverability without competing with the Assistant again.</dd></div>
-        </dl>
-        <p class="small">This test assessed the Smart Search redesign only. It is not evidence that Search Assistant increased conversion or revenue.</p>
-      </section>
+        <h3>The decision chain</h3>
+        <ol class="chain">
+          <li><span class="k">Testing</span><p>People overlooked the Assistant or confused it with Smart Search.</p></li>
+          <li><span class="k">Insight</span><p>Not a position problem: a hierarchy and identity problem. Both features looked like the same kind of thing.</p></li>
+          <li><span class="k">Design</span><p>A distinct row with its own AI button, and Smart Search simplified into a compact toggle.</p></li>
+          <li><span class="k">A/B evidence</span><p>Switch-on interactions fell while image clicks remained broadly stable; the test showed no clear negative commercial impact.</p></li>
+          <li class="end"><span class="k">Final entry point</span><p>Released, with Smart Search's lower discoverability kept as an open question.</p></li>
+        </ol>
 
-      <section class="stage" id="sa-6">
-        <div class="stage-kicker">The released entry point</div>
-        <h2>Its own row, its own identity</h2>
-        <p>In the released design, Smart Search stays a compact toggle in the main search bar. Search Assistant gets its own row, a distinct purple-gradient button, a sparkle icon, and the copy "Describe the image or video you're looking for." The new capability looks different, while familiar search controls and navigation stay where they were.</p>
-        <div class="plain-shot video"><video controls muted playsinline loop preload="none" poster="assets/images/sa-entry-points-poster.webp" width="1440" height="828" aria-label="Screen recording on alamy.com: the floating Search Assistant button and hint on the homepage, the Smart Search tooltip and toggle, a search for cats, and the Search Assistant row and floating button on the results page"><source src="assets/video/sa-entry-points.mp4" type="video/mp4"></video></div>
-        <figcaption style="margin-top:0">Live on alamy.com: the floating Assistant button and hint on the homepage, the Smart Search tooltip and toggle, then a search for "cats" with the Assistant's own row on the results page.</figcaption>
-        <div class="plain-shot"><img src="assets/images/img-11.webp" alt="The released results page: the compact Smart Search toggle in the search bar, and a row below it reading Describe the image or video you're looking for, with a purple Search Assistant button and a Beta tag" loading="lazy" width="900" height="708"></div>
-        <figcaption style="margin-top:0">The released results page.</figcaption>
-        <div class="plain-shot"><img src="assets/images/img-14.webp" alt="Close-up of the released search bar: the Smart Search toggle on the right, and below it the copy Describe the image or video you're looking for with the purple Search Assistant button and Beta tag" loading="lazy" width="900" height="76"></div>
-        <figcaption style="margin-top:0">Close-up: the purple-gradient button, sparkle icon, Beta tag and supporting copy, one row below the Smart Search toggle.</figcaption>
-        <h3>Design-system considerations</h3>
-        <p>Alamy's green already meant "main action", and the only purple in the design system was an icon token, never meant for a button people press again and again. Rather than borrow it, I created a dedicated AI button: its own colour tokens, plus pill and floating versions with hover and disabled states. I built it in code myself, handed the code to engineering, and added it to Alamy's design system as a new style of the existing Button. It behaves like every other button on the site, and future AI features can reuse it instead of reinventing it.</p>
+        <div class="wires">
+          <figure><div class="plain-shot"><img src="assets/images/img-13.webp" alt="Before: Smart Search as a bright green block attached to the search bar" loading="lazy" width="976" height="84"></div><h4>Smart Search before</h4><p>A green block fused to the search bar, reading as a main action.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sa-smart-on.webp" alt="After: a compact Smart Search toggle inside the search bar" loading="lazy" width="824" height="36"></div><h4>After</h4><p>A compact toggle with clear on and off states.</p></figure>
+        </div>
+        <p class="small">The A/B test compared these two Smart Search designs only. It is not evidence that Search Assistant increased conversion, revenue or adoption.</p>
+
+        <h3>The released entry point</h3>
+        <div class="plain-shot"><img src="assets/images/img-11.webp" alt="The released results page: the compact Smart Search toggle in the search bar, and a row below with the copy Describe the image or video you're looking for and a purple Search Assistant button with a Beta tag" loading="lazy" width="900" height="708"></div>
+        <figcaption style="margin-top:0">Smart Search stays a toggle in the search bar. The Assistant gets its own row, a purple AI button and the copy "Describe the image or video you're looking for."</figcaption>
+        <p>Alamy's green already meant "main action", and the design system's only purple was an icon token. So I created a dedicated AI button with its own colour tokens, pill and floating versions, and hover and disabled states. I built it in code, handed the code to engineering, and added it to the design system as a new style of the existing Button, so future AI features can reuse it.</p>
         <div class="plain-shot"><img src="assets/images/img-12.webp" alt="AI button component set: pill buttons in three sizes, a hover state, Beta variants and circular floating buttons" loading="lazy" width="1200" height="220"></div>
         <figcaption style="margin-top:0">The AI button I designed and coded, now part of Alamy DS 2.0.</figcaption>
-        <h3>Beyond search results</h3>
-        <p>I later explored entry points from the homepage and product pages, where the button floats and expands with a hint as people scroll.</p>
-        <div class="plain-shot"><img src="assets/images/img-17.webp" alt="Three mobile results screens: the Search Assistant prompt under the search bar, then a floating AI button while scrolling" loading="lazy" width="1600" height="481"></div>
-        <figcaption style="margin-top:0">On mobile results, the prompt under the search bar becomes a floating button as people scroll.</figcaption>
-        <div class="plain-shot" style="max-width:640px"><img src="assets/images/sa-floating-mobile.webp" alt="Two mobile screens: the Search Assistant as a round floating button with a Beta tag, then expanded into a labelled Search Assistant button with the hint Describe the image or video you're looking for" loading="lazy" width="840" height="782"></div>
-        <figcaption style="margin-top:0">The floating button expands into a labelled "Search Assistant" button with a dismissible hint.</figcaption>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/img-18.webp" alt="Product page on desktop and mobile with the floating Search Assistant button" loading="lazy" width="980" height="655"></div><h4>Product pages</h4><p>A floating button with a Beta tag, expanding with a hint.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/img-19.webp" alt="Homepage on desktop and mobile with the floating Search Assistant button" loading="lazy" width="1015" height="760"></div><h4>Homepage</h4><p>Reachable before anyone has searched.</p></figure>
-        </div>
-        <h3>Picking up where classic search left off</h3>
-        <p>Opening the Assistant doesn't mean starting over. When someone opens it after a keyword search, it carries that search into the conversation ("Since you were searching for 'cats', let me pull that up for you. I can help refine the results too.") and shows matching results straight away, ready to refine.</p>
-        <div class="plain-shot video"><video controls muted playsinline loop preload="none" poster="assets/images/sa-continuity-poster.webp" width="1440" height="828" aria-label="Screen recording on alamy.com: from a cat image's product page, opening Search Assistant, which carries over the search for cats and returns cat photos with image references"><source src="assets/video/sa-continuity.mp4" type="video/mp4"></video></div>
-        <figcaption style="margin-top:0">Live on alamy.com: from a product page, the floating button opens the Assistant, which carries over the "cats" search and returns results with image references.</figcaption>
+        <div class="plain-shot video"><video controls muted playsinline loop preload="none" poster="assets/images/sa-entry-points-poster.webp" width="1440" height="828" aria-label="Screen recording on alamy.com: the floating Search Assistant button and hint on the homepage, the Smart Search tooltip and toggle, and the Search Assistant row on the results page"><source src="assets/video/sa-entry-points.mp4" type="video/mp4"></video></div>
+        <figcaption style="margin-top:0">Live: the floating button on the homepage, the Smart Search toggle, and the Assistant's own row on results.</figcaption>
+        <p>Opening the Assistant doesn't mean starting over: it carries an earlier keyword search into the conversation and shows matching results straight away.</p>
+        <div class="plain-shot video"><video controls muted playsinline loop preload="none" poster="assets/images/sa-continuity-poster.webp" width="1440" height="828" aria-label="Screen recording on alamy.com: opening Search Assistant from a product page, which carries over the search for cats"><source src="assets/video/sa-continuity.mp4" type="video/mp4"></video></div>
+        <figcaption style="margin-top:0">Live: the Assistant picks up the "cats" search from classic search.</figcaption>
       </section>
 
       <section class="stage" id="sa-team">
-        <div class="stage-kicker">Collaboration and feasibility</div>
-        <h2>What was mine, and what was the team's</h2>
+        <div class="stage-kicker">Team and process</div>
+        <h2>What was mine, and how I worked</h2>
         <ul class="clean">
-          <li><b>Mine:</b> the Search Assistant experience on desktop and mobile, how it integrates into Alamy.com, the entry-point exploration, the Smart Search simplification, the AI button (designed, coded and added to the design system), and user testing.</li>
+          <li><b>Mine:</b> the experience on desktop and mobile, its integration into Alamy.com, the placement exploration, the Smart Search simplification, the AI button (designed, coded and added to the design system), and usability testing.</li>
           <li><b>With the PM:</b> releasing as a beta, and iterating from customer feedback.</li>
-          <li><b>With engineering:</b> I built the AI button in code and gave them the code to integrate, so what shipped matches the design exactly.</li>
-          <li><b>With analytics:</b> the A/B test of the Smart Search redesign, and tracking for the beta.</li>
+          <li><b>With engineering:</b> they built from my Figma designs and coded prototypes, and integrated the AI button code I gave them.</li>
+          <li><b>With analytics:</b> the Smart Search A/B test and beta tracking.</li>
         </ul>
-        <h3>How I worked: production-ready prototypes, not Figma click-throughs</h3>
-        <p>Instead of building every step in Figma and wiring it into a prototype, I built coded, production-ready prototypes with Claude Code and Alamy's code-connected design system, and shared those with stakeholders. People reviewed the real experience, with real components and real behaviour, so feedback was about the product rather than about a mock-up.</p>
-        <div class="pair">
-          <div><h4>Figma: ideation and source of truth</h4><p>Where new ideas start, and where every final design is documented, so the team always has one place to check what was agreed. Engineers built from these designs.</p></div>
-          <div><h4>Code: prototypes stakeholders can use</h4><p>Production-ready prototypes for reviews and decisions. Engineers also used them alongside the Figma designs, to see exactly how the experience should behave.</p></div>
-        </div>
-        <p><b>It made testing easier and earlier, too.</b> I deployed the prototypes to Vercel and shared the links in UserTesting.com sessions, so participants used a working experience in their own browser rather than a clickable Figma mock-up. It behaved like the real product, so their reactions were closer to how they'd use the live site, and I could test earlier, as soon as a version was built.</p>
-        <p>Skipping the step-by-step Figma prototype is part of how the project went from concept to live beta in under four months. I set the direction and made the design decisions. AI sped up the build.</p>
+        <p>Instead of step-by-step Figma click-throughs, I built coded, production-ready prototypes with Claude Code and Alamy's code-connected design system. Stakeholders reviewed the real behaviour; I deployed them to Vercel to test in UserTesting.com sessions earlier and more realistically; and engineers used them alongside the Figma designs, which remain the place for ideation and the single source of truth.</p>
       </section>
 
       <section class="stage" id="sa-7">
-        <div class="stage-kicker">Live beta, learning and continuous improvement</div>
+        <div class="stage-kicker">Beta and next</div>
         <h2>Release when it's good to go, then keep improving</h2>
-        <p>Search Assistant went live as a beta in September 2026, less than four months after the project began. Our approach is to release when the experience is good to go, learn from real customer feedback and usage, and improve over time, rather than wait for every detail to be perfect. The longer-term goal is to evolve the beta into the full version.</p>
+        <p>Search Assistant went live as a beta in September 2026, less than four months after the project began. The approach is to release when the experience is ready, learn from real customer feedback, and evolve it into the full version.</p>
         <h3>Next: shorter answers with a few best-fit picks</h3>
-        <p><span class="ev target">Experiment</span> One current area of exploration is the response style. In the live beta, answers run as long paragraphs with raw reference codes inline, which makes them hard to scan. Instead of returning extensive text and a broad set of results, the Assistant may summarise what it found, recommend three best-fit images directly in the conversation, each with a short reason, and suggest ways to narrow the search.</p>
+        <p>Beta answers run as long paragraphs with raw reference codes, which makes them hard to scan. One direction being explored: a one-line summary, three best-fit images with a short reason each, and suggested refinements.</p>
         <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/img-15.webp" alt="Live beta response: a long paragraph listing dog photos with raw reference codes inline" loading="lazy" width="404" height="900"></div><h4>Live beta today</h4><p>A dense paragraph of descriptions and inline reference codes.</p></figure>
-          <figure><div class="sa-reply" role="img" aria-label="Exploration: a short Search Assistant answer. Found 236,053 dog photos, mostly street and stray dogs. Top picks: S276MP, black poodle playing on grass, great full-body action shot. 3EK475J, Shiba Inu puppy on blue, clean background with room for text. 2XM6JJ0, Chihuahua close-up with strong eye contact. Suggested refinements: Pet dogs at home, Studio or white background, Puppies, Dogs with people.">
+          <figure><div class="plain-shot"><img src="assets/images/sa-beta-answer.webp" alt="Live beta answer: a long paragraph listing dog photos with raw reference codes inline" loading="lazy" width="404" height="548"></div><h4>Live beta today</h4><p>A dense paragraph of descriptions and codes.</p></figure>
+          <figure><div class="sa-reply" role="img" aria-label="Exploration, not released: Found 236,053 dog photos, mostly street and stray dogs. Top picks: S276MP, black poodle playing on grass, great full-body action shot. 3EK475J, Shiba Inu puppy on blue, clean background with room for text. 2XM6JJ0, Chihuahua close-up with strong eye contact. Suggested refinements: Pet dogs at home, Studio or white background, Puppies, Dogs with people.">
             <p class="sa-lead">Found <b>236,053</b> dog photos, mostly street and stray dogs. Top picks:</p>
             <ul>
               <li><code>S276MP</code> Black poodle playing on grass, great full-body action shot</li>
@@ -1144,51 +1212,48 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
               <li><code>2XM6JJ0</code> Chihuahua close-up with strong eye contact</li>
             </ul>
             <div class="sa-chips"><span>Pet dogs at home</span><span>Studio / white background</span><span>Puppies</span><span>Dogs with people</span></div>
-          </div><h4>Exploring: summary, top picks, refinements</h4><p>One line on what was found, three picks with a reason each, and suggested refinements to narrow the search.</p></figure>
+          </div><h4><span class="ev target">Exploration &mdash; not released</span></h4><p>A summary, three picks with reasons, and refinements.</p></figure>
         </div>
-        <p class="small">This response style is still being explored and tested. It isn't released.</p>
-        <h3>What I learned</h3>
-        <ul class="clean">
-          <li><b>Design the experience, then earn its place.</b> A good conversational experience still fails if people can't find it or can't tell it apart from what's already there.</li>
-          <li><b>Separation isn't identity.</b> Moving the Assistant away from Smart Search didn't make it noticeable. A clear identity and place in the hierarchy did the work that position couldn't.</li>
-          <li><b>Validate changes to what already works.</b> Smart Search contributed to conversions, so simplifying it was tested before it was confirmed.</li>
-        </ul>
       </section>
 
       <section class="stage" id="sa-8">
-        <div class="stage-kicker">Outcomes</div>
-        <h2>What's validated, and what's still being measured</h2>
-        <h3>Early feedback from the live beta</h3>
-        <p>I added an in-product feedback prompt to understand how customers experienced the beta. Early responses were encouraging overall.</p>
-        <div class="shifts" style="margin:24px 0">
-          <div class="shift"><div class="label">Average ease-of-use score</div><div class="vals"><span class="after">6.7<small style="font-size:.45em;color:var(--muted)"> /10</small></span></div><div class="note"><span class="ev live">Beta survey</span>23 responses</div></div>
-          <div class="shift"><div class="label">Rated ease of use 8&ndash;10</div><div class="vals"><span class="after">57%</span></div><div class="note"><span class="ev live">Beta survey</span>23 responses</div></div>
+        <div class="stage-kicker">Evidence</div>
+        <h2>Three sources, three different questions</h2>
+        <p>Each source answers its own question. None of them is combined into a single impact score.</p>
+        <div class="evpanel">
+          <div>
+            <span class="ev test">Usability test</span>
+            <h4>Can people find it, and tell it apart?</h4>
+            <p><b>Found:</b> people overlooked the Assistant and confused it with Smart Search, which led to the change in hierarchy and identity.</p>
+            <p class="lim"><b>Doesn't show:</b> that the released entry point improves discovery in live use.</p>
+          </div>
+          <div>
+            <span class="ev live">A/B test</span>
+            <h4>Is simplifying Smart Search safe?</h4>
+            <ul class="nums"><li><b>&minus;18.4%</b> switch-on interactions</li><li><b>&minus;0.8%</b> search-result image clicks</li><li><b>No clear</b> negative commercial impact; revenue was sensitive to a few high-value orders</li></ul>
+            <p class="lim"><b>Doesn't show:</b> anything about Search Assistant's adoption or impact. It tested the Smart Search redesign only.</p>
+          </div>
+          <div>
+            <span class="ev live">Beta survey</span>
+            <h4>How easy does the beta feel?</h4>
+            <ul class="nums"><li><b>6.7/10</b> average ease of use</li><li><b>57%</b> rated it 8&ndash;10</li><li><b>23</b> responses</li></ul>
+            <p><b>Liked:</b> speed, and handling specific requests. <b>Fell short:</b> irrelevant results, exclusions ("without…"), image zoom and resolution.</p>
+            <p class="lim"><b>Doesn't show:</b> satisfaction across all customers, or business impact. It's a small, early sample.</p>
+          </div>
         </div>
-        <div class="pair">
-          <div><h4>What people liked</h4><p>Speed, and how well it handled specific requests.</p></div>
-          <div><h4>Where it fell short</h4><p>Irrelevant results, not respecting exclusions ("without…"), and image zoom and resolution.</p></div>
-        </div>
-        <p>These themes feed directly into the next iterations. With 23 responses from an early beta, I treat this as directional feedback, not a definitive measure of customer satisfaction.</p>
-        <h3>All the evidence so far</h3>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>Evidence</th><th>What it shows</th><th>What it doesn't show</th></tr></thead>
-          <tbody>
-            <tr><td><span class="ev test">User testing</span><br>Entry-point exploration</td><td>Participants struggled to notice the Assistant and to tell it apart from Smart Search, which led to the change in hierarchy and identity.</td><td>That the released entry point improves discovery in live use.</td></tr>
-            <tr><td><span class="ev live">A/B test</span><br>Smart Search redesign</td><td>Switch-on interactions fell 18.4%, image clicks were broadly stable (&minus;0.8%), and there was no clear evidence of negative commercial impact.</td><td>Anything about Search Assistant's adoption or impact.</td></tr>
-            <tr><td><span class="ev live">Beta survey</span><br>23 responses</td><td>An average ease-of-use score of 6.7/10, with 57% rating it 8&ndash;10, plus clear themes to improve.</td><td>Satisfaction across all customers. It's a small, early sample.</td></tr>
-            <tr><td><span class="ev live">Beta</span><br>Since September 2026</td><td>Search Assistant is live on alamy.com, on desktop and mobile, and improving with customer feedback.</td><td>Adoption, engagement or commercial impact. These will be added once verified.</td></tr>
-          </tbody>
-        </table></div>
-        <p class="small">Search Assistant's own usage and business outcomes will be added once verified and approved for public sharing.</p>
-        <!-- Added from the NDA-safe metrics addendum: beta ease survey (6.7/10, 57% rated 8-10, n=23) and Smart Search A/B (-18.4% switch-on, -0.8% image clicks, no clear negative commercial impact). -->
-        <!-- METRICS TO ADD (pending). For each: reporting period, denominator, source, baseline/comparison, evidence type (research / experiment / product analytics), disclosure approval.
-             Adoption: entry-point impressions, CTR, unique users opening the Assistant (eligible audience + dates)
-             Engagement: conversations per user, follow-up prompts, repeat use (define user / session / conversation)
-             Search usefulness: task success, feedback, usefulness/relevance ratings (method, sample, question wording)
-             Image interaction: image clicks or CTR from Assistant results (event definition + denominator)
-             Commercial: add-to-cart, purchase or conversion (separate correlation from causal evidence)
-             Quality and friction: abandonment, failed responses, qualitative feedback (timeframe + limitations)
-             Keep the Smart Search A/B test separate from Search Assistant outcomes. -->
+        <p><span class="ev open">Open question</span> Search Assistant's own adoption, engagement and commercial impact, to be added once verified and approved.</p>
+        <!-- Evidence from the NDA-safe metrics addendum (approved): beta ease survey (6.7/10, 57% rated 8-10, n=23) and Smart Search A/B (-18.4% switch-on, -0.8% image clicks, no clear negative commercial impact). -->
+        <!-- METRICS TO ADD (pending): adoption (entry-point impressions, CTR, unique users), engagement (conversations per user, follow-ups, repeat use), usefulness (task success, ratings), image interaction (CTR from Assistant results), commercial (add-to-cart, purchase; correlation vs causal), quality (abandonment, failed responses). Keep the Smart Search A/B test separate from Search Assistant outcomes. -->
+      </section>
+
+      <section class="stage" id="sa-9">
+        <div class="stage-kicker">What I learned</div>
+        <h2>Three lessons I'll carry forward</h2>
+        <ul class="clean">
+          <li><b>Design the experience, then earn its place.</b> A good conversational experience still fails if people can't find it, or can't tell it apart from what's already there.</li>
+          <li><b>Separation isn't identity.</b> Moving the Assistant away from Smart Search didn't make it noticeable. A clear identity and place in the hierarchy did.</li>
+          <li><b>Validate changes to what already works.</b> Smart Search contributed to conversions, so simplifying it was tested before it was confirmed.</li>
+        </ul>
       </section>
     </div>
   </div>
@@ -1198,7 +1263,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 <!-- ============ LIGHTBOX ============ -->
 <div data-page="lightbox" data-title="Lightbox rebuild: Customer Collections">
   <section class="case-head wrap">
-    <a class="back" href="#/">← All work</a>
+    <a class="back" href="#/work">← All work</a>
     <div class="company">Lightbox rebuild: Customer Collections · Alamy, stock images and video marketplace</div>
     <h1 class="display">Untangling a legacy save feature into experiences built around different user needs</h1>
     <p class="lede">Over 15 years, Lightbox had quietly taken on jobs for customers and internal curators alike. Instead of a "Lightbox 2.0", I used research to reframe the brief: separate experiences for separate audiences, on one shared foundation. This case follows Customer Collections, the customer-facing experience.</p>
@@ -1294,18 +1359,60 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
 
       <section class="stage" id="lb-4">
-        <div class="stage-kicker">Planning the flows</div>
-        <h2>Every step traced to a source</h2>
-        <p>Before drawing screens, I mapped the five core Customer Collections journeys. Each step is annotated with the interview, usability finding, requirement or analytics evidence behind it.</p>
-        <ol class="journeys">
-          <li><div><b>First save</b><span>Outcome: saving never silently fails</span></div></li>
-          <li><div><b>Save to an existing collection</b><span>Outcome: organise by project without losing context</span></div></li>
-          <li><div><b>Manage a collection</b><span>Outcome: saved assets stay findable and manageable over time</span></div></li>
-          <li><div><b>Share a collection</b><span>Outcome: shared collections are clear, secure and usable</span></div></li>
-          <li><div><b>Enterprise download</b><span>Outcome: eligible assets download reliably</span></div></li>
+        <div class="stage-kicker">Journey map</div>
+        <h2>A customer's journey, and how it feels today</h2>
+        <div class="jm-persona">
+          <svg class="jm-avatar" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31"/><circle class="h" cx="32" cy="25" r="11"/><path class="h" d="M12 56c3-11 11-17 20-17s17 6 20 17"/></svg>
+          <div><b>Meet the customer.</b> Someone searching Alamy for a project: saving options as they go, sharing a shortlist with a colleague or client, then buying or downloading.</div>
+        </div>
+        <div class="jm-curve" role="img" aria-label="How it feels in Lightbox today: unsure on first save, frustrated saving again, at its lowest and overwhelmed managing a collection, blocked when sharing, and anxious when downloading.">
+          <span class="jm-curve-t">How it feels in Lightbox today</span>
+          <svg viewBox="0 0 400 96" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 20 40, 25 46, 40 46 S 100 58, 120 58 S 180 78, 200 78 S 260 64, 280 64 S 340 52, 360 52 L400 48"/></svg>
+          <span class="jm-mark" style="left:10.0%;top:47.9%"><svg class="face unsure" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 31 L32 28" /></g></svg><b>First save</b></span><span class="jm-mark" style="left:30.0%;top:60.4%"><svg class="face frustrated" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 31 Q24 25 33 31" /></g></svg><b>Save again</b></span><span class="jm-mark" style="left:50.0%;top:81.2%"><svg class="face overwhelmed" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 32 Q24 24 33 32" /><path d="M14 15 l5 3 M34 15 l-5 3" /></g></svg><b>Manage</b></span><span class="jm-mark" style="left:70.0%;top:66.7%"><svg class="face worried" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 31 Q24 27 32 31" /><path d="M15 16 l5 -2 M33 16 l-5 -2" /></g></svg><b>Share</b></span><span class="jm-mark" style="left:90.0%;top:54.2%"><svg class="face anxious" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 31 q3 -3 6 0 t6 0 t6 0" /><path d="M15 16 l5 -2 M33 16 l-5 -2" /></g></svg><b>Download</b></span>
+        </div>
+        <ol class="jm">
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">1</span>First save</div>
+            <div class="jm-feel"><svg class="face unsure" viewBox="0 0 48 48" role="img" aria-label="Unsure"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 31 L32 28" /></g></svg><div><span class="jm-mood">Unsure</span><p class="jm-quote">“Did that actually save?”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Saves an image from search results or a product page, for the first time.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>The save icon looked like navigation and never changed state, and confirmation was weak or missing. With no collection yet, clicking Save could do nothing at all.</p><span class="ev test">Usability test · 3 sources</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>One save flow from both entry points, a prompt to create a collection when there isn't one, and a clear confirmation.</p></div>
+            <div class="jm-out">Saving never silently fails</div>
+          </li>
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">2</span>Save to an existing collection</div>
+            <div class="jm-feel"><svg class="face frustrated" viewBox="0 0 48 48" role="img" aria-label="Frustrated"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 31 Q24 25 33 31" /></g></svg><div><span class="jm-mood">Frustrated</span><p class="jm-quote">“Why did it go there this time?”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Saves more images to a collection they already have.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>Adding to a collection behaved differently depending on where you started.</p><span class="ev research">Research finding · 2 sources</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>One consistent rule: the current collection is pre-selected, and the full picker is always one click away.</p></div>
+            <div class="jm-out">Organise by project without losing context</div>
+          </li>
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">3</span>Manage the collection</div>
+            <div class="jm-feel"><svg class="face overwhelmed" viewBox="0 0 48 48" role="img" aria-label="Overwhelmed"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 32 Q24 24 33 32" /><path d="M14 15 l5 3 M34 15 l-5 3" /></g></svg><div><span class="jm-mood">Overwhelmed</span><p class="jm-quote">“I can’t get back to my other collections.”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Opens a collection to review, reorder, rename or tidy it up.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>No way to move between collections mid-task, the most common complaint in testing. Reordering was the lowest-scoring task, and there was no search inside a collection.</p><span class="ev test">Usability test · 3 sources</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>Switch collections at any time, search inside, bulk reorder, move and copy, and add captions.</p></div>
+            <div class="jm-out">Saved images stay findable over time</div>
+          </li>
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">4</span>Share it</div>
+            <div class="jm-feel"><svg class="face worried" viewBox="0 0 48 48" role="img" aria-label="Blocked"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 31 Q24 27 32 31" /><path d="M15 16 l5 -2 M33 16 l-5 -2" /></g></svg><div><span class="jm-mood">Blocked</span><p class="jm-quote">“My client can’t open it without an account.”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Sends a collection to a colleague or client to review.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>Recipients had to log in to view a shared collection. Every major competitor lets people view without one.</p><span class="ev research">Research finding · competitive review</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>A no-login view, with restricted images flagged for the recipient too, and save, add to cart and print.</p></div>
+            <div class="jm-out">Shared collections are clear, secure and usable</div>
+          </li>
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">5</span>Enterprise download</div>
+            <div class="jm-feel"><svg class="face anxious" viewBox="0 0 48 48" role="img" aria-label="Anxious"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 31 q3 -3 6 0 t6 0 t6 0" /><path d="M15 16 l5 -2 M33 16 l-5 -2" /></g></svg><div><span class="jm-mood">Anxious</span><p class="jm-quote">“Will it actually download this time?”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>An enterprise customer downloads the images they’re licensed to use.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>Download failures from collections were reported repeatedly to support, and almost nobody downloaded or bought from inside a collection.</p><span class="ev research">Research finding · support and analytics</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>Each image flagged as eligible, restricted or unavailable; restricted ones skipped, and every attempt logged.</p></div>
+            <div class="jm-out">Eligible images download reliably</div>
+          </li>
         </ol>
-        <div class="plain-shot scroll"><img src="assets/images/img-20.webp" alt="Customer Collections journey map showing five flows, each with an evidence trail" loading="lazy"></div>
-        <figcaption style="margin-top:0">The journey map. Each flow has a "why we built it this way" evidence trail underneath.</figcaption>
+        <p class="small">Quotes are paraphrased from research findings, not verbatim. Every step in the full map is traced to the research or requirement behind it.</p>
       </section>
 
       <section class="stage" id="lb-5">
@@ -1316,7 +1423,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
           <figure><div class="plain-shot"><img src="assets/images/img-29.webp" alt="Final design: first save" loading="lazy"></div><h4>Saving that confirms itself</h4><p><b>Evidence:</b> people couldn't tell whether saving had worked. <b>Decision:</b> saving never silently fails, and a blank name defaults to "My Collections".</p></figure>
           <figure><div class="plain-shot"><img src="assets/images/img-30.webp" alt="Final design: save to an existing collection" loading="lazy"></div><h4>Always know where you're saving</h4><p><b>Evidence:</b> the most common complaint was not being able to switch collections mid-task. <b>Decision:</b> the current collection is pre-selected, and the full picker is always available.</p></figure>
           <figure><div class="plain-shot"><img src="assets/images/img-35.webp" alt="Final design: share a collection" loading="lazy"></div><h4>Sharing without an account</h4><p><b>Evidence:</b> competitors let recipients view without logging in. <b>Decision:</b> a no-login view, with restricted assets flagged for the recipient too, not just the owner.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/img-34.webp" alt="Final design: add assets by reference number" loading="lazy"></div><h4>Adopting a better idea</h4><p>A teammate's prototype added assets by pasting reference numbers. I replaced my own search picker with it, because it matches how the internal team actually works from spreadsheet exports.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/img-34.webp" alt="Final design: add assets by reference number" loading="lazy"></div><h4>Testing it in code first</h4><p>While building a working coded prototype, I tried adding images by pasting reference numbers. I replaced my own search picker with it, because it matches how the internal team actually works from spreadsheet exports.</p></figure>
         </div>
         <p>Naming is still open. None of the competitors I reviewed use the word "Lightbox", and the final name is a decision with the PM.</p>
       </section>
@@ -1342,7 +1449,6 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
         <ul class="clean">
           <li><b>Mine:</b> the research plan and synthesis, the reframing into separate experiences, the journey map, the designs and the requirements audit.</li>
           <li><b>With stakeholders:</b> content, curation, distribution and sales walked me through the workflows they had built on Lightbox.</li>
-          <li><b>With a teammate:</b> I adopted the paste-by-reference pattern from their working prototype.</li>
           <li><b>With the PM:</b> naming, migration strategy and the remaining product decisions before handoff.</li>
         </ul>
       </section>
@@ -1375,224 +1481,208 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 <!-- ============ CURATED COLLECTIONS ============ -->
 <div data-page="curated-collections" data-title="Curated Collections">
   <section class="case-head wrap">
-    <a class="back" href="#/lightbox">← Customer Collections</a>
-    <div class="company">Companion to the Lightbox rebuild · inside the <a class="link" href="#/behind-the-search">curation tool I designed in 2024</a></div>
-    <h1 class="display">Curated Collections: designing inside a real system</h1>
-    <p class="lede">A related internal workflow. Picture researchers, curators and sales teams need to build, order, publish and share handpicked collections. When I found my first wireframes didn't match the live tool, I rebuilt them in the real design system, and surfaced three gaps the requirements had missed.</p>
-    <dl class="facts">
-      <div><dt>Audience</dt><dd>Picture researchers, curators and sales teams managing hundreds of collections</dd></div>
-      <div><dt>My role</dt><dd>Product Designer: analysis, journey mapping, wireframes</dd></div>
-      <div><dt>Timeline</dt><dd>2026</dd></div>
-      <div><dt>Team</dt><dd>1 product manager, 1 product designer (me), 2–3 developers, QA, 1 solutions architect and 1 SEO specialist</dd></div>
-      <div><dt>I owned</dt><dd>Analysis, journey mapping, wireframes, and rebuilding them in Alamy DS 2.0</dd></div>
-      <div><dt>Status</dt><dd class="status">Wireframes in progress · testing with the content team planned · not yet validated</dd></div>
+    <a class="back" href="#/work">← All work</a>
+    <div class="company">Curated Collections · new internal feature inside Alamy's Curation Tool</div>
+    <h1 class="display">Designing collection-building for the people who curate Alamy</h1>
+    <p class="lede">Picture researchers, curators and sales teams had been using Lightbox, a customer save feature, to build and share curated collections. I'm designing Curated Collections, a purpose-built way to do that inside the Curation Tool they already use every day.</p>
+    <dl class="summary">
+      <div><dt>Audience</dt><dd>Internal users: picture researchers, curators and sales teams who build and share collections of hundreds of images.</dd></div>
+      <div><dt>Context</dt><dd>A new feature inside the Curation Tool, the internal product I designed in 2024. Part of the Lightbox rebuild, which split one overloaded feature into an internal and an external product.</dd></div>
+      <div><dt>Role</dt><dd>Product Designer: discovery, journey mapping and the designs, working with a PM, engineering and the content team.</dd></div>
+      <div><dt>Stage</dt><dd class="status">In progress: discovery and journey mapping complete, initial designs in progress, not yet tested or shipped</dd></div>
     </dl>
   </section>
   <section class="case-shifts wrap">
     <div class="shifts">
-      <div class="shift"><div class="label">Evidence themes the requirements missed</div><div class="vals"><span class="after">3</span></div><div class="note">No coverage across 40 requirements</div></div>
-      <div class="shift"><div class="label">Journeys derived from research</div><div class="vals"><span class="after">4</span></div><div class="note">Not copied from the requirements document</div></div>
-      <div class="shift"><div class="label">Screens checked against the real tool</div><div class="vals"><span class="after">6/7</span></div><div class="note">The seventh is labelled as unverified</div></div>
+      <div class="shift"><div class="label">Flows designed</div><div class="vals"><span class="after">14</span></div><div class="note">From creating a collection to sharing it</div></div>
+      <div class="shift"><div class="label">Requirements stress-tested</div><div class="vals"><span class="after">40</span></div><div class="note"><span class="ev research">Research finding</span>Against the raw research</div></div>
+      <div class="shift"><div class="label">Gaps the requirements missed</div><div class="vals"><span class="after">3</span></div><div class="note"><span class="ev research">Research finding</span>Raised with the PM</div></div>
     </div>
+  </section>
+  <section class="wrap" style="padding-bottom:64px">
+    <div class="plain-shot" style="margin-top:0"><img src="assets/images/cc-p-collection.webp" alt="A curated collection called Cats in the wild open in the Curation Tool: an image grid, a details panel and actions to add images by reference number or from search" width="1600" height="1000"></div>
+    <figcaption style="margin-top:0">A curated collection in the coded prototype, with sample data. Design in progress.</figcaption>
   </section>
 
   <div class="case-body wrap">
     <ol class="stages" aria-label="Case study sections">
-      <li><a href="#cc-1">Starting fresh</a></li>
-      <li><a href="#cc-2">The journey map</a></li>
-      <li><a href="#cc-3">The pivot</a></li>
-      <li><a href="#cc-4">Rebuilt wireframes</a></li>
-      <li><a href="#cc-5">Status</a></li>
+      <li><a href="#cc-1">Context</a></li>
+      <li><a href="#cc-0">How we got here</a></li>
+      <li><a href="#cc-2">The problem</a></li>
+      <li><a href="#cc-3">Discovery</a></li>
+      <li><a href="#cc-4">Journey map</a></li>
+      <li><a href="#cc-5">Design</a></li>
+      <li><a href="#cc-6">Sharing</a></li>
+      <li><a href="#cc-7">Status and next</a></li>
     </ol>
     <div>
       <section class="stage" id="cc-1">
-        <div class="stage-kicker">Why I started over</div>
-        <h2>Not a copy of Customer Collections</h2>
-        <p>After Customer Collections, it was tempting to reuse its journey structure. I didn't: curators do different work at a much larger scale, with denser information. So I started from the raw research and then stress-tested the requirements against it.</p>
-        <div class="callout">
-          <p class="q">The requirements mostly held up. But three themes, export and API access, real-time collaboration, and territory-scoped views, had no coverage across all 40 requirements.</p>
-          <p class="small">Two different interviewees raised them independently.</p>
-        </div>
+        <div class="stage-kicker">Product context</div>
+        <h2>A feature inside a tool curators already use</h2>
+        <p>The <a class="link" href="#/behind-the-search">Curation Tool</a> is the internal product the content team uses to improve search results and collections for customers. Curated Collections adds a third tab beside Metadata and Boost images, so curators build collections in the place where they already work.</p>
+      </section>
+
+      <section class="stage" id="cc-0">
+        <div class="stage-kicker">How we got here</div>
+        <h2>One overloaded feature, split in two</h2>
+        <ol class="chain three">
+          <li><span class="k">The brief</span><p>"Rebuild Lightbox." But over a decade it had quietly taken on six jobs, from customer saves to internal curation and sales outreach.</p></li>
+          <li><span class="k">The research</span><p>Interviews, usability testing, competitors and analytics pointed to one cause: customers saving a handful of images and curators managing 1,000+ were sharing one tool.</p></li>
+          <li class="end"><span class="k">The decision</span><p>Split it. <b>Curated Collections</b> for internal users inside the Curation Tool, and <b>My Collection</b> for customers, on one shared foundation.</p></li>
+        </ol>
+        <p><a class="link" href="#/lightbox">Read the full reasoning in My Collection →</a></p>
       </section>
 
       <section class="stage" id="cc-2">
-        <div class="stage-kicker">What I mapped</div>
-        <h2>Four flows, evidence first, gaps included</h2>
-        <p>Every step is traced to a source, as in Customer Collections. This map also says openly when a journey rests on requirements rather than a validated complaint.</p>
-        <div class="plain-shot scroll"><img src="assets/images/img-37.webp" alt="Curated Collections journey map with evidence trails and a red gap section" loading="lazy"></div>
-        <figcaption style="margin-top:0">The journey map, with a red section for what research found and the requirements never picked up.</figcaption>
+        <div class="stage-kicker">The problem</div>
+        <h2>Internal curation had been living in a customer feature</h2>
+        <p>Lightbox was built for customers to save images. Over the years, internal teams adopted it for curation, sales outreach and editorial series, because nothing else let them build and share a set of images.</p>
+        <ul class="clean">
+          <li><span class="ev research">Research finding</span> Curators work at a very different scale from customers, managing briefs of 1,000+ assets, in a tool designed for saving a handful of images.</li>
+          <li><span class="ev research">Research finding</span> An internal editorial series drew a large share of all Lightbox traffic, but each edition's page was reused once its run ended. The demand for curated content was real; it had nowhere permanent to live.</li>
+        </ul>
+        <div class="callout"><p class="q">How might curators build, organise and share collections at scale, inside the tool they already use, without borrowing a customer feature?</p></div>
       </section>
 
       <section class="stage" id="cc-3">
-        <div class="stage-kicker">The decision</div>
-        <h2>Going back to the tool I'd already designed</h2>
-        <p>Seven wireframes in, working from the requirements alone, I went back to the Curation Tool file. Curated collection screens had already been started there in Alamy DS 2.0, some marked "Ready for dev", and my new wireframes didn't match them.</p>
-        <dl class="decision">
-          <div><dt>Evidence</dt><dd>The real tool was built for an image-heavy, expert workflow in ways my wireframes had ignored.</dd></div>
-          <div><dt>Interpretation</dt><dd>My first version was reasonable guesswork, made without a view of the real tool.</dd></div>
-          <div class="d"><dt>Decision</dt><dd>Rebuild the wireframes to match the real tool, rather than defend the version I'd already invested in.</dd></div>
-          <div><dt>Trade-off</dt><dd>Seven screens of rework, in exchange for designs that fit how curators already work.</dd></div>
-          <div><dt>Next check</dt><dd><span class="ev target">Next</span>Test the rebuilt screens with the content team.</dd></div>
-        </dl>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th></th><th>What I assumed</th><th>What the real tool does, and why it fits</th></tr></thead>
-          <tbody>
-            <tr><td>Theme</td><td>A light theme, matching Customer Collections</td><td>Dark, a deliberate choice for an internal, image-heavy workspace</td></tr>
-            <tr><td>Structure</td><td>Collection management in modals</td><td>A persistent right-side panel, as a third tab next to Metadata and Boost images, which curators already use every day</td></tr>
-            <tr><td>List view</td><td>A card grid</td><td>A dense, sortable table, right for people managing hundreds of collections</td></tr>
-          </tbody>
-        </table></div>
-        <div class="wires">
-          <figure><div class="plain-shot"><img src="assets/images/img-38.webp" alt="Original wireframe: light theme with modal-based collection creation" loading="lazy"></div><h4>Before: my assumption</h4><p>Light theme, invented tabs and modal-based creation.</p></figure>
-          <figure><div class="plain-shot"><img src="assets/images/img-39.webp" alt="Rebuilt wireframe: dark theme with a persistent collection panel" loading="lazy"></div><h4>After: matched to the real tool</h4><p>Dark theme, the real header, and a persistent Collection panel instead of a modal.</p></figure>
-        </div>
-        <h3>How I used AI here</h3>
-        <p>I used Claude Code to stress-test the requirements against the research, and Figma MCP to work from the real Alamy DS 2.0 components. They helped me inspect and compare faster. The decision to rebuild, and every design choice in the rebuild, was mine.</p>
+        <div class="stage-kicker">Discovery</div>
+        <h2>Starting from research, not the requirements document</h2>
+        <p>It was tempting to reuse the customer journey from the Lightbox rebuild. I didn't: curators do different work at a much larger scale. I started from the raw research, including stakeholder interviews across content operations, curation, distribution and sales, and then stress-tested all 40 requirements against it.</p>
+        <div class="callout"><p class="q">The requirements mostly held up. But three themes had no coverage at all: export and API access, real-time collaboration, and territory-scoped views. Two interviewees raised them independently.</p></div>
+        <p>I flagged the three gaps to the PM instead of designing around them on my own.</p>
       </section>
 
       <section class="stage" id="cc-4">
-        <div class="stage-kicker">What I designed</div>
-        <h2>Matched to the real system</h2>
-        <p>Four of the seven rebuilt screens. Each follows the real Curation Tool's patterns where I could check them. Where I couldn't, the screen says so.</p>
-        <div class="wires"><figure><div class="plain-shot"><img src="assets/images/img-39.webp" alt="Search and multi-select" loading="lazy"></div><h4>Search and multi-select</h4><p>The Collection panel appears as soon as assets are selected, with only two actions: create new, or add to existing.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-41.webp" alt="Refine a collection" loading="lazy"></div><h4>Refine a collection</h4><p>Search within, drag to reorder, and the same persistent panel showing the collection's metadata.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-42.webp" alt="Publish" loading="lazy"></div><h4>Publish</h4><p>The real copy, where the curator agrees to be responsible for the collection's content. Not something I'd have guessed.</p></figure><figure><div class="plain-shot"><img src="assets/images/img-45.webp" alt="Bulk metadata actions" loading="lazy"></div><h4>Bulk metadata actions</h4><p>No real screen existed. Kept as my own proposal from a specific research complaint, and labelled that way on the screen.</p></figure></div>
+        <div class="stage-kicker">Journey map</div>
+        <h2>A curator's journey, and how it feels today</h2>
+        <div class="jm-persona">
+          <svg class="jm-avatar" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31"/><circle class="h" cx="32" cy="25" r="11"/><path class="h" d="M12 56c3-11 11-17 20-17s17 6 20 17"/></svg>
+          <div><b>Meet the curator.</b> A picture researcher building a collection of hundreds of images for a client brief or an editorial series. Works fast, in bulk, often from a list of reference numbers.</div>
+        </div>
+        <div class="jm-curve" role="img" aria-label="How it feels in Lightbox today: frustrated while building, at its lowest and overwhelmed while refining, let down when publishing, and cautious when unpublishing.">
+          <span class="jm-curve-t">How it feels in Lightbox today</span>
+          <svg viewBox="0 0 400 96" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 25 34, 30 44, 50 44 S 130 72, 150 72 S 230 50, 250 50 S 330 30, 350 30 L400 28"/></svg>
+          <span class="jm-mark" style="left:12.5%;top:45.8%"><svg class="face frustrated" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 31 Q24 25 33 31" /></g></svg><b>Build</b></span><span class="jm-mark" style="left:37.5%;top:75.0%"><svg class="face overwhelmed" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 32 Q24 24 33 32" /><path d="M14 15 l5 3 M34 15 l-5 3" /></g></svg><b>Refine</b></span><span class="jm-mark" style="left:62.5%;top:52.1%"><svg class="face worried" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 31 Q24 27 32 31" /><path d="M15 16 l5 -2 M33 16 l-5 -2" /></g></svg><b>Publish</b></span><span class="jm-mark" style="left:87.5%;top:31.2%"><svg class="face cautious" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 30 H32" /></g></svg><b>Unpublish</b></span>
+        </div>
+        <ol class="jm">
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">1</span>Build a collection</div>
+            <div class="jm-feel"><svg class="face frustrated" viewBox="0 0 48 48" role="img" aria-label="Frustrated"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 31 Q24 25 33 31" /></g></svg><div><span class="jm-mood">Frustrated</span><p class="jm-quote">“I’m adding hundreds of images one at a time.”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Search, select images, add them to a new or existing collection.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>No multi-select while browsing results, on briefs of 1,000+ images. Some staff kept spare accounts just to keep collections manageable.</p><span class="ev research">Research finding</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>Select in bulk from search, paste reference numbers, add to new or existing.</p></div>
+            <div class="jm-out">Curators build in bulk, not one at a time</div>
+          </li>
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">2</span>Refine it</div>
+            <div class="jm-feel"><svg class="face overwhelmed" viewBox="0 0 48 48" role="img" aria-label="Overwhelmed"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M15 32 Q24 24 33 32" /><path d="M14 15 l5 3 M34 15 l-5 3" /></g></svg><div><span class="jm-mood">Overwhelmed</span><p class="jm-quote">“Once it’s in there, I can’t find anything.”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Reorder, remove, retag, move images between collections, add captions.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>Slow to manage once added: no search inside a collection, and older work got buried and hard to find.</p><span class="ev research">Research finding</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>Search inside a collection, bulk reorder and move, find an image across every collection.</p></div>
+            <div class="jm-out">No one-by-one editing, nothing buried</div>
+          </li>
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">3</span>Publish and share</div>
+            <div class="jm-feel"><svg class="face worried" viewBox="0 0 48 48" role="img" aria-label="Let down"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 31 Q24 27 32 31" /><path d="M15 16 l5 -2 M33 16 l-5 -2" /></g></svg><div><span class="jm-mood">Let down</span><p class="jm-quote">“Our series page just disappeared after its run.”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Add a title and details, check restrictions, publish, share a link.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>Editorial series had nowhere permanent to live: each page was reused once its run ended.</p><span class="ev research">Research finding</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>A permanent page anyone can open from a link, with no sign-in needed to view or buy.</p></div>
+            <div class="jm-out">Curated work gets a stable home</div>
+          </li>
+          <li class="jm-col">
+            <div class="jm-stage"><span class="jm-n">4</span>Unpublish or delete</div>
+            <div class="jm-feel"><svg class="face cautious" viewBox="0 0 48 48" role="img" aria-label="Cautious"><circle cx="24" cy="24" r="21"/><circle class="eye" cx="17" cy="20" r="2.4"/><circle class="eye" cx="31" cy="20" r="2.4"/><g class="mouth"><path d="M16 30 H32" /></g></svg><div><span class="jm-mood">Cautious</span><p class="jm-quote">“I don’t want to break a link someone’s using.”</p></div></div>
+            <div class="jm-row"><span class="jm-k">Doing</span><p>Choose to unpublish or delete, confirm what happens, then do it.</p></div>
+            <div class="jm-row jm-pain"><span class="jm-k">Pain today</span><p>Driven by the requirements, not a complaint anyone raised. Labelled as such, not presented as research.</p><span class="ev target">Assumption: from requirements</span></div>
+            <div class="jm-row"><span class="jm-k">Designed for</span><p>A clear choice between unpublish and delete, and a confirmation before anything is removed.</p></div>
+            <div class="jm-out">Nothing disappears by accident</div>
+          </li>
+        </ol>
+        <p class="small">Quotes are paraphrased from what internal users told us, not verbatim.</p>
+        <h3>Still open</h3>
+        <ul class="clean">
+          <li><span class="ev open">Open question</span> The exact permanent link format, and whether old Lightbox links redirect.</li>
+          <li><span class="ev open">Open question</span> Which restrictions block publishing entirely, and which just hide an image.</li>
+          <li><span class="ev open">Open question</span> Who can publish and approve, and whether edits after publishing need re-publishing.</li>
+        </ul>
       </section>
 
       <section class="stage" id="cc-5">
-        <div class="stage-kicker">Status and reflection</div>
-        <h2>Six screens checked, three gaps handed to the PM, testing next</h2>
-        <p>Six of seven wireframes are confirmed against the real Curation Tool. The three evidenced gaps, export and API access, real-time collaboration, and territory-scoped views, are flagged for the PM rather than designed around on my own.</p>
-        <p><span class="ev target">Next</span>User testing with the content team. Until then, this design is not validated or ready for handoff.</p>
-        <h3>What I'd take from this</h3>
-        <p>The useful instinct wasn't building fast. It was being willing to throw out seven screens the moment better information appeared. The rebuilt wireframes are more accurate because the first version was wrong in specific, nameable ways.</p>
-      </section>
-    </div>
-  </div>
-  <a class="next-case wrap" href="#/behind-the-search"><div class="small">The tool it lives in</div><h2>Behind the Search: internal curation tool</h2></a>
-</div>
+        <div class="stage-kicker">Design exploration</div>
+        <h2>Designing inside the real system</h2>
+        <p>My first wireframes, made from the requirements alone, didn't match the live tool. Rather than defend them, I rebuilt them on the Curation Tool's real components and patterns, as a coded, production-ready prototype stakeholders could click through.</p>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th></th><th>What I first assumed</th><th>What the real tool does, and why it fits</th></tr></thead>
+          <tbody>
+            <tr><td>Theme</td><td>Light, like the customer site</td><td>Dark, for an image-heavy internal workspace</td></tr>
+            <tr><td>Structure</td><td>Collection management in modals</td><td>A persistent right-hand panel, a third tab beside Metadata and Boost images</td></tr>
+            <tr><td>List view</td><td>A card grid</td><td>A dense, sortable table for people managing hundreds of collections</td></tr>
+          </tbody>
+        </table></div>
 
-<!-- ============ CONTRIBUTOR REVAMP ============ -->
-<div data-page="contributor-revamp" data-title="Contributor Experience Revamp">
-  <section class="case-head wrap">
-    <a class="back" href="#/">← All work</a>
-    <div class="company">Side project at Alamy · in design, not yet launched</div>
-    <h1 class="display">Contributor Experience Revamp</h1>
-    <p class="lede">Contributors spent too long on repetitive metadata work in an eight-year-old upload platform. I redesigned the workflow around bulk editing, inline validation and AI-suggested metadata that contributors review and correct, rather than accept blindly.</p>
-    <dl class="facts">
-      <div><dt>Audience</dt><dd>Photographers and agencies who supply the images Alamy sells</dd></div>
-      <div><dt>My role</dt><dd>Sole designer: research, interaction design, prototyping, usability testing</dd></div>
-      <div><dt>Timeline</dt><dd>March 2025 to present</dd></div>
-      <div><dt>Team</dt><dd>1 product manager, 1 product designer (me), 2–3 developers, QA, 1 solutions architect and 1 SEO specialist, working with content reviewers</dd></div>
-      <div><dt>I owned</dt><dd>Research, success metrics, interaction design, prototyping and usability testing</dd></div>
-      <div><dt>Status</dt><dd class="status">In design · tested with contributors · not launched</dd></div>
-    </dl>
-  </section>
-  <section class="case-shifts wrap">
-    <p class="ev-key">Evidence on this page is labelled: <span class="ev research">Research finding</span><span class="ev test">Usability test</span><span class="ev target">Target or next check</span></p>
-    <div class="shifts">
-      <div class="shift"><div class="label">Steps to upload and tag</div><div class="vals"><span class="before">~25</span><span class="line"></span><span class="after">~10</span></div><div class="note"><span class="ev test">Usability test</span>Existing flow vs prototype</div></div>
-      <div class="shift"><div class="label">Task completion</div><div class="vals"><span class="after">100%</span></div><div class="note"><span class="ev test">Usability test</span>Across three rounds</div></div>
-      <div class="shift"><div class="label">Satisfaction</div><div class="vals"><span class="after">4.6<small style="font-size:.45em;color:var(--muted)"> /5</small></span></div><div class="note"><span class="ev test">Usability test</span>Average across sessions</div></div>
-    </div>
-    <p class="small" style="margin-top:16px">These are prototype results under test conditions, not post-launch business results.</p>
-  </section>
-  <div class="case-body wrap">
-    <ol class="stages" aria-label="Case study sections">
-      <li><a href="#cr-1">The problem</a></li>
-      <li><a href="#cr-2">The evidence</a></li>
-      <li><a href="#cr-3">The decisions</a></li>
-      <li><a href="#cr-ai">AI with control</a></li>
-      <li><a href="#cr-4">The design</a></li>
-      <li><a href="#cr-5">Validation</a></li>
-      <li><a href="#cr-6">Reflection</a></li>
-    </ol>
-    <div>
-      <section class="stage" id="cr-1">
-        <div class="stage-kicker">The problem and stakes</div>
-        <h2>Every upload meant minutes of repetitive tagging</h2>
-        <p>Contributors supply the images Alamy sells, so friction for them limits what customers can find. Their platform was eight years old, broke on smaller screens and threw frequent JavaScript errors.</p>
-        <div class="shifts" style="margin:28px 0">
-          <div class="shift"><div class="label">Time to upload and tag</div><div class="vals"><span class="after">20+ min</span></div><div class="note"><span class="ev research">Baseline</span></div></div>
-          <div class="shift"><div class="label">Clicks per submission</div><div class="vals"><span class="after">25+</span></div><div class="note"><span class="ev research">Baseline</span></div></div>
-          <div class="shift"><div class="label">Quality control wait</div><div class="vals"><span class="after">24h+</span></div><div class="note"><span class="ev research">Baseline</span></div></div>
+        <h3>Creating a collection</h3>
+        <div class="wires">
+          <figure><div class="plain-shot"><img src="assets/images/cc-proto-1-select.webp" alt="Prototype: eleven cat images selected in the Curation Tool, with Create new curated collection and Add to existing curated collection in the Collection panel" loading="lazy" width="1600" height="1000"></div><h4>1. Select images</h4><p>Curators select images in search as they already do, then choose a new or an existing curated collection from the same panel.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/cc-proto-2-create.webp" alt="Prototype: Create new curated collection dialog with a name, description and three tags" loading="lazy" width="1600" height="1000"></div><h4>2. Name and describe it</h4><p>A name, a description and up to five tags, the details the collection page needs later.</p></figure>
+        </div>
+        <div class="plain-shot"><img src="assets/images/cc-proto-3-created.webp" alt="Prototype: the new collection Cats in the wild with 11 images, its details panel, and a Saved confirmation with Undo" loading="lazy" width="1600" height="1000"></div>
+        <figcaption style="margin-top:0">3. The new collection opens straight away, with its details, actions and a confirmation with Undo.</figcaption>
+
+        <h3>Three ways to add images, matched to how curators work</h3>
+        <div class="wires">
+          <figure><div class="plain-shot"><img src="assets/images/cc-p-reference.webp" alt="Prototype: Add images by image IDs dialog showing 11 pasted, 8 ready, 2 not found and 1 already in the collection" loading="lazy" width="1600" height="1000"></div><h4>Paste reference numbers</h4><p>Curators often work from a brief or a spreadsheet export, so they can paste many IDs at once. Each is checked first: numbers not found, repeated or already in the collection are never added.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/cc-proto-4-search-add.webp" alt="Prototype: adding mode, with a banner Adding to Cats in the wild, images labelled In collection, and a Done button" loading="lazy" width="1600" height="1000"></div><h4>Search and add</h4><p>An "adding mode" with a fixed destination, so there's no collection picker to get wrong. Images already added show "In collection", and the curator can keep searching.</p></figure>
+        </div>
+        <div class="plain-shot" style="max-width:760px"><img src="assets/images/cc-proto-5-add-existing.webp" alt="Prototype: Add to existing curated collection dialog with search and recent collections" loading="lazy" width="1600" height="1000"></div>
+        <figcaption style="margin-top:0">Or add a selection to an existing collection: search by name or tag, or pick a recent one.</figcaption>
+        <p class="small">Paste-by-reference came out of this coded prototype, and stuck because it matches how the team already works.</p>
+
+        <h3>Organising at scale</h3>
+        <div class="wires">
+          <figure><div class="plain-shot"><img src="assets/images/cc-p-selected.webp" alt="Prototype: one image selected in a collection, with bulk actions to copy, move to collection, move to top or bottom, and remove" loading="lazy" width="1600" height="1000"></div><h4>Act on a selection</h4><p>Select images to copy, move, reorder to the top or bottom, or remove them. Drag to reorder, and shift-click to select a range.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/cc-p-move.webp" alt="Prototype: Move image to another collection dialog with a searchable list of collections and their image counts" loading="lazy" width="1600" height="1000"></div><h4>Move between collections</h4><p>Pick a destination from a searchable list, with image counts. Images already there are never added twice.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/cc-p-search-inside.webp" alt="Prototype: searching inside a collection for kitten, showing 8 of 11 images match" loading="lazy" width="1600" height="1000"></div><h4>Search inside a collection</h4><p>This came straight from interviews: people had no way to find an image within a large collection.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/cc-p-find-image.webp" alt="Prototype: collections list search for image ID E4K2PQ showing the one collection that contains it" loading="lazy" width="1600" height="1000"></div><h4>Find an image across collections</h4><p>Typing an image ID into the collections list shows every collection that contains it.</p></figure>
+        </div>
+        <div class="plain-shot"><img src="assets/images/cc-p-list.webp" alt="Prototype: Curated collections list, a sortable table of 103 collections with last updated, creator, item count, status and who made changes" loading="lazy" width="1600" height="1000"></div>
+        <figcaption style="margin-top:0">All collections in one dense, sortable table, with status and who changed what last.</figcaption>
+        <div class="plain-shot" style="max-width:760px"><img src="assets/images/cc-p-delete.webp" alt="Prototype: Delete curated collection dialog with a checkbox confirming responsibility" loading="lazy" width="1600" height="1000"></div>
+        <figcaption style="margin-top:0">Deleting a collection can't happen until the curator ticks a box taking responsibility for it. All prototype screens use sample data.</figcaption>
+      </section>
+
+      <section class="stage" id="cc-6">
+        <div class="stage-kicker">Sharing</div>
+        <h2>What customers see when a curator shares a collection</h2>
+        <p>A curated collection is shared as a page on alamy.com, a redesign of the old shared Lightbox page. Anyone with the link can open it.</p>
+        <div class="wires">
+          <figure><div class="plain-shot"><img src="assets/images/cc-shared-select.webp" alt="Shared curated collection page on alamy.com with four images selected and a tray at the bottom with Add 4 to cart" loading="lazy" width="1440" height="1500"></div><h4>Buy without signing in</h4><p>Visitors can select images, including a range with shift-click, and add only those to the cart, without an account.</p></figure>
+          <figure><div class="plain-shot"><img src="assets/images/cc-shared-save.webp" alt="Save this curated collection as your own dialog, explaining that later changes Alamy makes won't change the copy" loading="lazy" width="1440" height="1500"></div><h4>Save a copy</h4><p>Signed-in visitors can save the collection as their own. It's a snapshot, and the dialog says so: later changes by Alamy won't change their copy.</p></figure>
         </div>
       </section>
-      <section class="stage" id="cr-2">
-        <div class="stage-kicker">The evidence</div>
-        <h2>Tagging was the biggest drain</h2>
-        <p>This wasn't a cold start. The contributor blueprint I mapped in 2023 had already shown where this journey broke down. I built on it with interviews with photographers and agencies, usability testing of the existing workflow, journey mapping, and 30 days of behavioural analytics in Microsoft Clarity for registration and upload.</p>
-        <div class="plain-shot"><img src="assets/images/img-46.webp" alt="Mural discovery board with analytics findings and success metrics for registration and upload" loading="lazy"></div>
-        <figcaption style="margin-top:0">The discovery board, with a success metric set for each problem before designing.</figcaption>
-        <h3>Baselines and targets</h3>
+
+      <section class="stage" id="cc-7">
+        <div class="stage-kicker">Status and next steps</div>
+        <h2>In progress, and not yet validated</h2>
         <div class="tbl-wrap"><table>
-          <thead><tr><th>Flow</th><th>Metric</th><th><span class="ev research">Baseline</span></th><th><span class="ev target">Target</span></th></tr></thead>
+          <thead><tr><th>Done</th><th>Still to do</th></tr></thead>
           <tbody>
-            <tr><td>Registration</td><td>Time to register</td><td>13 min</td><td>8 min</td></tr>
-            <tr><td>Registration</td><td>Clicks to register</td><td>14</td><td>10</td></tr>
-            <tr><td>Upload</td><td>Time to add tags and keywords</td><td>~20 min</td><td>Under 10 min</td></tr>
-            <tr><td>Upload</td><td>Clicks to add tags and keywords</td><td>25</td><td>Under 20</td></tr>
-            <tr><td>Both</td><td>Dead clicks and JavaScript errors</td><td>High</td><td>Reduce</td></tr>
+            <tr><td>Discovery, the journey map, and initial designs for 14 flows inside the Curation Tool, on its real components.</td><td>Test the flows with the content team. Decide with the PM on the three uncovered gaps. Refine before handoff.</td></tr>
           </tbody>
         </table></div>
-        <div class="callout"><p class="q">Device data changed the priorities: most registrations happen on mobile, while most uploads happen on desktop. So registration had to work on phones first, and upload had to be fast for bulk work at a desk.</p></div>
-      </section>
-      <section class="stage" id="cr-3">
-        <div class="stage-kicker">The decisions</div>
-        <h2>From friction points to design choices</h2>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>What we saw</th><th>What I designed</th></tr></thead>
-          <tbody>
-            <tr><td>Tagging every image by hand</td><td>AI-suggested captions, keywords and locations to review, not type</td></tr>
-            <tr><td>Repeating the same edit on many images</td><td>Bulk editing across a selection</td></tr>
-            <tr><td>Errors found only after submitting</td><td>Inline feedback and validation as you go</td></tr>
-            <tr><td>Different upload habits</td><td>Drag and drop, and click to upload</td></tr>
-            <tr><td>Broken on smaller screens</td><td>A responsive interface on Alamy's design system</td></tr>
-            <tr><td>Uncertainty after submitting</td><td>A clear confirmation that says quality control takes up to 24 hours, with an email when it's done</td></tr>
-          </tbody>
-        </table></div>
-        <p>I worked with the PM on priorities and scope, engineers on feasibility and integration, and content reviewers to match their quality standards.</p>
-      </section>
-      <section class="stage" id="cr-ai">
-        <div class="stage-kicker">Responsible AI</div>
-        <h2>AI suggests, contributors decide</h2>
-        <p>Metadata decides whether an image can be found and whether it passes review, so AI suggestions couldn't be silently accepted.</p>
-        <dl class="decision">
-          <div><dt>Evidence</dt><dd>Contributors wanted help with repetitive tagging, but content reviewers hold metadata to a quality standard.</dd></div>
-          <div><dt>Interpretation</dt><dd>Wrong AI metadata would just move the work to quality control, and hurt the contributor.</dd></div>
-          <div class="d"><dt>Decision</dt><dd>AI metadata arrives as suggestions that are easy to see, check and correct before submitting, never as accepted values.</dd></div>
-          <div><dt>Trade-off</dt><dd>A review step remains. The saving comes from editing instead of typing, not from skipping review.</dd></div>
-          <div><dt>Next check</dt><dd><span class="ev target">Next</span>Make it even clearer which metadata came from AI, and test complex bulk edits.</dd></div>
-        </dl>
-      </section>
-      <section class="stage" id="cr-4">
-        <div class="stage-kicker">The design</div>
-        <h2>A faster upload flow</h2>
-        <div class="plain-shot"><img src="assets/images/img-47.webp" alt="Usability test session: a contributor selects photos to upload, and the new confirmation says images were submitted to quality control" loading="lazy"></div>
-        <figcaption style="margin-top:0">From a usability test: a contributor picks photos, then sees the new confirmation, which says quality control takes up to 24 hours and they'll get an email when it's done.</figcaption>
-      </section>
-      <section class="stage" id="cr-5">
-        <div class="stage-kicker">Validation</div>
-        <h2>Tested with real contributors, not yet measured live</h2>
-        <p><span class="ev test">Usability test</span> Three rounds on UserTesting.com with real contributors, who uploaded images, added metadata and used bulk editing. The prototype cut steps from about 25 to about 10, every participant completed their tasks, and satisfaction averaged 4.6 out of 5.</p>
-        <h3>What testing changed</h3>
-        <p>Feedback led me to make bulk editing easier to find and to add a clearer confirmation after saving.</p>
-        <p><span class="ev target">After launch</span>Time on task and quality control time will be measured against the baselines above.</p>
-      </section>
-      <section class="stage" id="cr-6">
-        <div class="stage-kicker">Reflection</div>
-        <h2>AI only helps when people can see what it did</h2>
-        <p>Transparency is part of the interface. Next, I'm improving how clear AI metadata is and testing complex bulk edit workflows.</p>
-        <h3>What I'd do differently</h3>
-        <p>Bring contributors in earlier, during ideation, to co-create features that match how they already think and work.</p>
+        <p><span class="ev open">Open question</span> How well these flows work for curators in practice. That needs testing before any outcome can be claimed.</p>
+        <h3>What I'd take from this</h3>
+        <p>The useful instinct wasn't building fast. It was being willing to throw out my first wireframes the moment the real tool showed they were wrong, and to flag gaps to the PM instead of quietly designing around them.</p>
+        <p class="small">Designs are in progress and may change. Screens use sample data.</p>
       </section>
     </div>
   </div>
-  <a class="next-case wrap" href="#/service-blueprint"><div class="small">Next case study</div><h2>Mapping how Alamy really works</h2></a>
+  <a class="next-case wrap" href="#/lightbox"><div class="small">The customer-facing side</div><h2>My Collection: Lightbox rebuild</h2></a>
 </div>
 
 <!-- ============ BEHIND THE SEARCH ============ -->
 <div data-page="behind-the-search" data-title="Behind the Search">
   <section class="case-head wrap">
-    <a class="back" href="#/">← All work</a>
+    <a class="back" href="#/work">← All work</a>
     <div class="company">Internal tool · Alamy Images, PA Media Group</div>
     <h1 class="display">Behind the Search: internal curation tool</h1>
     <p class="lede">The content team decides what customers see in search, but worked in a slow, outdated CRM with no quick way to act. I designed a tool that lets them edit metadata and boost or suppress images directly on top of the search they already knew.</p>
@@ -1723,49 +1813,50 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
       </section>
     </div>
   </div>
-  <a class="next-case wrap" href="#/contributor-revamp"><div class="small">Next case study</div><h2>Contributor Experience Revamp</h2></a>
+  <a class="next-case wrap" href="#/service-blueprint"><div class="small">Next case study</div><h2>Service blueprints: Enterprise purchase and contributor journeys</h2></a>
 </div>
 
 <!-- ============ SERVICE BLUEPRINT ============ -->
-<div data-page="service-blueprint" data-title="Mapping how Alamy really works">
+<div data-page="service-blueprint" data-title="Service blueprints">
   <section class="case-head wrap">
-    <a class="back" href="#/">← All work</a>
-    <div class="company">Supporting case study · Alamy Images, PA Media Group</div>
-    <h1 class="display">Mapping how Alamy really works</h1>
-    <p class="lede">Service blueprints for the Enterprise and Contributor journeys. Mapping frontstage and backstage work together made handoffs, duplicated work and ownership gaps visible, and gave teams one shared picture to align on.</p>
-    <dl class="facts">
-      <div><dt>Audience</dt><dd>Alamy leadership and the teams behind the Enterprise and Contributor journeys</dd></div>
-      <div><dt>My role</dt><dd>Sole designer, leading the service design work independently</dd></div>
-      <div><dt>Timeline</dt><dd>March to July 2023</dd></div>
+    <a class="back" href="#/work">← All work</a>
+    <div class="company">Supporting case study · service design · Alamy Images, PA Media Group</div>
+    <h1 class="display">Service blueprints: Enterprise purchase and contributor journeys</h1>
+    <p class="lede">No one at Alamy could see how the business ran end to end. I mapped four as-is service blueprints, three ways enterprise customers buy and how contributors join and get paid, so every team could see the work behind each customer moment.</p>
+    <dl class="summary">
+      <div><dt>Audience</dt><dd>Alamy leadership, and the teams behind enterprise sales and contributors</dd></div>
+      <div><dt>Role</dt><dd>Sole designer, leading the service design work independently, March to July 2023</dd></div>
+      <div><dt>What I made</dt><dd>Four as-is blueprints: Committed spend, Easy Download and iQ enterprise purchase journeys, and the contributor journey</dd></div>
       <div><dt>Teams involved</dt><dd>Content, Accounts, Marketing, Contracts and Tech</dd></div>
-      <div><dt>I owned</dt><dd>All of it: interviews, workshops, both blueprints and presenting them to leadership</dd></div>
       <div><dt>Status</dt><dd class="status">Complete</dd></div>
     </dl>
   </section>
   <section class="case-shifts wrap">
     <div class="shifts">
-      <div class="shift"><div class="label">End-to-end journeys mapped</div><div class="vals"><span class="after">2</span></div></div>
+      <div class="shift"><div class="label">As-is service blueprints</div><div class="vals"><span class="after">4</span></div></div>
+      <div class="shift"><div class="label">Enterprise purchase routes</div><div class="vals"><span class="after">3</span></div></div>
       <div class="shift"><div class="label">Departments interviewed and aligned</div><div class="vals"><span class="after">5</span></div></div>
-      <div class="shift"><div class="label">Informed the starting point for</div><div class="vals"><span class="after" style="font-size:24px">2025 Contributor Revamp</span></div></div>
     </div>
   </section>
   <div class="case-body wrap">
     <ol class="stages" aria-label="Case study sections">
       <li><a href="#sb-1">The problem</a></li>
       <li><a href="#sb-2">How I mapped it</a></li>
-      <li><a href="#sb-3">What it revealed</a></li>
-      <li><a href="#sb-4">How it was used</a></li>
+      <li><a href="#sb-3">Enterprise purchase</a></li>
+      <li><a href="#sb-c">Contributor journey</a></li>
+      <li><a href="#sb-o">The originals</a></li>
+      <li><a href="#sb-4">What it revealed</a></li>
       <li><a href="#sb-5">What I learned</a></li>
     </ol>
     <div>
       <section class="stage" id="sb-1">
-        <div class="stage-kicker">Why this mattered</div>
+        <div class="stage-kicker">The problem</div>
         <h2>Nobody could see the whole business</h2>
         <p>Alamy had run for years, but no one had an end-to-end view of how it worked, from winning an enterprise customer to onboarding a contributor. Teams worked in silos with fragmented tools and unclear ownership, which led to duplicated work and long turnaround times.</p>
       </section>
       <section class="stage" id="sb-2">
-        <div class="stage-kicker">How I did it</div>
-        <h2>Five departments, two journeys, one map each</h2>
+        <div class="stage-kicker">How I mapped it</div>
+        <h2>Five departments, four journeys</h2>
         <ol class="steps">
           <li>Interviewed people across Content, Accounts, Marketing, Contracts and Tech</li>
           <li>Documented workflows through process walkthroughs</li>
@@ -1773,118 +1864,75 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
           <li>Ran journey mapping workshops to validate and align</li>
           <li>Reviewed drafts with every team until they confirmed accuracy</li>
         </ol>
-        <p>I kept the blueprints detailed enough to surface real insight, but clear enough for non-designers to use.</p>
+        <p>Each blueprint shows the customer's actions, what they see (front stage), the work behind it (back stage), and the systems involved, kept clear enough for non-designers to use.</p>
       </section>
       <section class="stage" id="sb-3">
-        <div class="stage-kicker">What I found</div>
-        <h2>The business was duplicating work without knowing it</h2>
-        <ul class="clean">
-          <li>Too many manual steps and outdated communication channels</li>
-          <li>Teams repeated each other's work because processes weren't aligned</li>
-          <li>Unclear ownership and fragmented tools caused long turnaround times</li>
-          <li>No team could see what happened before or after its own stage</li>
-        </ul>
-        <h3>Enterprise journey</h3>
-        <div class="bp-legend"><span>Pain point</span><span class="line">Line of visibility: customers see what's above it</span></div>
-        <div class="bp-wrap"><div class="bp" style="grid-template-columns:150px repeat(5,1fr)">
-<div class="lane stage" style="background:var(--ink);color:var(--bg)">Stage</div>
-<div class="stage">Discover</div>
-<div class="stage">Enquire</div>
-<div class="stage">Agree terms</div>
-<div class="stage">Onboard</div>
-<div class="stage">Use the account</div>
-<div class="lane">Customer actions</div>
-<div class="">Finds Alamy and explores the collection</div>
-<div class="">Asks about enterprise pricing and licences</div>
-<div class="">Reviews and signs the agreement</div>
-<div class="">Sets up the account and users</div>
-<div class="">Searches, downloads and licenses images</div>
-<div class="lane">Front stage</div>
-<div class="vis">Website and marketing campaigns</div>
-<div class="vis">Sales conversation</div>
-<div class="vis">Contract sent for review</div>
-<div class="vis">Welcome and account setup</div>
-<div class="vis">Website, account manager support</div>
-<div class="lane">Back stage</div>
-<div class="">Marketing</div>
-<div class="">Accounts and sales</div>
-<div class="">Contracts</div>
-<div class="">Accounts and Tech</div>
-<div class="">Content and Accounts</div>
-<div class="lane">Support systems</div>
-<div class="">Website, CRM</div>
-<div class="">CRM, email</div>
-<div class="">Contract documents, email</div>
-<div class="">Account setup tools</div>
-<div class="">Search, download and billing systems</div>
-<div class="lane">Pain points</div>
-<div class="pain none">—</div>
-<div class="pain">Manual steps and handoffs</div>
-<div class="pain">Unclear ownership between teams</div>
-<div class="pain">Work duplicated across teams</div>
-<div class="pain">Teams can't see earlier stages</div>
+        <div class="stage-kicker">Enterprise purchase</div>
+        <h2>Three routes to buy, three different machines behind them</h2>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th></th><th>Committed spend</th><th>Easy Download</th><th>iQ</th></tr></thead>
+          <tbody>
+            <tr><td>Suits</td><td>Customers committing to an annual image pack</td><td>Customers who want Alamy to find images for a brief</td><td>Customers who want a self-serve account</td></tr>
+            <tr><td>Led by</td><td>A business development manager, throughout</td><td>An account development manager, with a content researcher</td><td>An account development manager to set up, then the customer</td></tr>
+            <tr><td>How images are found</td><td>The customer downloads from the site; researchers build lightboxes on request</td><td>A content researcher searches, then emails a lightbox</td><td>The customer searches and buys on their own</td></tr>
+            <tr><td>Setting up</td><td>Proposal, legal review, contract, invoice account, annual subscription</td><td>A quote if needed, and a credit account</td><td>A setup form, an IT ticket, and a QA team who create the account</td></tr>
+            <tr><td>Systems</td><td>Microsoft 365, Teams, Outlook</td><td>Salesforce, Outlook, Teams</td><td>CRM, Teams, Outlook</td></tr>
+          </tbody>
+        </table></div>
+        <h3>In detail: Committed spend</h3>
+        <div class="bp-legend"><span>Where it relies on manual work</span><span class="line">Line of visibility: the customer sees what's above it</span></div>
+        <div class="bp-wrap"><div class="bp" style="grid-template-columns:150px repeat(7,minmax(150px,1fr))">
+<div class="lane stage">Stage</div><div class="stage">Initial interaction</div><div class="stage">Proposal</div><div class="stage">Negotiation</div><div class="stage">Contract</div><div class="stage">Account and subscription</div><div class="stage">Image purchase</div><div class="stage">Renewal</div>
+<div class="lane">Customer actions</div><div class="vis">Emails a BDM, or is contacted, and meets to discuss needs</div><div class="vis">Meets the BDM again to go over requirements</div><div class="vis">Negotiates until an agreement works for both</div><div class="vis">Legal team reviews, and marks up changes by email</div><div class="vis">Fills in an application for an invoice account</div><div class="vis">Downloads with an annual image pack; emails the BDM for content and lightboxes</div><div class="vis">Negotiates contract changes by email and calls</div>
+<div class="lane">Front stage</div><div class="">Meetings online or in person; the BDM demos the site and sends catalogues</div><div class="">BDM emails the proposal</div><div class="">Contract sent to the customer's legal team</div><div class="">Signed by both sides; the BDM follows up on mark-ups</div><div class="">BDM sets up the invoice account and annual subscription</div><div class="">BDM asks a picture researcher for lightboxes, and the content team for new content</div><div class="">BDM negotiates upsells</div>
+<div class="lane">Back stage</div><div class="none">&mdash;</div><div class="none">&mdash;</div><div class="">BDM writes the contract from a standard template</div><div class="">Alamy's legal team accepts or rejects the mark-ups</div><div class="">BDM buys the image pack on internal accounts</div><div class="none">&mdash;</div><div class="none">&mdash;</div>
+<div class="lane">Systems</div><div class="">Microsoft 365, Teams, Outlook</div><div class="">Email</div><div class="">Email</div><div class="">Contracts stored by admin</div><div class="">Monthly invoices sent manually</div><div class="">Website, email</div><div class="">Email, video calls</div>
+<div class="lane">Relies on</div><div class="pain">Meetings and email</div><div class="pain">Email</div><div class="pain">Email back and forth</div><div class="pain">Mark-ups passed by email</div><div class="pain">Manual purchase and invoicing</div><div class="pain">Requests to other teams by email</div><div class="pain">Email and calls</div>
 </div></div>
-        <figcaption style="margin-top:0">From first interest to using the account: what the customer does, what they see, the teams behind it, the systems, and where it breaks down.</figcaption>
-        <h3>Contributor journey</h3>
-        <div class="bp-legend"><span>Pain point</span><span class="line">Line of visibility: customers see what's above it</span></div>
-        <div class="bp-wrap"><div class="bp" style="grid-template-columns:150px repeat(6,1fr)">
-<div class="lane stage" style="background:var(--ink);color:var(--bg)">Stage</div>
-<div class="stage">Join</div>
-<div class="stage">Upload</div>
-<div class="stage">Add metadata</div>
-<div class="stage">Quality control</div>
-<div class="stage">Go live</div>
-<div class="stage">Ongoing</div>
-<div class="lane">Contributor actions</div>
-<div class="">Signs up as a contributor</div>
-<div class="">Uploads images</div>
-<div class="">Adds captions, keywords and locations</div>
-<div class="">Waits for review</div>
-<div class="">Images appear in search</div>
-<div class="">Tracks sales and uploads more</div>
-<div class="lane">Front stage</div>
-<div class="vis">Contributor sign-up</div>
-<div class="vis">Upload tool</div>
-<div class="vis">Metadata forms</div>
-<div class="vis">Submission status</div>
-<div class="vis">Live on alamy.com</div>
-<div class="vis">Contributor account</div>
-<div class="lane">Back stage</div>
-<div class="">Content team</div>
-<div class="">Tech</div>
-<div class="">Content team</div>
-<div class="">Content reviewers check quality</div>
-<div class="">Search and content teams</div>
-<div class="">Accounts</div>
-<div class="lane">Support systems</div>
-<div class="">Contributor platform</div>
-<div class="">Contributor platform</div>
-<div class="">Contributor platform</div>
-<div class="">Review tools</div>
-<div class="">Search</div>
-<div class="">Reporting and payments</div>
-<div class="lane">Pain points</div>
-<div class="pain none">—</div>
-<div class="pain">Poor responsiveness and JavaScript errors</div>
-<div class="pain">25+ clicks and 20+ minutes per submission</div>
-<div class="pain">Quality control takes over 24 hours</div>
-<div class="pain">Delays before images earn</div>
-<div class="pain">Outdated communication channels</div>
+        <figcaption style="margin-top:0">From first contact to renewal. Almost every step runs through one business development manager, by email and meetings.</figcaption>
+      </section>
+      <section class="stage" id="sb-c">
+        <div class="stage-kicker">Contributor journey</div>
+        <h2>From finding Alamy to getting paid</h2>
+        <div class="bp-legend"><span class="opp-key">Opportunity identified</span><span class="line">Line of visibility: the contributor sees what's above it</span></div>
+        <div class="bp-wrap"><div class="bp" style="grid-template-columns:150px repeat(5,minmax(150px,1fr))">
+<div class="lane stage">Stage</div><div class="stage">Finding Alamy</div><div class="stage">Signing up</div><div class="stage">Quality test</div><div class="stage">Upload and tag</div><div class="stage">Getting paid</div>
+<div class="lane">Contributor actions</div><div class="vis">Hears about Alamy at a photography exhibition, online, or through an invitation</div><div class="vis">Signs up and completes the "Become a contributor" form; bespoke contributors negotiate a contract</div><div class="vis">Uploads three test images to Image Manager for an initial quality check</div><div class="vis">Once passed, uploads as many as they like, with a caption and at least five tags</div><div class="vis">Is notified of sales and sees their balance and sales history on a dashboard</div>
+<div class="lane">Front stage</div><div class="">Alamy stalls at industry exhibitions; emails from the contributor relations team</div><div class="">The content team signs up large agencies internally</div><div class="">A message confirms the test images were submitted; uploading stays disabled until they pass</div><div class="">An email after each quality check, with the reason for any failure</div><div class="">Images go on sale within 24 hours of passing</div>
+<div class="lane">Back stage</div><div class="">Finance budgets for exhibition stalls</div><div class="">The legal team drafts bespoke contracts</div><div class="">Test images move to quality control in the CRM and are checked by hand</div><div class="">The QC team checks each contributor's images in the CRM</div><div class="">Payment runs through an automated service; the contributor relations team chases payment issues</div>
+<div class="lane">Systems</div><div class="">Outlook, CRM, website</div><div class="">Outlook, CRM, website</div><div class="">Image Manager, CRM, Photoshop</div><div class="">CRM, Microsoft Edge with an IE plug-in</div><div class="">Payment run, PayPal and card</div>
+<div class="lane">Opportunities</div><div class="opp">A stall that showcases Alamy as a brand</div><div class="opp">A contributor sign-up on the login page, and joining criteria to prevent fraud</div><div class="opp">Fewer, more accurate failure reasons</div><div class="opp">Quality checks for 360&deg; images, and no dependence on legacy browser plug-ins</div><div class="opp">Sales data shown visually, not just as words and numbers</div>
 </div></div>
-        <figcaption style="margin-top:0">From joining to ongoing uploads. The upload, metadata and quality control pain points became the focus of the <a class="link" href="#/contributor-revamp">Contributor Experience Revamp</a>.</figcaption>
-        <p class="small">Simplified versions recreated for this portfolio. The original blueprints hold more detail and internal information.</p>
+        <figcaption style="margin-top:0">General and bespoke contributors follow different routes in; vectors, live news and archival images bypass the quality test.</figcaption>
+      </section>
+      <section class="stage" id="sb-o">
+        <div class="stage-kicker">The originals</div>
+        <h2>The full blueprints</h2>
+        <p>The simplified versions above are recreated for this page. These are the original as-is blueprints I built, with every step, touchpoint and system. Select one to zoom in.</p>
+        <div class="wires">
+          <figure><div class="plain-shot"><img src="assets/images/sb-enterprise-committed.webp" alt="Original service blueprint: Enterprise purchase journey, committed spend" loading="lazy" width="2400" height="1624"></div><h4>Enterprise: Committed spend</h4></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sb-enterprise-easy-download.webp" alt="Original service blueprint: Enterprise purchase journey, Easy Download customer" loading="lazy" width="2400" height="1793"></div><h4>Enterprise: Easy Download</h4></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sb-enterprise-iq.webp" alt="Original service blueprint: Enterprise purchase journey, iQ customer" loading="lazy" width="2400" height="2317"></div><h4>Enterprise: iQ</h4></figure>
+          <figure><div class="plain-shot"><img src="assets/images/sb-contributor.webp" alt="Original service blueprint: contributor user journey map" loading="lazy" width="2400" height="1637"></div><h4>Contributor journey</h4></figure>
+        </div>
       </section>
       <section class="stage" id="sb-4">
-        <div class="stage-kicker">How it was used</div>
-        <h2>From a map to shared understanding</h2>
+        <div class="stage-kicker">What it revealed</div>
+        <h2>The business was running on email and handoffs</h2>
+        <ul class="clean">
+          <li><b>Email and meetings carried almost every step.</b> Outlook and Teams appear across all three enterprise journeys.</li>
+          <li><b>Simple outcomes needed long chains.</b> Creating one iQ account passed from an account development manager to IT to a QA team and back.</li>
+          <li><b>Manual work where automation would help:</b> monthly invoices, contract mark-ups, and quality checks done by hand in the CRM.</li>
+          <li><b>Contributor tooling depended on legacy technology,</b> such as an Internet Explorer plug-in for quality control.</li>
+          <li><b>No team could see what happened before or after its own stage.</b></li>
+        </ul>
         <p>I presented the blueprints to leadership and cross-functional teams. They became a shared reference for how processes worked and showed leadership bottlenecks they hadn't known about.</p>
         <div class="quotes"><blockquote>"This is the first time we've been able to see the full picture. It's amazing how much we were duplicating work without realizing it."</blockquote></div>
-        <p>When the <a class="link" href="#/contributor-revamp">Contributor Experience Revamp</a> began in 2025, I used the contributor blueprint as its starting point: the upload, metadata and quality control pain points it surfaced became the focus of that research.</p>
       </section>
       <section class="stage" id="sb-5">
         <div class="stage-kicker">What I learned</div>
         <h2>Sometimes the design work is making the invisible visible</h2>
-        <p>Mapping internal and external experiences together built a shared understanding that guided later product work.</p>
+        <p>Mapping what customers see together with the work behind it built a shared understanding that guided later product work.</p>
         <h3>What I'd do differently</h3>
         <p>Make the blueprints a living document teams could update as processes change, so they stay useful over time.</p>
       </section>
@@ -1896,7 +1944,7 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 <!-- ============ BETWEEN US ============ -->
 <div data-page="between-us" data-title="between us" class="bu">
   <section class="case-head wrap">
-    <a class="back" href="#/">← All work</a>
+    <a class="back" href="#/work">← All work</a>
     <div class="company">Other work · Beyond Zeal, monthly live music series, Trivandrum</div>
     <h1 class="display bu-word">between <em>us</em></h1>
     <p class="lede">Naming and brand identity for a monthly live music evening: one artist, one room, a new edition every month. I named it, built a colour system that changes with each edition, and designed everything from posters and tickets to a bookmark and a full Instagram kit.</p>
@@ -2222,13 +2270,19 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
 <script>
 (function(){
   var pages = document.querySelectorAll('[data-page]');
-  var homeAnchors = {work:'work', journey:'journey', about:'about', contact:'contact'};
+  var homeAnchors = {journey:'journey', about:'about', contact:'contact'};
   var observer;
 
+  // Remember which list (home or the work page) a case study was opened from,
+  // and where the visitor was on it, so "back" returns them to the same place.
+  var origin = 'work', listScroll = {};
   function show(route){
     var name = route || 'home';
     var anchor = null;
     if (homeAnchors[name]) { anchor = homeAnchors[name]; name = 'home'; }
+    var current = document.querySelector('[data-page].on');
+    var from = current && current.getAttribute('data-page');
+    if (from === 'home' || from === 'work') listScroll[from] = window.scrollY;
     var found = false;
     pages.forEach(function(p){
       var on = p.getAttribute('data-page') === name;
@@ -2240,9 +2294,19 @@ var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');if(
     var active = document.querySelector('[data-page="'+name+'"]');
     var t = active.getAttribute('data-title');
     document.title = t ? t + ' | Muhsina Karim' : 'Muhsina Karim — Product Designer';
+    var isList = name === 'home' || name === 'work';
+    if (isList) origin = name;
+    else {
+      active.querySelectorAll('a.back[href="#/"], a.back[href="#/work"]').forEach(function(a){
+        a.setAttribute('href', origin === 'home' ? '#/' : '#/work');
+        a.textContent = origin === 'home' ? '← Home' : '← All work';
+      });
+    }
     if (anchor){
       var el = document.getElementById(anchor);
       if (el) el.scrollIntoView();
+    } else if (isList && listScroll[name] != null && from !== name && from !== 'home' && from !== 'work'){
+      window.scrollTo(0, listScroll[name]);
     } else {
       window.scrollTo(0,0);
     }
